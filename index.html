@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskBridge — Employee Work Distribution System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0D1117;
+      --surface:   #161B22;
+      --surface2:  #1C2333;
+      --border:    #30363D;
+      --blue:      #2563EB;
+      --blue-light:#3B82F6;
+      --blue-glow: rgba(37,99,235,0.15);
+      --green:     #10B981;
+      --green-bg:  rgba(16,185,129,0.1);
+      --yellow:    #F59E0B;
+      --yellow-bg: rgba(245,158,11,0.1);
+      --red:       #EF4444;
+      --purple:    #8B5CF6;
+      --text:      #F0F6FC;
+      --muted:     #8B949E;
+      --card-r:    16px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--blue-light); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 1.1rem; color: var(--text);
+    }
+    .nav-logo .logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted); font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta {
+      background: var(--blue); color: #fff !important;
+      padding: 6px 16px; border-radius: 8px;
+      font-size: 0.8rem !important; font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--blue-light) !important; }
+
+    /* ── Layout ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 80px 0; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-glow); border: 1px solid rgba(37,99,235,0.3);
+      color: var(--blue-light); font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 1rem;
+    }
+    h2.section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 1.05rem; max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-glow {
+      position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 1.5rem;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.8rem; font-weight: 500;
+      padding: 6px 14px; border-radius: 100px;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero-title {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--blue-light), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-size: 1.15rem; color: var(--muted);
+      max-width: 600px; line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      justify-content: center; margin-top: 0.5rem;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff;
+      padding: 12px 24px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 0 0 rgba(37,99,235,0.4);
+    }
+    .btn-primary:hover {
+      background: var(--blue-light); text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); color: var(--text);
+      padding: 12px 24px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem;
+      border: 1px solid var(--border);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover {
+      background: var(--surface2); border-color: var(--muted);
+      text-decoration: none; transform: translateY(-1px);
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center;
+      margin-top: 1rem; padding-top: 2rem;
+      border-top: 1px solid var(--border); width: 100%;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--text); }
+    .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ── Tech Stack ── */
+    #tech { background: var(--surface); }
+    .tech-grid {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+    }
+    .tech-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 10px 18px; border-radius: 10px;
+      font-size: 0.9rem; font-weight: 500;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .tech-pill:hover { border-color: var(--blue-light); transform: translateY(-2px); }
+    .tech-icon { font-size: 1.2rem; }
+
+    /* ── Problem ── */
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 1rem;
+    }
+    .problem-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .problem-card:hover { border-color: var(--red); transform: translateY(-3px); }
+    .problem-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .problem-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .problem-card p { font-size: 0.875rem; color: var(--muted); }
+
+    /* ── Roles ── */
+    .roles-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 1.5rem;
+    }
+    .role-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .role-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .role-card.admin::before { background: linear-gradient(90deg, var(--purple), var(--blue)); }
+    .role-card.manager::before { background: linear-gradient(90deg, var(--blue), var(--green)); }
+    .role-card.employee::before { background: linear-gradient(90deg, var(--green), var(--yellow)); }
+    .role-card:hover { border-color: var(--blue-light); transform: translateY(-4px); }
+    .role-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+    .role-avatar {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; font-weight: 700;
+    }
+    .role-avatar.admin  { background: rgba(139,92,246,0.15); color: var(--purple); }
+    .role-avatar.manager { background: var(--blue-glow); color: var(--blue-light); }
+    .role-avatar.employee { background: var(--green-bg); color: var(--green); }
+    .role-name { font-size: 1.1rem; font-weight: 700; }
+    .role-purpose { font-size: 0.8rem; color: var(--muted); }
+    .role-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .role-features li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.875rem; color: var(--muted);
+    }
+    .role-features li::before { content: '→'; color: var(--blue-light); flex-shrink: 0; font-family: monospace; }
+
+    /* ── Dashboard Showcase ── */
+    #dashboards { background: var(--surface); }
+    .tab-buttons {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .tab-btn {
+      padding: 8px 18px; border-radius: 8px;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--blue); border-color: var(--blue);
+      color: #fff;
+    }
+    .tab-btn:hover:not(.active) { border-color: var(--muted); color: var(--text); }
+    .dashboard-pane { display: none; }
+    .dashboard-pane.active { display: block; }
+    .dashboard-frame {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--card-r); overflow: hidden;
+    }
+    .dashboard-bar {
+      background: #0D1117; border-bottom: 1px solid var(--border);
+      padding: 10px 16px; display: flex; align-items: center; gap: 8px;
+    }
+    .dot-r { width: 10px; height: 10px; border-radius: 50%; background: #EF4444; }
+    .dot-y { width: 10px; height: 10px; border-radius: 50%; background: #F59E0B; }
+    .dot-g { width: 10px; height: 10px; border-radius: 50%; background: #10B981; }
+    .url-bar {
+      flex: 1; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 4px 12px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+      color: var(--muted); margin: 0 12px;
+    }
+    .dashboard-content { padding: 0; }
+    .dashboard-content img { width: 100%; border-radius: 0 0 var(--card-r) var(--card-r); }
+
+    /* ── Mock dashboard (CSS) ── */
+    .mock-dashboard {
+      padding: 1.5rem;
+      font-size: 0.8rem;
+    }
+    .mock-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .mock-title { font-size: 1.4rem; font-weight: 700; }
+    .mock-sub { color: var(--muted); font-size: 0.75rem; margin-top: 4px; }
+    .mock-stats {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .mock-stat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem;
+    }
+    .mock-stat-label { color: var(--muted); font-size: 0.7rem; margin-bottom: 6px; }
+    .mock-stat-value { font-size: 1.6rem; font-weight: 800; }
+    .mock-stat-value.blue { color: var(--blue-light); }
+    .mock-stat-value.green { color: var(--green); }
+    .mock-stat-value.yellow { color: var(--yellow); }
+    .mock-stat-value.red { color: var(--red); }
+    .mock-stat-value.purple { color: var(--purple); }
+    .mock-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mock-panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem;
+    }
+    .mock-panel-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .mock-empty { color: var(--muted); font-size: 0.75rem; text-align: center; padding: 1rem 0; }
+    .mock-task-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      font-size: 0.75rem;
+    }
+    .mock-task-item:last-child { border-bottom: none; }
+    .badge {
+      padding: 2px 8px; border-radius: 100px; font-size: 0.65rem; font-weight: 600;
+    }
+    .badge-green { background: var(--green-bg); color: var(--green); }
+    .badge-red { background: rgba(239,68,68,0.1); color: var(--red); }
+    .badge-yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .badge-blue { background: var(--blue-glow); color: var(--blue-light); }
+
+    /* ── Diagram Section ── */
+    .diagram-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--card-r); overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .diagram-card:hover {
+      border-color: var(--blue-light);
+      box-shadow: 0 8px 32px rgba(37,99,235,0.15);
+    }
+    .diagram-header {
+      padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .diagram-header h3 { font-size: 0.95rem; font-weight: 600; }
+    .diagram-body { padding: 1.5rem; background: #fff; }
+    .diagram-body img { border-radius: 8px; width: 100%; }
+    .diagrams-grid { display: grid; gap: 2rem; }
+    .diagrams-2col { grid-template-columns: 1fr 1fr; }
+
+    /* ── Requirements ── */
+    .req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+    /* ── Performance ── */
+    .perf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    .perf-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .perf-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 1.5rem; text-align: center;
+    }
+    .perf-grade {
+      font-size: 3.5rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--blue-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .perf-card h4 { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.25rem; }
+    .perf-num { font-size: 2rem; font-weight: 800; color: var(--green); }
+
+    /* ── Team ── */
+    #team { background: var(--surface); }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1.5rem; }
+    .team-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 2rem 1.5rem;
+      text-align: center; transition: border-color 0.2s, transform 0.2s;
+    }
+    .team-card:hover { border-color: var(--blue-light); transform: translateY(-4px); }
+    .team-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; font-weight: 800;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: #fff;
+    }
+    .team-name { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .team-id { font-size: 0.75rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .team-role { font-size: 0.8rem; color: var(--blue-light); margin-top: 6px; font-weight: 500; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 2.5rem 0;
+      text-align: center;
+    }
+    .footer-logo { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .footer-desc { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .footer-links a { color: var(--muted); font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); text-decoration: none; }
+    .footer-copy { color: var(--border); font-size: 0.75rem; }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ── Reveal animation ── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .diagrams-2col, .req-grid, .perf-grid, .mock-stats, .mock-row {
+        grid-template-columns: 1fr;
+      }
+      .hero-stats { gap: 2rem; }
+      .mock-stats { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">⚡</div>
+    TaskBridge
+  </div>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#roles">Roles</a></li>
+    <li><a href="#dashboards">Dashboards</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#diagrams">Diagrams</a></li>
+    <li><a href="#performance">Performance</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" class="nav-cta">Live Demo ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Live on Vercel &nbsp;·&nbsp; KLE Technological University &nbsp;·&nbsp; SE 2025–26
+      </div>
+      <h1 class="hero-title">
+        Task<span class="gradient-text">Bridge</span><br/>
+        WorkDist
+      </h1>
+      <p class="hero-desc">
+        A role-based workforce management platform that bridges the gap between managers and employees — automating task distribution, tracking, review, and feedback with full audit logging.
+      </p>
+      <div class="hero-actions">
+        <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" class="btn-primary">
+          ⚡ Live Demo
+        </a>
+        <a href="https://github.com/victorykings2828-bot" target="_blank" class="btn-secondary">
+          ◆ GitHub →
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">User Roles</div></div>
+        <div class="stat"><div class="stat-num">16+</div><div class="stat-label">Functional Reqs</div></div>
+        <div class="stat"><div class="stat-num">16+</div><div class="stat-label">Non-Functional Reqs</div></div>
+        <div class="stat"><div class="stat-num" style="color:var(--green)">A</div><div class="stat-label">GTMetrix Grade</div></div>
+        <div class="stat"><div class="stat-num" style="color:var(--green)">99%</div><div class="stat-label">Performance Score</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Tech Stack ── -->
+<section id="tech">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:2rem;">
+      <span class="section-tag">⚙ Tech Stack</span>
+      <h2 class="section-title">Built with Modern Technologies</h2>
+      <p class="section-sub" style="margin:0 auto 0;">Full-stack MERN application with secure JWT authentication and cloud deployment.</p>
+    </div>
+    <div class="tech-grid reveal">
+      <div class="tech-pill"><span class="tech-icon">⚛</span> React.js</div>
+      <div class="tech-pill"><span class="tech-icon">🎨</span> Tailwind CSS</div>
+      <div class="tech-pill"><span class="tech-icon">🟢</span> Node.js</div>
+      <div class="tech-pill"><span class="tech-icon">🚂</span> Express.js</div>
+      <div class="tech-pill"><span class="tech-icon">🍃</span> MongoDB Atlas</div>
+      <div class="tech-pill"><span class="tech-icon">🔐</span> JWT Auth</div>
+      <div class="tech-pill"><span class="tech-icon">🔑</span> Google OAuth 2.0</div>
+      <div class="tech-pill"><span class="tech-icon">🛡</span> Role-Based Access</div>
+      <div class="tech-pill"><span class="tech-icon">🚀</span> Vercel Deploy</div>
+      <div class="tech-pill"><span class="tech-icon">📧</span> Email Notifications</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Problem ── -->
+<section id="problem">
+  <div class="container">
+    <span class="section-tag">⚠ Problem</span>
+    <h2 class="section-title">The Problem We Solved</h2>
+    <p class="section-sub">
+      Organizations managing distributed teams lack a centralized, role-aware system for task assignment, tracking, and accountability.
+    </p>
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="problem-icon">⏰</div>
+        <h3>Missed Deadlines</h3>
+        <p>No automated deadline tracking or overdue alerts for managers and employees.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🕵️</div>
+        <h3>Zero Visibility</h3>
+        <p>Managers cannot see real-time task status or employee workload distribution.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📋</div>
+        <h3>No Accountability</h3>
+        <p>No audit trail — task changes, submissions and flags go unrecorded.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💬</div>
+        <h3>Communication Gaps</h3>
+        <p>Feedback and revision cycles lost across fragmented email threads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Roles ── -->
+<section id="roles">
+  <div class="container">
+    <span class="section-tag">👥 User Roles</span>
+    <h2 class="section-title">Three Roles, One Platform</h2>
+    <p class="section-sub">
+      A hierarchical access system — Super Admin manages the platform, Managers run their teams, and Employees execute tasks seamlessly.
+    </p>
+    <div class="roles-grid reveal">
+      <div class="role-card admin">
+        <div class="role-header">
+          <div class="role-avatar admin">SA</div>
+          <div>
+            <div class="role-name">Super Admin</div>
+            <div class="role-purpose">System-wide oversight & control</div>
+          </div>
+        </div>
+        <ul class="role-features">
+          <li>Create and manage Manager accounts</li>
+          <li>View full system audit logs with filters</li>
+          <li>Monitor all tasks across the organization</li>
+          <li>Deactivate accounts and manage subscriptions</li>
+          <li>Access analytics and performance reports</li>
+          <li>System-wide configuration and oversight</li>
+        </ul>
+      </div>
+      <div class="role-card manager">
+        <div class="role-header">
+          <div class="role-avatar manager">M</div>
+          <div>
+            <div class="role-name">Manager</div>
+            <div class="role-purpose">Team & Task Management</div>
+          </div>
+        </div>
+        <ul class="role-features">
+          <li>Create employee accounts with temp passwords</li>
+          <li>Assign tasks with priority, deadline & files</li>
+          <li>Review submitted work — approve or request revision</li>
+          <li>Monitor team workload in real time</li>
+          <li>Approve or reject deadline extension requests</li>
+          <li>Provide feedback and track performance</li>
+        </ul>
+      </div>
+      <div class="role-card employee">
+        <div class="role-header">
+          <div class="role-avatar employee">E</div>
+          <div>
+            <div class="role-name">Employee</div>
+            <div class="role-purpose">Task Execution & Submission</div>
+          </div>
+        </div>
+        <ul class="role-features">
+          <li>Receive and accept assigned tasks</li>
+          <li>Download manager-attached reference files</li>
+          <li>Comment and request clarifications</li>
+          <li>Upload deliverables and submit for review</li>
+          <li>Flag blockers or request deadline extensions</li>
+          <li>Submit 5-star feedback after completion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Dashboards ── -->
+<section id="dashboards">
+  <div class="container">
+    <span class="section-tag">🖥 Dashboards</span>
+    <h2 class="section-title">Role-Specific Dashboards</h2>
+    <p class="section-sub">
+      Each role gets a tailored dashboard showing exactly the information they need — no more, no less.
+    </p>
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="showTab('employee')">Employee Dashboard</button>
+      <button class="tab-btn" onclick="showTab('manager')">Manager Dashboard</button>
+      <button class="tab-btn" onclick="showTab('admin')">Super Admin Dashboard</button>
+    </div>
+
+    <!-- Employee -->
+    <div class="dashboard-pane active" id="tab-employee">
+      <div class="dashboard-frame">
+        <div class="dashboard-bar">
+          <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+          <div class="url-bar">taskbridge-frontend-sandy.vercel.app/employee/dashboard</div>
+        </div>
+        <div class="mock-dashboard">
+          <div class="mock-header">
+            <div>
+              <div class="mock-title">Good evening, Joe 👋</div>
+              <div class="mock-sub">Here's your work summary for today</div>
+            </div>
+          </div>
+          <div class="mock-stats">
+            <div class="mock-stat">
+              <div class="mock-stat-label">Total Tasks</div>
+              <div class="mock-stat-value blue">2</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">In Progress</div>
+              <div class="mock-stat-value yellow">0</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Completed</div>
+              <div class="mock-stat-value green">0</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Overdue</div>
+              <div class="mock-stat-value red">2</div>
+            </div>
+          </div>
+          <div class="mock-row">
+            <div class="mock-panel">
+              <div class="mock-panel-title">New Tasks</div>
+              <div class="mock-empty">🎉 No new tasks</div>
+            </div>
+            <div class="mock-panel">
+              <div class="mock-panel-title">Under Review (2)</div>
+              <div class="mock-task-item"><span>qb</span><span class="badge badge-yellow">Submitted May 25</span></div>
+              <div class="mock-task-item"><span>a4</span><span class="badge badge-yellow">Submitted May 25</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manager -->
+    <div class="dashboard-pane" id="tab-manager">
+      <div class="dashboard-frame">
+        <div class="dashboard-bar">
+          <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+          <div class="url-bar">taskbridge-frontend-sandy.vercel.app/manager/dashboard</div>
+        </div>
+        <div class="mock-dashboard">
+          <div class="mock-header">
+            <div>
+              <div class="mock-title">Good evening, Joe 👋</div>
+              <div class="mock-sub">Here's what's happening with your team</div>
+            </div>
+            <div>
+              <span class="badge badge-blue" style="padding:8px 16px;font-size:0.8rem;">+ Assign Task</span>
+            </div>
+          </div>
+          <div class="mock-stats">
+            <div class="mock-stat">
+              <div class="mock-stat-label">Total Tasks</div>
+              <div class="mock-stat-value blue">1</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Completed</div>
+              <div class="mock-stat-value green">0</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Team Members</div>
+              <div class="mock-stat-value purple">1</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Under Review</div>
+              <div class="mock-stat-value yellow">1</div>
+            </div>
+          </div>
+          <div class="mock-panel" style="margin-top:12px;">
+            <div class="mock-panel-title">Recent Tasks</div>
+            <div class="mock-task-item">
+              <span>talk to joe emp &nbsp;<span style="color:var(--muted);font-size:0.7rem;">Due May 25</span></span>
+              <div style="display:flex;gap:6px;"><span class="badge badge-blue">Medium</span><span class="badge badge-green">Completed</span></div>
+            </div>
+            <div class="mock-task-item">
+              <span>edd &nbsp;<span style="color:var(--muted);font-size:0.7rem;">Due May 26</span></span>
+              <div style="display:flex;gap:6px;"><span class="badge badge-blue">Medium</span><span class="badge badge-red">Overdue</span></div>
+            </div>
+            <div class="mock-task-item">
+              <span>a4 &nbsp;<span style="color:var(--muted);font-size:0.7rem;">Due May 28</span></span>
+              <div style="display:flex;gap:6px;"><span class="badge badge-blue">Medium</span><span class="badge badge-yellow">Under Review</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Super Admin -->
+    <div class="dashboard-pane" id="tab-admin">
+      <div class="dashboard-frame">
+        <div class="dashboard-bar">
+          <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+          <div class="url-bar">taskbridge-frontend-sandy.vercel.app/admin/dashboard</div>
+        </div>
+        <div class="mock-dashboard">
+          <div class="mock-header">
+            <div>
+              <div class="mock-title">Good evening, Victory 👋</div>
+              <div class="mock-sub">System-wide overview — you can see everything</div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <span class="badge badge-blue" style="padding:8px 14px;font-size:0.8rem;">View Managers</span>
+              <span class="badge" style="background:rgba(139,92,246,0.15);color:var(--purple);padding:8px 14px;font-size:0.8rem;">View Employees</span>
+            </div>
+          </div>
+          <div class="mock-stats" style="grid-template-columns:repeat(4,1fr);">
+            <div class="mock-stat">
+              <div class="mock-stat-label">Total Managers</div>
+              <div class="mock-stat-value blue">1</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Total Employees</div>
+              <div class="mock-stat-value green">1</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Total Tasks</div>
+              <div class="mock-stat-value blue">4</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Completion Rate</div>
+              <div class="mock-stat-value green">25%</div>
+            </div>
+          </div>
+          <div class="mock-stats" style="grid-template-columns:repeat(4,1fr);margin-top:12px;">
+            <div class="mock-stat"><div class="mock-stat-label">In Progress</div><div class="mock-stat-value yellow">0</div></div>
+            <div class="mock-stat"><div class="mock-stat-label">Completed</div><div class="mock-stat-value green">1</div></div>
+            <div class="mock-stat"><div class="mock-stat-label">Under Review</div><div class="mock-stat-value yellow">2</div></div>
+            <div class="mock-stat"><div class="mock-stat-label">Overdue</div><div class="mock-stat-value red">0</div></div>
+          </div>
+          <div class="mock-panel" style="margin-top:12px;">
+            <div class="mock-panel-title">System Task Distribution</div>
+            <div style="height:16px;border-radius:8px;overflow:hidden;display:flex;margin-bottom:8px;">
+              <div style="width:25%;background:var(--green);"></div>
+              <div style="width:50%;background:var(--yellow);"></div>
+              <div style="width:25%;background:var(--border);"></div>
+            </div>
+            <div style="display:flex;gap:16px;font-size:0.7rem;color:var(--muted);">
+              <span>● Completed: 1</span>
+              <span>● Under Review: 2</span>
+              <span>● Not Started: 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Architecture ── -->
+<section id="architecture">
+  <div class="container">
+    <span class="section-tag">🏗 Architecture</span>
+    <h2 class="section-title">System Architecture</h2>
+    <p class="section-sub">
+      TaskBridge is built on a hub-and-spoke architecture with 10 specialized subsystems all coordinated by the core platform.
+    </p>
+    <div class="diagrams-grid reveal">
+      <div class="diagram-card">
+        <div class="diagram-header">
+          <span style="font-size:1.1rem;">🗺</span>
+          <h3>Context Diagram — The TaskBridge System</h3>
+        </div>
+        <div class="diagram-body">
+          <img src="images/context_diagram.jpg" alt="TaskBridge Context Diagram" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Subsystem cards -->
+    <div style="margin-top:3rem;">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.25rem;color:var(--muted);">10 Integrated Subsystems</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;" class="reveal">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">🔐</div>
+          <div style="font-size:0.85rem;font-weight:600;">Authentication &amp; Security</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">JWT, OAuth 2.0, session management</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">🏢</div>
+          <div style="font-size:0.85rem;font-weight:600;">Company Management</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Org structure, account linking</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">👑</div>
+          <div style="font-size:0.85rem;font-weight:600;">Super Admin System</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Global monitoring, audit access</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">👥</div>
+          <div style="font-size:0.85rem;font-weight:600;">Manager &amp; Team Mgmt</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Team creation, work distribution</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">📋</div>
+          <div style="font-size:0.85rem;font-weight:600;">Task &amp; Project Mgmt</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Assignment, priority, deadlines</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">📤</div>
+          <div style="font-size:0.85rem;font-weight:600;">Work Submission</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">File uploads, review requests</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">⭐</div>
+          <div style="font-size:0.85rem;font-weight:600;">Review &amp; Feedback</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Approval, 5-star ratings</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">🔔</div>
+          <div style="font-size:0.85rem;font-weight:600;">Notification &amp; Alerts</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Deadline reminders, status alerts</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">📊</div>
+          <div style="font-size:0.85rem;font-weight:600;">Dashboard &amp; Analytics</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Reports, graphs, performance</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">🔍</div>
+          <div style="font-size:0.85rem;font-weight:600;">Audit &amp; Monitoring</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Activity logs, flagged projects</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Diagrams ── -->
+<section id="diagrams">
+  <div class="container">
+    <span class="section-tag">📐 SE Diagrams</span>
+    <h2 class="section-title">Software Engineering Artifacts</h2>
+    <p class="section-sub">
+      Complete documentation including Use Case, Sequence, and Requirements diagrams produced for KLE Technological University — Software Engineering course.
+    </p>
+
+    <!-- Use Case -->
+    <div class="diagram-card reveal" style="margin-bottom:2rem;">
+      <div class="diagram-header">
+        <span style="font-size:1.1rem;">📊</span>
+        <h3>Use Case Diagram — WorkDist System</h3>
+      </div>
+      <div class="diagram-body">
+        <img src="images/usecase_diagram.jpg" alt="Use Case Diagram" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- Sequence Diagrams -->
+    <div class="diagrams-grid diagrams-2col reveal" style="margin-bottom:2rem;">
+      <div class="diagram-card">
+        <div class="diagram-header">
+          <span style="font-size:1.1rem;">🔄</span>
+          <h3>Sequence — User &amp; Workforce Management</h3>
+        </div>
+        <div class="diagram-body">
+          <img src="images/sequence_diagram1.jpg" alt="Sequence Diagram 1" loading="lazy" />
+        </div>
+      </div>
+      <div class="diagram-card">
+        <div class="diagram-header">
+          <span style="font-size:1.1rem;">🔄</span>
+          <h3>Sequence — Task Monitoring &amp; Collaboration</h3>
+        </div>
+        <div class="diagram-body">
+          <img src="images/sequence_diagram2.jpg" alt="Sequence Diagram 2" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Requirements -->
+    <div class="diagrams-grid diagrams-2col reveal">
+      <div class="diagram-card">
+        <div class="diagram-header">
+          <span style="font-size:1.1rem;">✅</span>
+          <h3>Functional Requirements (FR-01 to FR-20)</h3>
+        </div>
+        <div class="diagram-body">
+          <img src="images/functional_req.jpg" alt="Functional Requirements" loading="lazy" />
+        </div>
+      </div>
+      <div class="diagram-card">
+        <div class="diagram-header">
+          <span style="font-size:1.1rem;">🛡</span>
+          <h3>Non-Functional Requirements (NFR-01 to NFR-12)</h3>
+        </div>
+        <div class="diagram-body">
+          <img src="images/nonfunctional_req.jpg" alt="Non-Functional Requirements" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Test Cases -->
+    <div class="diagram-card reveal" style="margin-top:2rem;">
+      <div class="diagram-header">
+        <span style="font-size:1.1rem;">🧪</span>
+        <h3>Test Plan &amp; Test Cases — Academic Year 2025–2026</h3>
+      </div>
+      <div class="diagram-body">
+        <img src="images/test_cases.jpg" alt="Test Cases" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Performance ── -->
+<section id="performance">
+  <div class="container">
+    <span class="section-tag">⚡ Performance</span>
+    <h2 class="section-title">Production-Grade Performance</h2>
+    <p class="section-sub">
+      TaskBridge scored a GTMetrix Grade A with 99% performance — all web vitals in the green.
+    </p>
+    <div class="perf-grid reveal">
+      <div>
+        <div class="diagram-card">
+          <div class="diagram-header">
+            <span style="font-size:1.1rem;">📈</span>
+            <h3>GTMetrix Performance Report</h3>
+          </div>
+          <div class="diagram-body">
+            <img src="images/performance.jpg" alt="GTMetrix Performance" loading="lazy" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="perf-stats">
+          <div class="perf-card">
+            <div class="perf-grade">A</div>
+            <h4>GTMetrix Grade</h4>
+          </div>
+          <div class="perf-card">
+            <div class="perf-num">99%</div>
+            <h4>Performance Score</h4>
+          </div>
+          <div class="perf-card">
+            <div class="perf-num">96%</div>
+            <h4>Structure Score</h4>
+          </div>
+          <div class="perf-card">
+            <div class="perf-num">828ms</div>
+            <h4>Largest Contentful Paint</h4>
+          </div>
+          <div class="perf-card">
+            <div class="perf-num">0ms</div>
+            <h4>Total Blocking Time</h4>
+          </div>
+          <div class="perf-card">
+            <div class="perf-num">0</div>
+            <h4>Cumulative Layout Shift</h4>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;background:var(--green-bg);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:1.25rem;">
+          <div style="font-size:0.85rem;font-weight:600;color:var(--green);margin-bottom:0.5rem;">✓ All Core Web Vitals: Good</div>
+          <div style="font-size:0.8rem;color:var(--muted);">First Contentful Paint, Speed Index, Time to Interactive — all reporting sub-second response times under normal network conditions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Team ── -->
+<section id="team">
+  <div class="container">
+    <span class="section-tag">👨‍💻 Team</span>
+    <h2 class="section-title">The Team Behind TaskBridge</h2>
+    <p class="section-sub">
+      Built by students of KLE Technological University as part of the Software Engineering course, Academic Year 2025–26.
+    </p>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="team-avatar">M</div>
+        <div class="team-name">Manish Singri</div>
+        <div class="team-id">01FE24BCS107</div>
+        <div class="team-role">Full Stack Developer</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--green),var(--blue));">V</div>
+        <div class="team-name">Victory King</div>
+        <div class="team-id">Super Admin</div>
+        <div class="team-role">System Architect</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--yellow),var(--red));">KLE</div>
+        <div class="team-name">KLE Tech University</div>
+        <div class="team-id">Hubli, Karnataka</div>
+        <div class="team-role">Software Engineering Dept.</div>
+      </div>
+    </div>
+
+    <!-- Course Info -->
+    <div style="margin-top:3rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--card-r);padding:2rem;display:flex;gap:2rem;flex-wrap:wrap;align-items:center;" class="reveal">
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;">Course</div>
+        <div style="font-size:1.1rem;font-weight:700;">Software Engineering</div>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;">Institution</div>
+        <div style="font-size:1.1rem;font-weight:700;">KLE Technological University</div>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;">Academic Year</div>
+        <div style="font-size:1.1rem;font-weight:700;">2025 – 2026</div>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;">Project Type</div>
+        <div style="font-size:1.1rem;font-weight:700;">Full-Stack Web App (MERN)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">⚡ TaskBridge</div>
+    <p class="footer-desc">Employee Work Distribution System — WorkDist<br/>KLE Technological University · Software Engineering 2025–26</p>
+    <div class="footer-links">
+      <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank">🌐 Live Demo</a>
+      <a href="https://github.com/victorykings2828-bot" target="_blank">◆ GitHub</a>
+      <a href="#problem">Problem</a>
+      <a href="#roles">Roles</a>
+      <a href="#diagrams">Diagrams</a>
+      <a href="#performance">Performance</a>
+    </div>
+    <div class="footer-copy">Built with React · Node.js · MongoDB Atlas · JWT · Tailwind CSS</div>
+  </div>
+</footer>
+
+<script>
+  // Tab switcher
+  function showTab(id) {
+    document.querySelectorAll('.dashboard-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
