@@ -314,6 +314,7 @@
     <div class="nav-item">
       <div class="nav-link" onclick="showPage('project')">Project <span class="arrow">▾</span></div>
       <div class="dropdown">
+        <a class="dd-item" onclick="showPage('project');showProj('wt')">🌐 Web Tech Project</a>
         <a class="dd-item" onclick="showPage('project');showProj('problem')">⚠ Problem Analysis</a>
         <a class="dd-item" onclick="showPage('project');showProj('design')">📐 System Design</a>
         <a class="dd-item" onclick="showPage('project');showProj('impl')">⚙ Implementation</a>
@@ -955,14 +956,325 @@ router.<span class="fn">post</span>(<span class="str">"/tasks"</span>, protect, 
   </div>
   <div class="content">
     <div class="subnav">
-      <button class="snb on" onclick="showProj('problem')">⚠ Problem Analysis</button>
+      <button class="snb on" onclick="showProj('wt')">🌐 Web Tech Project</button>
+      <button class="snb" onclick="showProj('problem')">⚠ Problem Analysis</button>
       <button class="snb" onclick="showProj('design')">📐 System Design</button>
       <button class="snb" onclick="showProj('impl')">⚙ Implementation</button>
       <button class="snb" onclick="showProj('testing')">🧪 Software Testing</button>
     </div>
 
+    <!-- Web Tech Project -->
+    <div class="subpg on" id="proj-wt">
+      <div class="card rv in">
+        <div class="card-title">🌐 Web Technology Course Project</div>
+        <div class="card-body">
+          <p>As part of the Web Technology course at KLE Technological University, we built progressively complex web projects — starting from static HTML pages and advancing to a full-stack MERN application. Each assignment built on the skills from the previous one, culminating in the TaskBridge application.</p>
+        </div>
+      </div>
+
+      <!-- Assignment 1 -->
+      <h2 style="font-size:1.1rem;font-weight:800;margin:1.75rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:8px"><span style="background:var(--blue-dim);border:1px solid rgba(59,130,246,0.3);color:var(--blue);padding:2px 10px;border-radius:100px;font-size:0.75rem">Assignment 1</span> Static Website with HTML & CSS</h2>
+      <div class="card rv in">
+        <div class="card-title">📋 Objective</div>
+        <div class="card-body">Build a multi-page static portfolio website using only HTML and CSS. The website includes a home page, an about page, a skills section, and a contact form — demonstrating mastery of semantic HTML, CSS layouts, and responsive design.</div>
+      </div>
+      <div class="g2 rv in">
+        <div class="card">
+          <div class="card-title">✅ What We Built</div>
+          <div class="card-body">
+            <ul class="rlist">
+              <li>Navigation bar with active states</li>
+              <li>Hero section with background image</li>
+              <li>About section with photo and bio</li>
+              <li>Skills grid with icons</li>
+              <li>Contact form with validation</li>
+              <li>Fully responsive (mobile-first)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛠 Technologies Used</div>
+          <div class="pill-wrap">
+            <span class="pill">HTML5</span><span class="pill">CSS3</span>
+            <span class="pill">Flexbox</span><span class="pill">CSS Grid</span>
+            <span class="pill">Media Queries</span><span class="pill">CSS Variables</span>
+          </div>
+          <div style="margin-top:0.75rem;font-size:0.82rem;color:var(--muted)">Focus on semantic structure, clean layout, and mobile responsiveness without any JavaScript or frameworks.</div>
+        </div>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">Assignment 1 — HTML Structure</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="tg">&lt;!DOCTYPE html&gt;</span>
+<span class="tg">&lt;html</span> <span class="at">lang</span>=<span class="str">"en"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;head&gt;</span>
+  <span class="tg">&lt;meta</span> <span class="at">charset</span>=<span class="str">"UTF-8"</span><span class="tg">/&gt;</span>
+  <span class="tg">&lt;link</span> <span class="at">rel</span>=<span class="str">"stylesheet"</span> <span class="at">href</span>=<span class="str">"style.css"</span><span class="tg">/&gt;</span>
+  <span class="tg">&lt;title&gt;</span>Student Portfolio<span class="tg">&lt;/title&gt;</span>
+<span class="tg">&lt;/head&gt;</span>
+<span class="tg">&lt;body&gt;</span>
+  <span class="tg">&lt;nav</span> <span class="at">class</span>=<span class="str">"navbar"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"logo"</span><span class="tg">&gt;</span>Manish Singri<span class="tg">&lt;/div&gt;</span>
+    <span class="tg">&lt;ul</span> <span class="at">class</span>=<span class="str">"nav-links"</span><span class="tg">&gt;</span>
+      <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"#home"</span><span class="tg">&gt;</span>Home<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"#about"</span><span class="tg">&gt;</span>About<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"#skills"</span><span class="tg">&gt;</span>Skills<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"#contact"</span><span class="tg">&gt;</span>Contact<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="tg">&lt;/ul&gt;</span>
+  <span class="tg">&lt;/nav&gt;</span>
+
+  <span class="tg">&lt;section</span> <span class="at">id</span>=<span class="str">"hero"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;h1&gt;</span>Hi, I'm <span class="tg">&lt;span</span> <span class="at">class</span>=<span class="str">"highlight"</span><span class="tg">&gt;</span>Manish<span class="tg">&lt;/span&gt;&lt;/h1&gt;</span>
+    <span class="tg">&lt;p&gt;</span>Computer Science Student @ KLE Tech<span class="tg">&lt;/p&gt;</span>
+    <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="str">"#about"</span> <span class="at">class</span>=<span class="str">"btn"</span><span class="tg">&gt;</span>Learn More<span class="tg">&lt;/a&gt;</span>
+  <span class="tg">&lt;/section&gt;</span>
+
+  <span class="tg">&lt;section</span> <span class="at">id</span>=<span class="str">"skills"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;h2&gt;</span>Skills<span class="tg">&lt;/h2&gt;</span>
+    <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skills-grid"</span><span class="tg">&gt;</span>
+      <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill-card"</span><span class="tg">&gt;</span>HTML<span class="tg">&lt;/div&gt;</span>
+      <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill-card"</span><span class="tg">&gt;</span>CSS<span class="tg">&lt;/div&gt;</span>
+      <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill-card"</span><span class="tg">&gt;</span>JavaScript<span class="tg">&lt;/div&gt;</span>
+    <span class="tg">&lt;/div&gt;</span>
+  <span class="tg">&lt;/section&gt;</span>
+<span class="tg">&lt;/body&gt;</span>
+<span class="tg">&lt;/html&gt;</span></pre>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">Assignment 1 — CSS (Responsive Navbar + Grid)</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">/* Navbar */</span>
+<span class="tg">.navbar</span> {
+  <span class="at">display</span>: <span class="vl">flex</span>;
+  <span class="at">justify-content</span>: <span class="vl">space-between</span>;
+  <span class="at">align-items</span>: <span class="vl">center</span>;
+  <span class="at">padding</span>: <span class="vl">1rem 2rem</span>;
+  <span class="at">background</span>: <span class="vl">#0a0d14</span>;
+  <span class="at">position</span>: <span class="vl">sticky</span>; <span class="at">top</span>: <span class="vl">0</span>;
+}
+<span class="tg">.nav-links</span> { <span class="at">display</span>: <span class="vl">flex</span>; <span class="at">gap</span>: <span class="vl">1.5rem</span>; <span class="at">list-style</span>: <span class="vl">none</span>; }
+<span class="tg">.nav-links a:hover</span> { <span class="at">color</span>: <span class="vl">#3b82f6</span>; }
+
+<span class="cm">/* Hero */</span>
+<span class="tg">#hero</span> {
+  <span class="at">min-height</span>: <span class="vl">100vh</span>;
+  <span class="at">display</span>: <span class="vl">flex</span>; <span class="at">flex-direction</span>: <span class="vl">column</span>;
+  <span class="at">align-items</span>: <span class="vl">center</span>; <span class="at">justify-content</span>: <span class="vl">center</span>;
+  <span class="at">text-align</span>: <span class="vl">center</span>;
+}
+<span class="tg">.highlight</span> { <span class="at">color</span>: <span class="vl">#3b82f6</span>; }
+
+<span class="cm">/* Skills Grid */</span>
+<span class="tg">.skills-grid</span> {
+  <span class="at">display</span>: <span class="vl">grid</span>;
+  <span class="at">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="vl">auto-fit</span>, <span class="fn">minmax</span>(<span class="vl">150px</span>, <span class="vl">1fr</span>));
+  <span class="at">gap</span>: <span class="vl">1rem</span>;
+}
+<span class="tg">.skill-card</span> {
+  <span class="at">background</span>: <span class="vl">#181d2b</span>; <span class="at">border-radius</span>: <span class="vl">10px</span>;
+  <span class="at">padding</span>: <span class="vl">1.5rem</span>; <span class="at">text-align</span>: <span class="vl">center</span>;
+  <span class="at">transition</span>: transform <span class="vl">0.2s</span>;
+}
+<span class="tg">.skill-card:hover</span> { <span class="at">transform</span>: <span class="fn">translateY</span>(<span class="vl">-4px</span>); }
+
+<span class="cm">/* Responsive */</span>
+<span class="tg">@media</span> (max-width: <span class="vl">768px</span>) {
+  <span class="tg">.navbar</span> { <span class="at">flex-direction</span>: <span class="vl">column</span>; <span class="at">gap</span>: <span class="vl">1rem</span>; }
+  <span class="tg">.nav-links</span> { <span class="at">flex-wrap</span>: <span class="vl">wrap</span>; <span class="at">justify-content</span>: <span class="vl">center</span>; }
+}</pre>
+      </div>
+
+      <!-- Assignment 2 -->
+      <h2 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:8px"><span style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.3);color:var(--green);padding:2px 10px;border-radius:100px;font-size:0.75rem">Assignment 2</span> Interactive Web App with JavaScript</h2>
+      <div class="card rv in">
+        <div class="card-title">📋 Objective</div>
+        <div class="card-body">Build a dynamic, interactive web application using HTML, CSS, and JavaScript. Features include DOM manipulation, form validation, local storage, and event-driven interactions — without any backend or framework.</div>
+      </div>
+      <div class="g2 rv in">
+        <div class="card">
+          <div class="card-title">✅ What We Built</div>
+          <div class="card-body">
+            <ul class="rlist">
+              <li>Task manager / To-Do app</li>
+              <li>Add, complete, and delete tasks</li>
+              <li>Filter by status (All / Active / Done)</li>
+              <li>Data persisted in localStorage</li>
+              <li>Search functionality</li>
+              <li>Drag-and-drop reorder</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛠 Technologies Used</div>
+          <div class="pill-wrap">
+            <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript ES6+</span>
+            <span class="pill">DOM API</span><span class="pill">localStorage</span><span class="pill">Events</span>
+          </div>
+          <div style="margin-top:0.75rem;font-size:0.82rem;color:var(--muted)">Pure vanilla JavaScript — no libraries. Focus on understanding the browser APIs and event loop.</div>
+        </div>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">Assignment 2 — JavaScript Task Manager</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">// Load tasks from localStorage on page load</span>
+<span class="kw">let</span> <span class="nm">tasks</span> = <span class="nm">JSON</span>.<span class="fn">parse</span>(localStorage.<span class="fn">getItem</span>(<span class="str">"tasks"</span>)) || [];
+
+<span class="kw">function</span> <span class="fn">saveTasks</span>() {
+  localStorage.<span class="fn">setItem</span>(<span class="str">"tasks"</span>, <span class="nm">JSON</span>.<span class="fn">stringify</span>(tasks));
+}
+
+<span class="kw">function</span> <span class="fn">renderTasks</span>(filter = <span class="str">"all"</span>) {
+  <span class="kw">const</span> <span class="nm">list</span> = document.<span class="fn">getElementById</span>(<span class="str">"task-list"</span>);
+  list.innerHTML = <span class="str">""</span>;
+
+  <span class="kw">const</span> <span class="nm">filtered</span> = tasks.<span class="fn">filter</span>(t => {
+    <span class="kw">if</span> (filter === <span class="str">"active"</span>) <span class="kw">return</span> !t.done;
+    <span class="kw">if</span> (filter === <span class="str">"done"</span>)   <span class="kw">return</span> t.done;
+    <span class="kw">return</span> <span class="kw">true</span>;
+  });
+
+  filtered.<span class="fn">forEach</span>(task => {
+    <span class="kw">const</span> <span class="nm">li</span> = document.<span class="fn">createElement</span>(<span class="str">"li"</span>);
+    li.className = task.done ? <span class="str">"done"</span> : <span class="str">""</span>;
+    li.innerHTML = <span class="str">`
+      &lt;span onclick="toggleTask(<span class="nm">${task.id}</span>)"&gt;<span class="nm">${task.text}</span>&lt;/span&gt;
+      &lt;button onclick="deleteTask(<span class="nm">${task.id}</span>)"&gt;✕&lt;/button&gt;
+    `</span>;
+    list.<span class="fn">appendChild</span>(li);
+  });
+}
+
+<span class="kw">function</span> <span class="fn">addTask</span>() {
+  <span class="kw">const</span> <span class="nm">input</span> = document.<span class="fn">getElementById</span>(<span class="str">"task-input"</span>);
+  <span class="kw">if</span> (!input.value.<span class="fn">trim</span>()) <span class="kw">return</span>;
+  tasks.<span class="fn">push</span>({ id: <span class="nm">Date</span>.<span class="fn">now</span>(), text: input.value.<span class="fn">trim</span>(), done: <span class="kw">false</span> });
+  input.value = <span class="str">""</span>;
+  <span class="fn">saveTasks</span>();
+  <span class="fn">renderTasks</span>();
+}
+
+<span class="kw">function</span> <span class="fn">toggleTask</span>(id) {
+  tasks = tasks.<span class="fn">map</span>(t => t.id === id ? { ...t, done: !t.done } : t);
+  <span class="fn">saveTasks</span>(); <span class="fn">renderTasks</span>();
+}
+
+document.<span class="fn">addEventListener</span>(<span class="str">"DOMContentLoaded"</span>, () => <span class="fn">renderTasks</span>());</pre>
+      </div>
+
+      <!-- Assignment 3 -->
+      <h2 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:8px"><span style="background:var(--yellow-dim);border:1px solid rgba(245,158,11,0.3);color:var(--yellow);padding:2px 10px;border-radius:100px;font-size:0.75rem">Assignment 3</span> REST API with Node.js, Express & MongoDB</h2>
+      <div class="card rv in">
+        <div class="card-title">📋 Objective</div>
+        <div class="card-body">Build a complete backend REST API using Node.js and Express, connected to MongoDB Atlas. The API supports full CRUD operations, user authentication with JWT, and serves JSON data to any frontend client.</div>
+      </div>
+      <div class="g2 rv in">
+        <div class="card">
+          <div class="card-title">✅ What We Built</div>
+          <div class="card-body">
+            <ul class="rlist">
+              <li>User registration & login (JWT)</li>
+              <li>CRUD endpoints for tasks/resources</li>
+              <li>Input validation & error handling</li>
+              <li>Protected routes (middleware)</li>
+              <li>MongoDB Atlas integration</li>
+              <li>Tested with Postman</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛠 Technologies Used</div>
+          <div class="pill-wrap">
+            <span class="pill">Node.js</span><span class="pill">Express.js</span><span class="pill">MongoDB Atlas</span>
+            <span class="pill">Mongoose</span><span class="pill">JWT</span><span class="pill">bcrypt</span><span class="pill">Postman</span>
+          </div>
+          <div style="margin-top:0.75rem;font-size:0.82rem;color:var(--muted)">Focus on RESTful design, secure authentication, and clean API structure.</div>
+        </div>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">Assignment 3 — Express REST API with Auth</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="kw">const</span> router = <span class="fn">require</span>(<span class="str">"express"</span>).<span class="fn">Router</span>();
+<span class="kw">const</span> bcrypt = <span class="fn">require</span>(<span class="str">"bcryptjs"</span>);
+<span class="kw">const</span> jwt    = <span class="fn">require</span>(<span class="str">"jsonwebtoken"</span>);
+<span class="kw">const</span> User   = <span class="fn">require</span>(<span class="str">"../models/User"</span>);
+
+<span class="cm">// POST /api/auth/register</span>
+router.<span class="fn">post</span>(<span class="str">"/register"</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> { name, email, password } = req.body;
+    <span class="kw">const</span> exists = <span class="kw">await</span> User.<span class="fn">findOne</span>({ email });
+    <span class="kw">if</span> (exists) <span class="kw">return</span> res.<span class="fn">status</span>(<span class="vl">400</span>).<span class="fn">json</span>({ msg: <span class="str">"Email already registered"</span> });
+
+    <span class="kw">const</span> hash = <span class="kw">await</span> bcrypt.<span class="fn">hash</span>(password, <span class="vl">10</span>);
+    <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">create</span>({ name, email, password: hash });
+    res.<span class="fn">status</span>(<span class="vl">201</span>).<span class="fn">json</span>({ msg: <span class="str">"User registered"</span>, id: user._id });
+  } <span class="kw">catch</span> (err) {
+    res.<span class="fn">status</span>(<span class="vl">500</span>).<span class="fn">json</span>({ msg: err.message });
+  }
+});
+
+<span class="cm">// POST /api/auth/login</span>
+router.<span class="fn">post</span>(<span class="str">"/login"</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> { email, password } = req.body;
+  <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">findOne</span>({ email });
+  <span class="kw">if</span> (!user || !(<span class="kw">await</span> bcrypt.<span class="fn">compare</span>(password, user.password)))
+    <span class="kw">return</span> res.<span class="fn">status</span>(<span class="vl">401</span>).<span class="fn">json</span>({ msg: <span class="str">"Invalid credentials"</span> });
+
+  <span class="kw">const</span> token = jwt.<span class="fn">sign</span>({ id: user._id }, process.env.<span class="nm">JWT_SECRET</span>, { expiresIn: <span class="str">"7d"</span> });
+  res.<span class="fn">json</span>({ token, user: { id: user._id, name: user.name } });
+});
+
+module.exports = router;</pre>
+      </div>
+
+      <!-- Final Project -->
+      <h2 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:8px"><span style="background:var(--purple-dim);border:1px solid rgba(167,139,250,0.3);color:var(--purple);padding:2px 10px;border-radius:100px;font-size:0.75rem">Final Project</span> TaskBridge — Full Stack MERN App</h2>
+      <div class="card rv in" style="border-color:rgba(167,139,250,0.3)">
+        <div class="card-title">📋 Objective</div>
+        <div class="card-body">Combine everything learned across all assignments into one production-grade full-stack application. TaskBridge is the capstone Web Technology project — a role-based workforce management platform built with the complete MERN stack, deployed on Vercel, with JWT auth, Google OAuth, file uploads, email notifications, and real-time dashboards.</div>
+      </div>
+      <div class="g2 rv in">
+        <div class="card">
+          <div class="card-title">✅ What We Built</div>
+          <div class="card-body">
+            <ul class="rlist">
+              <li>Role-based auth (Super Admin / Manager / Employee)</li>
+              <li>Real-time dashboards per role</li>
+              <li>Task assignment with file uploads</li>
+              <li>Review & feedback system (5-star)</li>
+              <li>Full audit logs & notifications</li>
+              <li>Deployed live on Vercel</li>
+              <li>GTMetrix Grade A · 99% Performance</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛠 Full Tech Stack</div>
+          <div class="tech-wrap">
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">⚛ React</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🎨 Tailwind</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🟢 Node.js</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🚂 Express</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🍃 MongoDB</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🔐 JWT</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🚀 Vercel</div>
+          </div>
+          <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" class="btn-live" style="display:inline-flex;margin-top:1rem;font-size:0.8rem;padding:8px 16px;border-radius:8px">⚡ View Live App</a>
+        </div>
+      </div>
+      <div class="db-frame rv in">
+        <div class="db-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app/admin/dashboard</div></div>
+        <div class="db-body">
+          <div style="font-size:1.1rem;font-weight:700;margin-bottom:3px">Live Application Dashboard</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:1rem">Super Admin — system-wide overview</div>
+          <div class="db-stats">
+            <div class="db-stat"><div class="db-slabel">Total Managers</div><div class="db-sval" style="color:var(--blue)">1</div></div>
+            <div class="db-stat"><div class="db-slabel">Total Employees</div><div class="db-sval" style="color:var(--green)">1</div></div>
+            <div class="db-stat"><div class="db-slabel">Total Tasks</div><div class="db-sval" style="color:var(--blue)">4</div></div>
+            <div class="db-stat"><div class="db-slabel">Completion</div><div class="db-sval" style="color:var(--green)">25%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Problem Analysis -->
-    <div class="subpg on" id="proj-problem">
+    <div class="subpg" id="proj-problem">
       <div class="card rv in"><div class="card-title">📖 Problem Statement</div><div class="card-body"><p>Organizations often face difficulties managing tasks, tracking employee progress, and maintaining communication between managers and employees. Manual methods lead to delayed work, poor coordination, lack of transparency, and inefficient workload management.</p><p style="margin-top:0.75rem"><strong style="color:var(--text)">Objective:</strong> Build a role-based web application (Super Admin → Manager → Employee) automating task distribution, tracking, review, and feedback with full audit logging.</p></div></div>
       <div class="g2 rv">
         <div class="card" style="border-color:rgba(239,68,68,0.3)"><div class="card-title">⏰ Missed Deadlines</div><div class="card-body">No automated deadline tracking or overdue alerts for managers and employees.</div></div>
@@ -1186,7 +1498,7 @@ git stash                      <span class="cm"># save work temporarily</span></
     const el = document.getElementById('proj-' + id);
     if(el) el.classList.add('on');
     document.querySelectorAll('#pg-project .snb').forEach((b,i) => {
-      b.classList.toggle('on', ['problem','design','impl','testing'][i] === id);
+      b.classList.toggle('on', ['wt','problem','design','impl','testing'][i] === id);
     });
     triggerReveal();
   }
