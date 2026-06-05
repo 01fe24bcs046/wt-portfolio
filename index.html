@@ -1308,24 +1308,190 @@ module.exports = router;</pre>
 
     <!-- Implementation -->
     <div class="subpg" id="proj-impl">
+
+      <!-- Tech Stack -->
       <div class="card rv in"><div class="card-title">⚙ Tech Stack</div><div class="tech-wrap">
         <div class="tp">⚛ React.js</div><div class="tp">🎨 Tailwind CSS</div><div class="tp">🟢 Node.js</div>
         <div class="tp">🚂 Express.js</div><div class="tp">🍃 MongoDB Atlas</div><div class="tp">🔐 JWT Auth</div>
-        <div class="tp">🔑 Google OAuth 2.0</div><div class="tp">🚀 Vercel</div><div class="tp">📧 Email Notifications</div>
+        <div class="tp">🔑 Google OAuth 2.0</div><div class="tp">🚀 Vercel</div><div class="tp">📧 Email Notifications</div><div class="tp">📁 File Storage</div>
       </div></div>
+
+      <!-- Architecture -->
+      <div class="diag-wrap rv"><div class="diag-head">🏗 System Architectural Diagram</div><div class="diag-body"><img src="images/architecture_diagram.jpg" alt="Architecture" loading="lazy"/></div></div>
+
+      <!-- User Roles -->
+      <h2 style="font-size:1.05rem;font-weight:800;margin:1.75rem 0 1rem;color:var(--muted)">👥 User Roles & Features</h2>
       <div class="g3 rv">
-        <div class="role-card rc-admin"><div class="rav" style="background:rgba(167,139,250,0.15);color:var(--purple)">SA</div><div style="font-weight:700;margin-bottom:3px">Super Admin</div><div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">System oversight</div><ul class="rlist"><li>Create Manager accounts</li><li>View audit logs</li><li>Monitor all tasks</li><li>Manage subscriptions</li></ul></div>
-        <div class="role-card rc-mgr"><div class="rav" style="background:rgba(59,130,246,0.12);color:var(--blue)">M</div><div style="font-weight:700;margin-bottom:3px">Manager</div><div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">Team & task management</div><ul class="rlist"><li>Assign tasks with priority</li><li>Review & approve work</li><li>Monitor team workload</li><li>Manage extensions</li></ul></div>
-        <div class="role-card rc-emp"><div class="rav" style="background:rgba(34,197,94,0.1);color:var(--green)">E</div><div style="font-weight:700;margin-bottom:3px">Employee</div><div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">Task execution</div><ul class="rlist"><li>Accept & complete tasks</li><li>Upload deliverables</li><li>Request extensions</li><li>Submit feedback</li></ul></div>
-      </div>
-      <div class="db-frame rv" style="margin-top:1rem">
-        <div class="db-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app</div><a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" style="font-size:0.72rem;color:var(--blue);flex-shrink:0">Open ↗</a></div>
-        <div class="db-body">
-          <div style="font-size:1.1rem;font-weight:700;margin-bottom:3px">Super Admin Dashboard</div>
-          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:1rem">System-wide overview — you can see everything</div>
-          <div class="db-stats"><div class="db-stat"><div class="db-slabel">Total Managers</div><div class="db-sval" style="color:var(--blue)">1</div></div><div class="db-stat"><div class="db-slabel">Total Employees</div><div class="db-sval" style="color:var(--green)">1</div></div><div class="db-stat"><div class="db-slabel">Total Tasks</div><div class="db-sval" style="color:var(--blue)">4</div></div><div class="db-stat"><div class="db-slabel">Completion</div><div class="db-sval" style="color:var(--green)">25%</div></div></div>
+        <div class="role-card rc-admin">
+          <div class="rav" style="background:rgba(167,139,250,0.15);color:var(--purple)">SA</div>
+          <div style="font-weight:700;margin-bottom:3px">Super Admin</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">System-wide oversight & control</div>
+          <ul class="rlist">
+            <li>Create & manage Manager accounts</li>
+            <li>View full audit logs with filters</li>
+            <li>Monitor all tasks across org</li>
+            <li>Deactivate accounts</li>
+            <li>Manage subscriptions</li>
+            <li>Access analytics & reports</li>
+            <li>Create companies / organizations</li>
+          </ul>
+        </div>
+        <div class="role-card rc-mgr">
+          <div class="rav" style="background:rgba(59,130,246,0.12);color:var(--blue)">M</div>
+          <div style="font-weight:700;margin-bottom:3px">Manager</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">Team & Task Management</div>
+          <ul class="rlist">
+            <li>Create employee accounts</li>
+            <li>Assign tasks with priority & deadline</li>
+            <li>Attach reference files to tasks</li>
+            <li>Review & approve submitted work</li>
+            <li>Request revision with feedback</li>
+            <li>Monitor team workload in real time</li>
+            <li>Approve deadline extension requests</li>
+          </ul>
+        </div>
+        <div class="role-card rc-emp">
+          <div class="rav" style="background:rgba(34,197,94,0.1);color:var(--green)">E</div>
+          <div style="font-weight:700;margin-bottom:3px">Employee</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">Task Execution & Submission</div>
+          <ul class="rlist">
+            <li>Receive & accept assigned tasks</li>
+            <li>Download reference attachments</li>
+            <li>Add comments & clarifications</li>
+            <li>Upload deliverable files</li>
+            <li>Submit task for review</li>
+            <li>Flag blockers or request extensions</li>
+            <li>Submit 5-star feedback</li>
+          </ul>
         </div>
       </div>
+
+      <!-- Dashboard Showcase -->
+      <h2 style="font-size:1.05rem;font-weight:800;margin:1.75rem 0 1rem;color:var(--muted)">🖥 Dashboard Showcase</h2>
+      <div class="tab-bar">
+        <button class="tbtn on"  onclick="showDash('emp')">Employee Dashboard</button>
+        <button class="tbtn"     onclick="showDash('mgr')">Manager Dashboard</button>
+        <button class="tbtn"     onclick="showDash('adm')">Super Admin Dashboard</button>
+      </div>
+
+      <!-- Employee -->
+      <div class="tpane on" id="dash-emp">
+        <div class="db-frame rv in">
+          <div class="db-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app/employee/dashboard</div></div>
+          <div class="db-body">
+            <div style="font-size:1.15rem;font-weight:700;margin-bottom:2px">Good evening, Joe 👋</div>
+            <div style="font-size:0.75rem;color:var(--muted);margin-bottom:1.1rem">Here's your work summary for today</div>
+            <div class="db-stats">
+              <div class="db-stat"><div class="db-slabel">Total Tasks</div><div class="db-sval" style="color:var(--blue)">2</div></div>
+              <div class="db-stat"><div class="db-slabel">In Progress</div><div class="db-sval" style="color:var(--yellow)">0</div></div>
+              <div class="db-stat"><div class="db-slabel">Completed</div><div class="db-sval" style="color:var(--green)">0</div></div>
+              <div class="db-stat"><div class="db-slabel">Overdue</div><div class="db-sval" style="color:var(--red)">2</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1rem">
+                <div style="font-size:0.82rem;font-weight:600;margin-bottom:0.75rem">New Tasks <span class="badge bb">0</span></div>
+                <div style="font-size:0.75rem;color:var(--muted);text-align:center;padding:0.75rem 0">🎉 No new tasks</div>
+              </div>
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1rem">
+                <div style="font-size:0.82rem;font-weight:600;margin-bottom:0.75rem">Under Review (2)</div>
+                <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:0.75rem"><span>qb</span><span class="badge by">Submitted May 25</span></div>
+                <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:0.75rem"><span>a4</span><span class="badge by">Submitted May 25</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manager -->
+      <div class="tpane" id="dash-mgr">
+        <div class="db-frame rv">
+          <div class="db-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app/manager/dashboard</div></div>
+          <div class="db-body">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.1rem">
+              <div>
+                <div style="font-size:1.15rem;font-weight:700;margin-bottom:2px">Good evening, Joe 👋</div>
+                <div style="font-size:0.75rem;color:var(--muted)">Here's what's happening with your team</div>
+              </div>
+              <span class="badge bb" style="padding:7px 14px;font-size:0.8rem;cursor:pointer">+ Assign Task</span>
+            </div>
+            <div class="db-stats">
+              <div class="db-stat"><div class="db-slabel">Total Tasks</div><div class="db-sval" style="color:var(--blue)">1</div></div>
+              <div class="db-stat"><div class="db-slabel">Completed</div><div class="db-sval" style="color:var(--green)">0</div></div>
+              <div class="db-stat"><div class="db-slabel">Team Members</div><div class="db-sval" style="color:var(--purple)">1</div></div>
+              <div class="db-stat"><div class="db-slabel">Under Review</div><div class="db-sval" style="color:var(--yellow)">1</div></div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1rem">
+              <div style="font-size:0.82rem;font-weight:600;margin-bottom:0.75rem">Recent Tasks</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:0.75px">
+                <span style="font-size:0.75rem">talk to joe emp <span style="color:var(--muted)">· Due May 25</span></span>
+                <div style="display:flex;gap:5px"><span class="badge bb">Medium</span><span class="badge bg">Completed</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:0.75rem">
+                <span>edd <span style="color:var(--muted)">· Due May 26</span></span>
+                <div style="display:flex;gap:5px"><span class="badge bb">Medium</span><span class="badge br">Overdue</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:0.75rem">
+                <span>a4 <span style="color:var(--muted)">· Due May 28</span></span>
+                <div style="display:flex;gap:5px"><span class="badge bb">Medium</span><span class="badge by">Under Review</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Super Admin -->
+      <div class="tpane" id="dash-adm">
+        <div class="db-frame rv">
+          <div class="db-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app/admin/dashboard</div></div>
+          <div class="db-body">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.1rem">
+              <div>
+                <div style="font-size:1.15rem;font-weight:700;margin-bottom:2px">Good evening, Victory 👋</div>
+                <div style="font-size:0.75rem;color:var(--muted)">System-wide overview — you can see everything</div>
+              </div>
+              <div style="display:flex;gap:6px">
+                <span class="badge bb" style="padding:7px 12px;font-size:0.78rem">View Managers</span>
+                <span class="badge bp" style="padding:7px 12px;font-size:0.78rem">View Employees</span>
+              </div>
+            </div>
+            <div class="db-stats">
+              <div class="db-stat"><div class="db-slabel">Total Managers</div><div class="db-sval" style="color:var(--blue)">1</div></div>
+              <div class="db-stat"><div class="db-slabel">Total Employees</div><div class="db-sval" style="color:var(--green)">1</div></div>
+              <div class="db-stat"><div class="db-slabel">Total Tasks</div><div class="db-sval" style="color:var(--blue)">4</div></div>
+              <div class="db-stat"><div class="db-slabel">Completion Rate</div><div class="db-sval" style="color:var(--green)">25%</div></div>
+            </div>
+            <div class="db-stats" style="margin-top:10px">
+              <div class="db-stat"><div class="db-slabel">In Progress</div><div class="db-sval" style="color:var(--yellow)">0</div></div>
+              <div class="db-stat"><div class="db-slabel">Completed</div><div class="db-sval" style="color:var(--green)">1</div></div>
+              <div class="db-stat"><div class="db-slabel">Under Review</div><div class="db-sval" style="color:var(--yellow)">2</div></div>
+              <div class="db-stat"><div class="db-slabel">Overdue</div><div class="db-sval" style="color:var(--red)">0</div></div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1rem;margin-top:10px">
+              <div style="font-size:0.82rem;font-weight:600;margin-bottom:0.75rem">System Task Distribution</div>
+              <div style="height:14px;border-radius:7px;overflow:hidden;display:flex;margin-bottom:8px">
+                <div style="width:25%;background:var(--green)"></div>
+                <div style="width:50%;background:var(--yellow)"></div>
+                <div style="width:25%;background:var(--border)"></div>
+              </div>
+              <div style="display:flex;gap:16px;font-size:0.7rem;color:var(--muted)">
+                <span>● Completed: 1</span><span>● Under Review: 2</span><span>● Not Started: 1</span>
+              </div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1rem;margin-top:10px">
+              <div style="font-size:0.82rem;font-weight:600;margin-bottom:0.75rem">Recent Task Activity</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:0.75rem">
+                <div><div>a4</div><div style="color:var(--muted);font-size:0.7rem">joe ← joe · 11 days ago</div></div>
+                <div style="display:flex;gap:5px"><span class="badge bb">Medium</span><span class="badge by">Under Review</span><span style="font-size:0.7rem;color:var(--muted)">Due May 28</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:0.75rem">
+                <div><div>edd</div><div style="color:var(--muted);font-size:0.7rem">joe ← joe · 11 days ago</div></div>
+                <div style="display:flex;gap:5px"><span class="badge bb">Medium</span><span class="badge" style="background:rgba(100,116,139,0.1);color:var(--muted)">Not Started</span><span style="font-size:0.7rem;color:var(--muted)">Due May 26</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- Testing -->
@@ -1499,6 +1665,17 @@ git stash                      <span class="cm"># save work temporarily</span></
     if(el) el.classList.add('on');
     document.querySelectorAll('#pg-project .snb').forEach((b,i) => {
       b.classList.toggle('on', ['wt','problem','design','impl','testing'][i] === id);
+    });
+    triggerReveal();
+  }
+
+  function showDash(id) {
+    ['emp','mgr','adm'].forEach(s => {
+      const el = document.getElementById('dash-' + s);
+      if(el) el.classList.toggle('on', s === id);
+    });
+    document.querySelectorAll('#proj-impl .tbtn').forEach((b,i) => {
+      b.classList.toggle('on', ['emp','mgr','adm'][i] === id);
     });
     triggerReveal();
   }
