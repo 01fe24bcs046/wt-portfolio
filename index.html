@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TaskBridge — SE Portfolio | KLE Technological University</title>
+  <title>Web Technology & Software Engineering — KLE Technological University</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --bg:#0f1117;
-      --surface:#181c27;
-      --surface2:#1e2235;
-      --border:#2a2f45;
-      --blue:#3b6ff5;
-      --blue-dim:rgba(59,111,245,0.12);
+      --bg:#0a0d14;
+      --surface:#121620;
+      --surface2:#181d2b;
+      --border:#252d42;
+      --blue:#3b82f6;
+      --blue-dim:rgba(59,130,246,0.12);
       --green:#22c55e;
       --green-dim:rgba(34,197,94,0.1);
       --yellow:#f59e0b;
@@ -23,10 +23,11 @@
       --red-dim:rgba(239,68,68,0.1);
       --purple:#a78bfa;
       --purple-dim:rgba(167,139,250,0.1);
-      --text:#e8eaf6;
-      --muted:#7b82a0;
-      --nav-h:60px;
-      --side-w:240px;
+      --orange:#fb923c;
+      --cyan:#22d3ee;
+      --text:#e2e8f0;
+      --muted:#64748b;
+      --nav-h:64px;
     }
     html{scroll-behavior:smooth}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
@@ -37,982 +38,1183 @@
     ::-webkit-scrollbar-track{background:var(--bg)}
     ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
-    /* ─── TOP NAV ─── */
+    /* ── TOP NAV ── */
     #topnav{
-      position:fixed;top:0;left:0;right:0;z-index:200;
+      position:fixed;top:0;left:0;right:0;z-index:500;
       height:var(--nav-h);
-      background:rgba(15,17,23,0.92);
-      backdrop-filter:blur(16px);
+      background:rgba(10,13,20,0.95);
+      backdrop-filter:blur(20px);
       border-bottom:1px solid var(--border);
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 1.5rem;gap:1rem;
+      display:flex;align-items:center;
+      padding:0 2rem;gap:0;
     }
-    .nav-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;color:var(--text);white-space:nowrap}
-    .brand-icon{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-    .nav-tabs{display:flex;align-items:center;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-    .nav-tabs::-webkit-scrollbar{display:none}
-    .nav-tab{
-      padding:6px 13px;border-radius:7px;
-      font-size:0.82rem;font-weight:500;
-      color:var(--muted);white-space:nowrap;
-      transition:background 0.15s,color 0.15s;cursor:pointer;
+    .brand{display:flex;align-items:center;gap:10px;margin-right:2rem;flex-shrink:0}
+    .brand-logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#ef4444,#b91c1c);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:800;color:#fff;text-align:center;line-height:1.1}
+    .brand-name{font-weight:700;font-size:1rem;color:var(--text)}
+    .nav-items{display:flex;align-items:stretch;height:var(--nav-h);flex:1}
+    .nav-item{position:relative;display:flex;align-items:center}
+    .nav-link{
+      display:flex;align-items:center;gap:4px;
+      padding:0 14px;height:100%;
+      font-size:0.875rem;font-weight:500;color:var(--muted);
+      cursor:pointer;white-space:nowrap;
+      transition:color 0.15s;border-bottom:2px solid transparent;
     }
-    .nav-tab:hover{background:var(--surface2);color:var(--text)}
-    .nav-tab.active{background:var(--blue-dim);color:var(--blue)}
-    .nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
-    .btn-demo{
-      padding:7px 15px;border-radius:8px;
-      background:var(--blue);color:#fff;
-      font-size:0.8rem;font-weight:600;
-      transition:opacity 0.15s;white-space:nowrap;
+    .nav-link:hover,.nav-link.active{color:var(--text);border-bottom-color:var(--blue)}
+    .nav-link .arrow{font-size:0.65rem;margin-left:1px;transition:transform 0.2s}
+    .nav-item:hover .arrow{transform:rotate(180deg)}
+    .dropdown{
+      display:none;position:absolute;top:100%;left:0;
+      background:#181d2b;border:1px solid var(--border);
+      border-radius:10px;min-width:190px;
+      box-shadow:0 16px 40px rgba(0,0,0,0.5);
+      padding:6px;z-index:600;
     }
-    .btn-demo:hover{opacity:0.88;text-decoration:none}
-
-    /* ─── LAYOUT ─── */
-    .shell{
-      display:flex;
-      padding-top:var(--nav-h);
-      min-height:100vh;
-    }
-
-    /* ─── SIDEBAR ─── */
-    #sidebar{
-      width:var(--side-w);
-      flex-shrink:0;
-      position:sticky;
-      top:var(--nav-h);
-      height:calc(100vh - var(--nav-h));
-      overflow-y:auto;
-      border-right:1px solid var(--border);
-      padding:1.5rem 0;
-      background:var(--surface);
-    }
-    #sidebar::-webkit-scrollbar{width:3px}
-    .side-section{margin-bottom:0.25rem}
-    .side-group-label{
-      font-size:0.68rem;font-weight:700;
-      text-transform:uppercase;letter-spacing:0.1em;
-      color:var(--muted);padding:0.6rem 1.25rem 0.3rem;
-    }
-    .side-link{
-      display:flex;align-items:center;gap:8px;
-      padding:7px 1.25rem;
-      font-size:0.82rem;color:var(--muted);
+    .nav-item:hover .dropdown{display:block}
+    .dd-item{
+      display:block;padding:8px 12px;border-radius:7px;
+      font-size:0.83rem;color:var(--muted);cursor:pointer;
       transition:background 0.12s,color 0.12s;
-      cursor:pointer;border-left:2px solid transparent;
     }
-    .side-link:hover{background:var(--surface2);color:var(--text);text-decoration:none}
-    .side-link.active{color:var(--blue);border-left-color:var(--blue);background:var(--blue-dim)}
-    .side-sub{padding-left:2.25rem;font-size:0.78rem}
+    .dd-item:hover{background:var(--surface2);color:var(--text);text-decoration:none}
+    .nav-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .btn-live{padding:7px 16px;border-radius:8px;background:var(--blue);color:#fff;font-size:0.8rem;font-weight:600;transition:opacity 0.15s;white-space:nowrap}
+    .btn-live:hover{opacity:0.85;text-decoration:none}
 
-    /* ─── MAIN CONTENT ─── */
-    #content{
-      flex:1;min-width:0;
-      padding:2.5rem 3rem;
-      max-width:900px;
-    }
-
-    /* ─── PAGE SECTIONS ─── */
-    .page{display:none}
+    /* ── PAGES ── */
+    .page{display:none;min-height:100vh;padding-top:var(--nav-h)}
     .page.active{display:block}
-    .page-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
-    .page-tag{
-      display:inline-flex;align-items:center;gap:6px;
-      background:var(--blue-dim);border:1px solid rgba(59,111,245,0.25);
-      color:var(--blue);font-size:0.7rem;font-weight:700;
-      letter-spacing:0.08em;text-transform:uppercase;
-      padding:3px 10px;border-radius:100px;margin-bottom:0.75rem;
-    }
-    h1.page-title{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:0.5rem}
-    .page-subtitle{color:var(--muted);font-size:1rem;line-height:1.6}
 
-    /* ─── CARDS ─── */
-    .card{
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;
-      transition:border-color 0.2s,box-shadow 0.2s;
+    /* ── HERO BANNER ── */
+    .hero-banner{
+      position:relative;width:100%;
+      min-height:480px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#0a0d14 0%,#0f1629 40%,#0d1a3a 70%,#0a1020 100%);
+      overflow:hidden;text-align:center;
     }
-    .card:hover{border-color:var(--blue);box-shadow:0 4px 24px rgba(59,111,245,0.1)}
-    .card-title{font-size:1rem;font-weight:700;margin-bottom:0.6rem;display:flex;align-items:center;gap:8px}
-    .card-body{font-size:0.875rem;color:var(--muted);line-height:1.7}
-
-    /* ─── GRID ─── */
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-    @media(max-width:700px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
-
-    /* ─── HERO ─── */
-    .hero-box{
-      background:linear-gradient(135deg,rgba(59,111,245,0.12),rgba(167,139,250,0.08));
-      border:1px solid rgba(59,111,245,0.2);
-      border-radius:18px;padding:2.5rem;margin-bottom:2rem;
-      position:relative;overflow:hidden;
+    .hero-banner::before{
+      content:'';position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(59,130,246,0.05) 1px,transparent 1px);
+      background-size:40px 40px;
     }
-    .hero-box::before{
-      content:'';position:absolute;top:-60px;right:-60px;
-      width:200px;height:200px;border-radius:50%;
-      background:radial-gradient(circle,rgba(59,111,245,0.15),transparent 70%);
+    .hero-banner::after{
+      content:'';position:absolute;
+      width:600px;height:600px;border-radius:50%;
+      background:radial-gradient(circle,rgba(59,130,246,0.1) 0%,transparent 70%);
+      top:50%;left:50%;transform:translate(-50%,-50%);
     }
-    .hero-title{font-size:2.6rem;font-weight:900;line-height:1.1;margin-bottom:0.75rem}
-    .hero-title span{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-desc{font-size:1rem;color:var(--muted);max-width:540px;margin-bottom:1.5rem;line-height:1.7}
-    .hero-btns{display:flex;gap:0.75rem;flex-wrap:wrap}
-    .btn-outline{padding:8px 18px;border-radius:9px;border:1px solid var(--border);color:var(--text);font-size:0.85rem;font-weight:600;transition:border-color 0.15s,background 0.15s}
-    .btn-outline:hover{border-color:var(--blue);background:var(--blue-dim);text-decoration:none}
-    .hero-stats{display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
-    .hstat{text-align:center}
-    .hstat-n{font-size:1.6rem;font-weight:800}
-    .hstat-l{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+    .hero-content{position:relative;z-index:1;padding:3rem 2rem}
+    .hero-kle{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:6px 14px;border-radius:100px;margin-bottom:1.5rem}
+    .hero-kle img{height:24px}
+    .hero-kle span{font-size:0.78rem;color:var(--muted)}
+    .hero-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:1.25rem;color:#fff}
+    .hero-title span{background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-quote{font-size:1rem;color:var(--muted);font-style:italic;max-width:560px;margin:0 auto 1.5rem}
+    .hero-quote strong{color:var(--text);font-style:normal}
+    .hero-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+    .hero-sub{font-size:0.82rem;color:var(--muted);margin-top:0.5rem}
 
-    /* ─── BADGE ─── */
+    /* ── CONTENT WRAPPER ── */
+    .content{max-width:1000px;margin:0 auto;padding:3rem 2rem}
+    .section-banner{
+      width:100%;min-height:220px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#0a0d14,#0f1629,#0d1a3a);
+      position:relative;overflow:hidden;text-align:center;
+    }
+    .section-banner::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px);background-size:36px 36px}
+    .section-banner-content{position:relative;z-index:1;padding:2rem}
+    .section-banner h1{font-size:2.5rem;font-weight:900;color:#fff;margin-bottom:0.5rem}
+    .section-banner p{color:var(--muted);font-size:0.95rem}
+    .section-banner .line{width:60px;height:3px;background:var(--blue);margin:0.75rem auto 0;border-radius:2px}
+
+    /* ── CARDS ── */
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;transition:border-color 0.2s,box-shadow 0.2s}
+    .card:hover{border-color:var(--blue);box-shadow:0 4px 24px rgba(59,130,246,0.08)}
+    .card-title{font-size:1rem;font-weight:700;margin-bottom:0.65rem;display:flex;align-items:center;gap:8px}
+    .card-body{font-size:0.875rem;color:var(--muted);line-height:1.75}
+
+    /* ── CODE BLOCK ── */
+    .code-block{
+      background:#0d1117;border:1px solid var(--border);
+      border-radius:12px;overflow:hidden;margin:1rem 0;
+    }
+    .code-header{
+      background:var(--surface2);border-bottom:1px solid var(--border);
+      padding:8px 14px;display:flex;align-items:center;justify-content:space-between;
+    }
+    .code-lang{font-size:0.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
+    .code-dots{display:flex;gap:5px}
+    .cd{width:10px;height:10px;border-radius:50%}
+    .cd-r{background:#ef4444}.cd-y{background:#f59e0b}.cd-g{background:#22c55e}
+    pre{padding:1.25rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:0.8rem;line-height:1.7;color:#cdd9e5}
+    pre::-webkit-scrollbar{height:4px}
+    pre::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+    .kw{color:#ff79c6}
+    .fn{color:#8be9fd}
+    .str{color:#f1fa8c}
+    .cm{color:#6272a4;font-style:italic}
+    .tg{color:#ff6e6e}
+    .at{color:#50fa7b}
+    .vl{color:#bd93f9}
+    .nm{color:#ffb86c}
+
+    /* ── GRIDS ── */
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    @media(max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+    /* ── CONCEPT PILLS ── */
+    .pill-wrap{display:flex;flex-wrap:wrap;gap:8px;margin:0.75rem 0}
+    .pill{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:100px;font-size:0.78rem;font-weight:500;border:1px solid var(--border);background:var(--surface2);color:var(--muted)}
+
+    /* ── BADGE ── */
     .badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:100px;font-size:0.72rem;font-weight:600}
-    .badge-green{background:var(--green-dim);color:var(--green)}
-    .badge-blue{background:var(--blue-dim);color:var(--blue)}
-    .badge-yellow{background:var(--yellow-dim);color:var(--yellow)}
-    .badge-red{background:var(--red-dim);color:var(--red)}
-    .badge-purple{background:var(--purple-dim);color:var(--purple)}
+    .bg{background:var(--green-dim);color:var(--green)}
+    .bb{background:var(--blue-dim);color:var(--blue)}
+    .by{background:var(--yellow-dim);color:var(--yellow)}
+    .br{background:var(--red-dim);color:var(--red)}
+    .bp{background:var(--purple-dim);color:var(--purple)}
 
-    /* ─── TECH PILLS ─── */
-    .tech-wrap{display:flex;flex-wrap:wrap;gap:10px}
-    .tech-pill{
-      display:flex;align-items:center;gap:7px;
-      background:var(--surface2);border:1px solid var(--border);
-      padding:8px 14px;border-radius:9px;font-size:0.85rem;font-weight:500;
-      transition:border-color 0.15s,transform 0.15s;
-    }
-    .tech-pill:hover{border-color:var(--blue);transform:translateY(-2px)}
+    /* ── TECH PILLS ── */
+    .tech-wrap{display:flex;flex-wrap:wrap;gap:10px;margin:0.75rem 0}
+    .tp{display:flex;align-items:center;gap:7px;background:var(--surface2);border:1px solid var(--border);padding:8px 14px;border-radius:9px;font-size:0.85rem;font-weight:500;transition:border-color 0.15s,transform 0.15s}
+    .tp:hover{border-color:var(--blue);transform:translateY(-2px)}
 
-    /* ─── DIAGRAM CARD ─── */
-    .diagram-wrap{
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:14px;overflow:hidden;margin-bottom:1.5rem;
-    }
-    .diagram-head{
-      padding:0.85rem 1.25rem;border-bottom:1px solid var(--border);
-      display:flex;align-items:center;gap:8px;
-      font-size:0.88rem;font-weight:600;
-    }
-    .diagram-img{background:#fff;padding:1.5rem}
-    .diagram-img img{border-radius:8px;width:100%}
+    /* ── DIAGRAM ── */
+    .diag-wrap{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:1.5rem}
+    .diag-head{padding:0.85rem 1.25rem;border-bottom:1px solid var(--border);font-size:0.88rem;font-weight:600;display:flex;align-items:center;gap:8px}
+    .diag-body{background:#fff;padding:1.5rem}
+    .diag-body img{border-radius:8px;width:100%}
 
-    /* ─── ROLE CARDS ─── */
-    .role-card{
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:14px;padding:1.5rem;
-      transition:border-color 0.2s,transform 0.2s;
-      position:relative;overflow:hidden;
-    }
+    /* ── ROLE CARDS ── */
+    .role-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden}
     .role-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-    .role-admin::before{background:linear-gradient(90deg,var(--purple),var(--blue))}
-    .role-manager::before{background:linear-gradient(90deg,var(--blue),var(--green))}
-    .role-employee::before{background:linear-gradient(90deg,var(--green),var(--yellow))}
+    .rc-admin::before{background:linear-gradient(90deg,var(--purple),var(--blue))}
+    .rc-mgr::before{background:linear-gradient(90deg,var(--blue),var(--green))}
+    .rc-emp::before{background:linear-gradient(90deg,var(--green),var(--yellow))}
     .role-card:hover{border-color:var(--blue);transform:translateY(-3px)}
-    .role-avatar{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;margin-bottom:0.85rem}
-    .av-purple{background:var(--purple-dim);color:var(--purple)}
-    .av-blue{background:var(--blue-dim);color:var(--blue)}
-    .av-green{background:var(--green-dim);color:var(--green)}
-    .role-name{font-size:1rem;font-weight:700;margin-bottom:3px}
-    .role-purpose{font-size:0.78rem;color:var(--muted);margin-bottom:1rem}
-    .role-list{list-style:none;display:flex;flex-direction:column;gap:6px}
-    .role-list li{font-size:0.82rem;color:var(--muted);padding-left:1rem;position:relative}
-    .role-list li::before{content:'›';position:absolute;left:0;color:var(--blue);font-weight:700}
+    .rav{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;margin-bottom:0.85rem}
+    .rlist{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .rlist li{font-size:0.82rem;color:var(--muted);padding-left:1rem;position:relative}
+    .rlist li::before{content:'›';position:absolute;left:0;color:var(--blue);font-weight:700}
 
-    /* ─── DASHBOARD TABS ─── */
-    .tab-bar{display:flex;gap:6px;margin-bottom:1.25rem;flex-wrap:wrap}
-    .tab-btn{padding:7px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.15s}
-    .tab-btn.on{background:var(--blue);border-color:var(--blue);color:#fff}
-    .tab-btn:hover:not(.on){border-color:var(--blue);color:var(--text)}
-    .tab-pane{display:none}
-    .tab-pane.on{display:block}
+    /* ── DB MOCK ── */
     .db-frame{background:var(--surface2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
     .db-bar{background:var(--bg);border-bottom:1px solid var(--border);padding:9px 14px;display:flex;align-items:center;gap:6px}
     .dot{width:9px;height:9px;border-radius:50%}
-    .dot-r{background:#ef4444}.dot-y{background:#f59e0b}.dot-g{background:#22c55e}
+    .dr{background:#ef4444}.dy{background:#f59e0b}.dg{background:#22c55e}
     .db-url{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin:0 10px}
     .db-body{padding:1.25rem}
-    .db-greeting{font-size:1.2rem;font-weight:700;margin-bottom:3px}
-    .db-sub{font-size:0.75rem;color:var(--muted);margin-bottom:1.25rem}
-    .db-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem}
+    .db-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1rem}
     .db-stat{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:0.9rem;text-align:center}
-    .db-stat-label{font-size:0.68rem;color:var(--muted);margin-bottom:5px}
-    .db-stat-val{font-size:1.5rem;font-weight:800}
-    .db-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .db-panel{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1rem}
-    .db-panel-title{font-size:0.82rem;font-weight:600;margin-bottom:0.75rem}
-    .db-empty{font-size:0.75rem;color:var(--muted);text-align:center;padding:0.75rem 0}
-    .db-task{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:0.75rem}
-    .db-task:last-child{border-bottom:none}
-    .db-dist{height:14px;border-radius:7px;overflow:hidden;display:flex;margin:8px 0}
-    .db-dist-legend{display:flex;gap:12px;font-size:0.7rem;color:var(--muted)}
+    .db-slabel{font-size:0.68rem;color:var(--muted);margin-bottom:5px}
+    .db-sval{font-size:1.4rem;font-weight:800}
 
-    /* ─── TEST TABLE ─── */
-    .test-table-wrap{overflow-x:auto;margin-bottom:1.5rem}
+    /* ── TESTING TABLE ── */
+    .tbl-wrap{overflow-x:auto;margin-bottom:1.5rem}
     table{width:100%;border-collapse:collapse;font-size:0.8rem}
-    thead th{
-      background:var(--surface2);border:1px solid var(--border);
-      padding:10px 12px;text-align:left;font-weight:700;
-      color:var(--text);white-space:nowrap;position:sticky;top:0;
-    }
+    thead th{background:var(--surface2);border:1px solid var(--border);padding:10px 12px;text-align:left;font-weight:700;color:var(--text);white-space:nowrap;position:sticky;top:0}
     tbody td{border:1px solid var(--border);padding:9px 12px;color:var(--muted);vertical-align:top}
     tbody tr:hover td{background:var(--surface2)}
-    .tc-group td{background:rgba(59,111,245,0.08);color:var(--blue);font-weight:700;font-size:0.78rem}
-    .tc-id{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--blue);white-space:nowrap}
-    .tc-pass{color:var(--green);font-weight:700}
-    .tc-fail{color:var(--red);font-weight:700}
+    .tcg td{background:rgba(59,130,246,0.08);color:var(--blue);font-weight:700;font-size:0.78rem}
+    .tcid{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--blue);white-space:nowrap}
+    .pass{color:var(--green);font-weight:700}
 
-    /* ─── PERF CARDS ─── */
+    /* ── PERF ── */
     .perf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
     .perf-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
-    .perf-val{font-size:1.8rem;font-weight:800;color:var(--green)}
-    .perf-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px}
-    .grade-big{font-size:3.5rem;font-weight:900;background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .pval{font-size:1.7rem;font-weight:800;color:var(--green)}
+    .plabel{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px}
 
-    /* ─── TEAM ─── */
+    /* ── TEAM ── */
     .team-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;text-align:center;transition:border-color 0.2s,transform 0.2s}
     .team-card:hover{border-color:var(--blue);transform:translateY(-3px)}
-    .team-av{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;margin:0 auto 0.85rem;color:#fff}
+    .tav{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;margin:0 auto 0.85rem;color:#fff}
     .team-name{font-size:0.95rem;font-weight:700;margin-bottom:2px}
     .team-id{font-size:0.72rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:5px}
     .team-role{font-size:0.78rem;color:var(--blue);font-weight:500}
-    .me-highlight{border-color:var(--blue)!important;background:var(--blue-dim)}
+    .me-card{border-color:var(--blue)!important;background:rgba(59,130,246,0.05)}
 
-    /* ─── SECTION NAV / SUBSECTION ─── */
-    .section-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.75rem}
-    .snav-btn{padding:6px 14px;border-radius:7px;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:0.8rem;font-weight:500;cursor:pointer;transition:all 0.15s}
-    .snav-btn.on{background:var(--surface2);border-color:var(--blue);color:var(--text)}
-    .snav-btn:hover:not(.on){border-color:var(--blue);color:var(--text)}
-    .subpage{display:none}
-    .subpage.on{display:block}
+    /* ── SUB-NAV ── */
+    .subnav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.75rem}
+    .snb{padding:6px 14px;border-radius:7px;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:0.8rem;font-weight:500;cursor:pointer;transition:all 0.15s}
+    .snb.on{background:var(--surface2);border-color:var(--blue);color:var(--text)}
+    .snb:hover:not(.on){border-color:var(--blue);color:var(--text)}
+    .subpg{display:none}.subpg.on{display:block}
 
-    /* ─── INFO BOX ─── */
-    .info-box{background:var(--blue-dim);border:1px solid rgba(59,111,245,0.25);border-radius:11px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:0.875rem}
-    .warn-box{background:var(--yellow-dim);border:1px solid rgba(245,158,11,0.25);border-radius:11px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:0.875rem;color:var(--yellow)}
-    .success-box{background:var(--green-dim);border:1px solid rgba(34,197,94,0.25);border-radius:11px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:0.875rem;color:var(--green)}
+    /* ── TAB BAR ── */
+    .tab-bar{display:flex;gap:6px;margin-bottom:1.25rem;flex-wrap:wrap}
+    .tbtn{padding:7px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.15s}
+    .tbtn.on{background:var(--blue);border-color:var(--blue);color:#fff}
+    .tbtn:hover:not(.on){border-color:var(--blue);color:var(--text)}
+    .tpane{display:none}.tpane.on{display:block}
 
-    /* ─── DIVIDER ─── */
-    hr.soft{border:none;border-top:1px solid var(--border);margin:2rem 0}
+    /* ── LEARNING STEP ── */
+    .learn-step{display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:1.5rem}
+    .step-num{width:36px;height:36px;border-radius:50%;background:var(--blue-dim);border:1px solid rgba(59,130,246,0.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;color:var(--blue);flex-shrink:0;margin-top:2px}
+    .step-body h4{font-size:0.95rem;font-weight:700;margin-bottom:4px}
+    .step-body p{font-size:0.85rem;color:var(--muted);line-height:1.65}
 
-    /* ─── FOOTER ─── */
-    #footer{border-top:1px solid var(--border);padding:2rem 3rem;text-align:center;color:var(--muted);font-size:0.8rem}
-    #footer strong{color:var(--text)}
+    /* ── QUOTE ── */
+    .quote-box{background:var(--surface2);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin:1.25rem 0;font-style:italic;color:var(--muted)}
+    .quote-box strong{color:var(--text);font-style:normal}
 
-    /* ─── MOBILE ─── */
+    /* ── DEVOPS ── */
+    .devops-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem;transition:border-color 0.2s}
+    .devops-card:hover{border-color:var(--blue)}
+    .devops-icon{font-size:2rem;flex-shrink:0}
+
+    /* ── CONTACT ── */
+    .contact-row{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:0.75rem;transition:border-color 0.2s}
+    .contact-row:hover{border-color:var(--blue)}
+    .contact-icon{font-size:1.5rem;width:42px;text-align:center;flex-shrink:0}
+
+    /* ── REVEAL ── */
+    .rv{opacity:0;transform:translateY(14px);transition:opacity 0.5s,transform 0.5s}
+    .rv.in{opacity:1;transform:none}
+
     @media(max-width:768px){
-      #sidebar{display:none}
-      #content{padding:1.5rem 1rem}
+      .nav-items{overflow-x:auto}.nav-link{font-size:0.78rem;padding:0 10px}
+      .content{padding:2rem 1rem}
       .hero-title{font-size:1.8rem}
-      .db-stats,.db-row,.perf-grid{grid-template-columns:1fr 1fr}
-      #topnav .nav-tabs{display:none}
+      .db-stats,.perf-grid{grid-template-columns:1fr 1fr}
     }
-
-    /* ─── REVEAL ─── */
-    .reveal{opacity:0;transform:translateY(16px);transition:opacity 0.5s,transform 0.5s}
-    .reveal.in{opacity:1;transform:none}
   </style>
 </head>
 <body>
 
-<!-- ═══ TOP NAV ═══ -->
+<!-- ═══ NAV ═══ -->
 <nav id="topnav">
-  <div class="nav-brand">
-    <div class="brand-icon">⚡</div>
-    TaskBridge
+  <div class="brand">
+    <div class="brand-logo">KLE<br/>Tech</div>
+    <span class="brand-name">WT & SE Portfolio</span>
   </div>
-  <div class="nav-tabs" id="navTabs">
-    <div class="nav-tab active" onclick="goto('home')">Home</div>
-    <div class="nav-tab" onclick="goto('problem')">Problem</div>
-    <div class="nav-tab" onclick="goto('design')">Design</div>
-    <div class="nav-tab" onclick="goto('requirements')">Requirements</div>
-    <div class="nav-tab" onclick="goto('implementation')">Implementation</div>
-    <div class="nav-tab" onclick="goto('testing')">Testing</div>
-    <div class="nav-tab" onclick="goto('performance')">Performance</div>
-    <div class="nav-tab" onclick="goto('team')">Team</div>
+  <div class="nav-items">
+    <div class="nav-item">
+      <div class="nav-link active" onclick="showPage('home')">Home <span class="arrow">▾</span></div>
+      <div class="dropdown">
+        <a class="dd-item" onclick="showPage('home')">🏠 About</a>
+        <a class="dd-item" onclick="showPage('home')">👨‍💻 Team</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-link" onclick="showPage('learnings')">Learnings <span class="arrow">▾</span></div>
+      <div class="dropdown">
+        <a class="dd-item" onclick="showPage('learnings');showLearn('html')">🌐 HTML</a>
+        <a class="dd-item" onclick="showPage('learnings');showLearn('css')">🎨 CSS</a>
+        <a class="dd-item" onclick="showPage('learnings');showLearn('js')">⚡ JavaScript</a>
+        <a class="dd-item" onclick="showPage('learnings');showLearn('node')">🟢 Node.js</a>
+        <a class="dd-item" onclick="showPage('learnings');showLearn('mongo')">🍃 MongoDB</a>
+        <a class="dd-item" onclick="showPage('learnings');showLearn('react')">⚛ React</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-link" onclick="showPage('project')">Project <span class="arrow">▾</span></div>
+      <div class="dropdown">
+        <a class="dd-item" onclick="showPage('project');showProj('problem')">⚠ Problem Analysis</a>
+        <a class="dd-item" onclick="showPage('project');showProj('design')">📐 System Design</a>
+        <a class="dd-item" onclick="showPage('project');showProj('impl')">⚙ Implementation</a>
+        <a class="dd-item" onclick="showPage('project');showProj('testing')">🧪 Software Testing</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-link" onclick="showPage('devops')">DevOps</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-link" onclick="showPage('contact')">Contact</div>
+    </div>
   </div>
   <div class="nav-right">
-    <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" class="btn-demo">⚡ Live Demo</a>
+    <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" class="btn-live">⚡ Live Demo</a>
   </div>
 </nav>
 
-<div class="shell">
-
-  <!-- ═══ SIDEBAR ═══ -->
-  <aside id="sidebar">
-    <div class="side-section">
-      <div class="side-group-label">Navigation</div>
-      <a class="side-link active" onclick="goto('home')">🏠 Home</a>
-    </div>
-    <div class="side-section">
-      <div class="side-group-label">Problem</div>
-      <a class="side-link" onclick="goto('problem')">⚠ Problem Statement</a>
-      <a class="side-link side-sub" onclick="goto('problem')">Pain Points</a>
-      <a class="side-link side-sub" onclick="goto('problem')">Objective</a>
-    </div>
-    <div class="side-section">
-      <div class="side-group-label">System Design</div>
-      <a class="side-link" onclick="goto('design');showSub('design','arch')">🏗 Architecture</a>
-      <a class="side-link" onclick="goto('design');showSub('design','context')">🗺 Context Diagram</a>
-      <a class="side-link" onclick="goto('design');showSub('design','usecase')">📊 Use Case Diagram</a>
-      <a class="side-link" onclick="goto('design');showSub('design','seq')">🔄 Sequence Diagrams</a>
-    </div>
-    <div class="side-section">
-      <div class="side-group-label">Requirements</div>
-      <a class="side-link" onclick="goto('requirements');showSub('requirements','fr')">✅ Functional</a>
-      <a class="side-link" onclick="goto('requirements');showSub('requirements','nfr')">🛡 Non-Functional</a>
-    </div>
-    <div class="side-section">
-      <div class="side-group-label">Implementation</div>
-      <a class="side-link" onclick="goto('implementation');showSub('impl','tech')">⚙ Tech Stack</a>
-      <a class="side-link" onclick="goto('implementation');showSub('impl','roles')">👥 User Roles</a>
-      <a class="side-link" onclick="goto('implementation');showSub('impl','dash')">🖥 Dashboards</a>
-    </div>
-    <div class="side-section">
-      <div class="side-group-label">Testing</div>
-      <a class="side-link" onclick="goto('testing')">🧪 Test Cases</a>
-    </div>
-    <div class="side-section">
-      <div class="side-group-label">Quality</div>
-      <a class="side-link" onclick="goto('performance')">⚡ Performance</a>
-    </div>
-    <div class="side-section">
-      <div class="side-group-label">Project Info</div>
-      <a class="side-link" onclick="goto('team')">👨‍💻 Team</a>
-    </div>
-  </aside>
-
-  <!-- ═══ MAIN CONTENT ═══ -->
-  <main id="content">
-
-    <!-- ── HOME ── -->
-    <section class="page active" id="pg-home">
-      <div class="hero-box reveal in">
-        <h1 class="hero-title">Task<span>Bridge</span><br/>WorkDist</h1>
-        <p class="hero-desc">A role-based workforce management platform that automates task distribution, tracking, review, and feedback — with full audit logging and real-time dashboards.</p>
-        <div class="hero-btns">
-          <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" class="btn-demo" style="padding:9px 20px;font-size:0.88rem;">⚡ Live Demo</a>
-          <a href="https://github.com/victorykings2828-bot" target="_blank" class="btn-outline">◆ GitHub</a>
-          <span class="btn-outline" onclick="goto('design')" style="cursor:pointer;">📐 View Diagrams</span>
-        </div>
-        <div class="hero-stats">
-          <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">User Roles</div></div>
-          <div class="hstat"><div class="hstat-n">16+</div><div class="hstat-l">Functional Reqs</div></div>
-          <div class="hstat"><div class="hstat-n">16+</div><div class="hstat-l">Non-Functional Reqs</div></div>
-          <div class="hstat"><div class="hstat-n" style="color:var(--green)">A</div><div class="hstat-l">GTMetrix Grade</div></div>
-          <div class="hstat"><div class="hstat-n" style="color:var(--green)">99%</div><div class="hstat-l">Performance</div></div>
-        </div>
+<!-- ═══════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════ -->
+<div class="page active" id="pg-home">
+  <div class="hero-banner" style="min-height:520px">
+    <div class="hero-content">
+      <div class="hero-kle">
+        <span style="font-weight:700;color:var(--text)">🎓 KLE Technological University</span>
       </div>
+      <h1 class="hero-title">Web Technology &<br/><span>Software Engineering</span></h1>
+      <p class="hero-quote">"Website without visitors is like a ship lost in the horizon."<br/><strong>— Dr. Christopher Dayagdag</strong></p>
+      <div class="hero-btns">
+        <span class="btn-live" onclick="showPage('learnings')" style="cursor:pointer">📚 Learnings</span>
+        <span style="padding:7px 16px;border-radius:8px;background:transparent;color:var(--text);font-size:0.8rem;font-weight:600;border:1px solid var(--border);cursor:pointer" onclick="showPage('project')">📋 Project</span>
+        <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" style="padding:7px 16px;border-radius:8px;background:transparent;color:var(--green);font-size:0.8rem;font-weight:600;border:1px solid var(--green);display:inline-flex;align-items:center;gap:4px">⚡ Live App</a>
+      </div>
+      <p class="hero-sub" style="margin-top:1.25rem">Academic Year 2025–26 · Computer Science & Engineering · 6 Team Members</p>
+    </div>
+  </div>
 
-      <div class="card reveal">
-        <div class="card-title">📌 About This Project</div>
+  <div class="content">
+    <div class="card rv in">
+      <div class="card-title">📌 About This Portfolio</div>
+      <div class="card-body">
+        <p style="margin-bottom:0.75rem">This portfolio documents our complete journey through the <strong style="color:var(--text)">Web Technology & Software Engineering</strong> courses at KLE Technological University. It covers everything we learned — from writing our first HTML tag to building a full-stack MERN application deployed on the cloud.</p>
+        <p>The portfolio is divided into two major parts: the <strong style="color:var(--text)">Learnings</strong> section, which covers the Web Technology course (HTML, CSS, JavaScript, Node.js, MongoDB, React), and the <strong style="color:var(--text)">Project</strong> section, which documents our Software Engineering project — TaskBridge, a role-based workforce management system.</p>
+      </div>
+    </div>
+
+    <div class="g2 rv">
+      <div class="card" style="cursor:pointer" onclick="showPage('learnings')">
+        <div class="card-title">📚 Web Technology Learnings</div>
         <div class="card-body">
-          <p style="margin-bottom:0.75rem"><strong style="color:var(--text)">WorkDist / TaskBridge</strong> is an Employee Work Distribution System developed as part of the <strong style="color:var(--text)">Software Engineering</strong> course at <strong style="color:var(--text)">KLE Technological University</strong>, Academic Year 2025–26.</p>
-          <p style="margin-bottom:0.75rem">The system provides a centralized platform for task assignment, employee management, progress tracking, notifications, audit logs, and analytics — improving productivity, accountability, and workflow efficiency across organizations.</p>
-          <p>Built with the MERN stack (MongoDB, Express, React, Node.js), secured with JWT authentication and Google OAuth 2.0, and deployed on Vercel.</p>
+          <div class="pill-wrap">
+            <span class="pill">🌐 HTML</span><span class="pill">🎨 CSS</span><span class="pill">⚡ JavaScript</span>
+            <span class="pill">🟢 Node.js</span><span class="pill">🍃 MongoDB</span><span class="pill">⚛ React</span>
+          </div>
+          <p style="margin-top:0.75rem">Hands-on coding exercises, assignments, and projects covering the full web development stack from fundamentals to modern frameworks.</p>
         </div>
       </div>
-
-      <div class="grid-3 reveal">
-        <div class="card" style="text-align:center;padding:1.25rem">
-          <div style="font-size:2rem;margin-bottom:0.5rem">👑</div>
-          <div style="font-weight:700;margin-bottom:4px">Super Admin</div>
-          <div style="font-size:0.78rem;color:var(--muted)">System oversight, audit logs, manager control</div>
-        </div>
-        <div class="card" style="text-align:center;padding:1.25rem">
-          <div style="font-size:2rem;margin-bottom:0.5rem">📋</div>
-          <div style="font-weight:700;margin-bottom:4px">Manager</div>
-          <div style="font-size:0.78rem;color:var(--muted)">Task assignment, team management, work review</div>
-        </div>
-        <div class="card" style="text-align:center;padding:1.25rem">
-          <div style="font-size:2rem;margin-bottom:0.5rem">👤</div>
-          <div style="font-weight:700;margin-bottom:4px">Employee</div>
-          <div style="font-size:0.78rem;color:var(--muted)">Accept tasks, submit deliverables, request extensions</div>
-        </div>
-      </div>
-
-      <div class="card reveal">
-        <div class="card-title">🎓 Course Information</div>
-        <div class="grid-2" style="gap:1rem;margin-top:0.5rem">
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Course</div><div style="font-weight:600">Software Engineering</div></div>
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Institution</div><div style="font-weight:600">KLE Technological University</div></div>
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Academic Year</div><div style="font-weight:600">2025 – 2026</div></div>
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Project Type</div><div style="font-weight:600">Full-Stack Web App (MERN)</div></div>
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Live URL</div><a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" style="font-weight:600;font-size:0.85rem">taskbridge-frontend-sandy.vercel.app</a></div>
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Team Size</div><div style="font-weight:600">6 Members</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── PROBLEM ── -->
-    <section class="page" id="pg-problem">
-      <div class="page-header">
-        <div class="page-tag">⚠ Problem</div>
-        <h1 class="page-title">Problem Statement</h1>
-        <p class="page-subtitle">Organizations managing distributed teams lack a centralized, role-aware system for task assignment, tracking, and accountability.</p>
-      </div>
-
-      <div class="card reveal">
-        <div class="card-title">📖 Background</div>
-        <div class="card-body">Organizations often face difficulties in managing tasks, tracking employee progress, monitoring deadlines, and maintaining proper communication between managers and employees. Existing manual methods lead to delayed work, poor coordination, lack of transparency, and inefficient workload management.</div>
-      </div>
-
-      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--muted)">Root Causes</h2>
-      <div class="grid-2 reveal">
-        <div class="card" style="border-color:rgba(239,68,68,0.3)">
-          <div class="card-title">⏰ Missed Deadlines</div>
-          <div class="card-body">No automated deadline tracking or overdue alerts for managers. Tasks slip through with no visibility into approaching or passed deadlines.</div>
-        </div>
-        <div class="card" style="border-color:rgba(239,68,68,0.3)">
-          <div class="card-title">🕵️ Zero Visibility</div>
-          <div class="card-body">Managers cannot see real-time task status or employee workload distribution. No unified dashboard to monitor team progress.</div>
-        </div>
-        <div class="card" style="border-color:rgba(239,68,68,0.3)">
-          <div class="card-title">📋 No Accountability</div>
-          <div class="card-body">No audit trail — task changes, submissions and flags go completely unrecorded. No way to trace actions back to specific users.</div>
-        </div>
-        <div class="card" style="border-color:rgba(239,68,68,0.3)">
-          <div class="card-title">💬 Communication Gaps</div>
-          <div class="card-body">Feedback and revision cycles are lost across fragmented email threads. No centralized comment or notification system.</div>
-        </div>
-      </div>
-
-      <hr class="soft"/>
-      <div class="card reveal" style="border-color:rgba(59,111,245,0.3)">
-        <div class="card-title">🎯 Objective</div>
+      <div class="card" style="cursor:pointer" onclick="showPage('project')">
+        <div class="card-title">🔧 SE Project — TaskBridge</div>
         <div class="card-body">
-          <p style="margin-bottom:0.75rem">Build a role-based web application (<strong style="color:var(--text)">Super Admin → Manager → Employee</strong>) that automates task distribution, tracking, review, and feedback with full audit logging.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:0.75rem">
-            <span class="badge badge-blue">Task Automation</span>
-            <span class="badge badge-green">Real-time Tracking</span>
-            <span class="badge badge-purple">Role-Based Access</span>
-            <span class="badge badge-yellow">Audit Logging</span>
-            <span class="badge badge-blue">Analytics Dashboard</span>
+          <div class="pill-wrap">
+            <span class="pill">Problem Analysis</span><span class="pill">System Design</span>
+            <span class="pill">Implementation</span><span class="pill">Testing</span>
           </div>
+          <p style="margin-top:0.75rem">Full Software Engineering lifecycle — requirements, use case diagrams, architecture, sequence diagrams, test cases, and live deployment.</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ── DESIGN ── -->
-    <section class="page" id="pg-design">
-      <div class="page-header">
-        <div class="page-tag">📐 Design</div>
-        <h1 class="page-title">System Design</h1>
-        <p class="page-subtitle">Architecture, context diagram, use case diagram and sequence diagrams for the TaskBridge system.</p>
+    <!-- Team Preview -->
+    <h2 style="font-size:1.2rem;font-weight:800;margin:2rem 0 1rem;color:var(--text)">👨‍💻 Our Team</h2>
+    <div class="g3 rv">
+      <div class="team-card me-card">
+        <div class="tav" style="background:linear-gradient(135deg,#3b82f6,#a78bfa)">MS</div>
+        <div class="team-name">Manish Singri</div>
+        <div class="team-id">01FE24BCS107</div>
+        <div class="team-role">Full Stack Developer</div>
+        <div style="margin-top:6px"><span class="badge bb" style="font-size:0.65rem">⭐ You</span></div>
       </div>
-      <div class="section-nav" id="design-snav">
-        <button class="snav-btn on" onclick="showSub('design','arch')">🏗 Architecture</button>
-        <button class="snav-btn" onclick="showSub('design','context')">🗺 Context Diagram</button>
-        <button class="snav-btn" onclick="showSub('design','usecase')">📊 Use Case Diagram</button>
-        <button class="snav-btn" onclick="showSub('design','seq')">🔄 Sequence Diagrams</button>
+      <div class="team-card">
+        <div class="tav" style="background:linear-gradient(135deg,#22c55e,#3b82f6)">DP</div>
+        <div class="team-name">Devansh Pandey</div>
+        <div class="team-id">01FE24BCS046</div>
+        <div class="team-role">Backend Developer</div>
       </div>
+      <div class="team-card">
+        <div class="tav" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">OA</div>
+        <div class="team-name">Omkar Ananthapur</div>
+        <div class="team-id">01FE24BCS022</div>
+        <div class="team-role">Frontend Developer</div>
+      </div>
+      <div class="team-card">
+        <div class="tav" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">SR</div>
+        <div class="team-name">Subhash Reddy</div>
+        <div class="team-id">01FE24BCS094</div>
+        <div class="team-role">Database & API</div>
+      </div>
+      <div class="team-card">
+        <div class="tav" style="background:linear-gradient(135deg,#0ea5e9,#22c55e)">AS</div>
+        <div class="team-name">Atharva Shetty</div>
+        <div class="team-id">01FE23BCS039</div>
+        <div class="team-role">UI/UX & Testing</div>
+      </div>
+      <div class="team-card">
+        <div class="tav" style="background:linear-gradient(135deg,#f97316,#eab308)">SP</div>
+        <div class="team-name">Samarth Patil</div>
+        <div class="team-id">01FE23BCS012</div>
+        <div class="team-role">System Design & Docs</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="subpage on" id="design-arch">
-        <div class="diagram-wrap reveal">
-          <div class="diagram-head">🏗 System Architectural Diagram</div>
-          <div class="diagram-img"><img src="images/architecture_diagram.jpg" alt="System Architecture" loading="lazy"/></div>
-        </div>
-        <div class="card reveal">
-          <div class="card-title">Architecture Overview</div>
-          <div class="card-body">
-            <p style="margin-bottom:0.75rem">TaskBridge follows a layered client-server architecture with four main tiers:</p>
-            <div class="grid-2" style="gap:0.75rem;margin-top:0.5rem">
-              <div style="background:var(--surface2);border-radius:10px;padding:1rem"><div style="font-weight:700;margin-bottom:4px;color:var(--blue)">Frontend (React)</div><div style="font-size:0.8rem;color:var(--muted)">Login & Auth · Dashboards · Task Operations · File Upload/Download · Reports & Analytics</div></div>
-              <div style="background:var(--surface2);border-radius:10px;padding:1rem"><div style="font-weight:700;margin-bottom:4px;color:var(--green)">Backend (Node/Express)</div><div style="font-size:0.8rem;color:var(--muted)">Auth & Authorization · Task Management · User Management · Notification Service · File Management · Reporting</div></div>
-              <div style="background:var(--surface2);border-radius:10px;padding:1rem"><div style="font-weight:700;margin-bottom:4px;color:var(--purple)">Database (MongoDB)</div><div style="font-size:0.8rem;color:var(--muted)">Users · Roles · Tasks · Submissions · Files · Logs Collections</div></div>
-              <div style="background:var(--surface2);border-radius:10px;padding:1rem"><div style="font-weight:700;margin-bottom:4px;color:var(--yellow)">External Services</div><div style="font-size:0.8rem;color:var(--muted)">Google OAuth 2.0 · Email Notification Service · File Storage (Attachments)</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- ═══════════════════════════════════════
+     LEARNINGS PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="pg-learnings">
+  <div class="section-banner">
+    <div class="section-banner-content">
+      <h1>Learnings</h1>
+      <p>Our Web Technology course journey — from HTML basics to full-stack React apps</p>
+      <div class="line"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="subnav">
+      <button class="snb on" onclick="showLearn('html')">🌐 HTML</button>
+      <button class="snb" onclick="showLearn('css')">🎨 CSS</button>
+      <button class="snb" onclick="showLearn('js')">⚡ JavaScript</button>
+      <button class="snb" onclick="showLearn('node')">🟢 Node.js</button>
+      <button class="snb" onclick="showLearn('mongo')">🍃 MongoDB</button>
+      <button class="snb" onclick="showLearn('react')">⚛ React</button>
+    </div>
 
-      <div class="subpage" id="design-context">
-        <div class="diagram-wrap reveal">
-          <div class="diagram-head">🗺 Context Diagram — The TaskBridge System</div>
-          <div class="diagram-img"><img src="images/context_diagram.jpg" alt="Context Diagram" loading="lazy"/></div>
-        </div>
-        <div class="card reveal">
-          <div class="card-title">10 Integrated Subsystems</div>
-          <div class="card-body">
-            <div class="grid-2" style="gap:8px;margin-top:0.5rem">
-              <div style="font-size:0.82rem;color:var(--muted)">🔐 Authentication & Security System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">🏢 Company Management System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">👑 Super Admin System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">👥 Manager & Team Management System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">📋 Task & Project Management System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">📤 Employee Work Submission System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">⭐ Review & Feedback System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">🔔 Notification & Alert System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">📊 Dashboard & Analytics System</div>
-              <div style="font-size:0.82rem;color:var(--muted)">🔍 Audit & Monitoring System</div>
-            </div>
-          </div>
+    <!-- HTML -->
+    <div class="subpg on" id="learn-html">
+      <div class="card rv in">
+        <div class="card-title">🌐 HTML — HyperText Markup Language</div>
+        <div class="card-body">HTML is the standard markup language for creating web pages. It describes the structure of a web page using a series of elements represented by tags. HTML tells the browser how to display content — headings, paragraphs, links, images, forms, and more.</div>
+      </div>
+      <div class="quote-box rv in">"HTML is the skeleton of every webpage — everything you see on the web starts with an HTML document."</div>
+      <div class="card rv in">
+        <div class="card-title">📌 Key Concepts Learned</div>
+        <div class="pill-wrap">
+          <span class="pill">Document Structure</span><span class="pill">Semantic Tags</span><span class="pill">Forms & Inputs</span>
+          <span class="pill">Tables</span><span class="pill">Lists</span><span class="pill">Links & Images</span>
+          <span class="pill">Meta Tags</span><span class="pill">Accessibility</span>
         </div>
       </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">HTML — Basic Page Structure</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">&lt;!-- Basic HTML Document Structure --&gt;</span>
+<span class="tg">&lt;!DOCTYPE html&gt;</span>
+<span class="tg">&lt;html</span> <span class="at">lang</span>=<span class="str">"en"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;head&gt;</span>
+  <span class="tg">&lt;meta</span> <span class="at">charset</span>=<span class="str">"UTF-8"</span><span class="tg">/&gt;</span>
+  <span class="tg">&lt;meta</span> <span class="at">name</span>=<span class="str">"viewport"</span> <span class="at">content</span>=<span class="str">"width=device-width, initial-scale=1.0"</span><span class="tg">/&gt;</span>
+  <span class="tg">&lt;title&gt;</span>My First Web Page<span class="tg">&lt;/title&gt;</span>
+<span class="tg">&lt;/head&gt;</span>
+<span class="tg">&lt;body&gt;</span>
 
-      <div class="subpage" id="design-usecase">
-        <div class="diagram-wrap reveal">
-          <div class="diagram-head">📊 Use Case Diagram — WorkDist System</div>
-          <div class="diagram-img"><img src="images/usecase_diagram.jpg" alt="Use Case Diagram" loading="lazy"/></div>
-        </div>
-        <div class="card reveal">
-          <div class="card-title">Actors & Use Cases</div>
-          <div class="card-body">
-            <div class="grid-3" style="gap:1rem;margin-top:0.5rem">
-              <div><div style="font-weight:700;color:var(--purple);margin-bottom:6px">Super Admin</div><ul class="role-list"><li>Create Manager Account</li><li>Search Managers</li><li>View Audit Logs → Update Audit Trail</li></ul></div>
-              <div><div style="font-weight:700;color:var(--blue);margin-bottom:6px">Manager</div><ul class="role-list"><li>Create Employee Account</li><li>Assign Task</li><li>Edit / Cancel Task</li><li>Request Revision</li><li>View Team Workload</li></ul></div>
-              <div><div style="font-weight:700;color:var(--green);margin-bottom:6px">Employee</div><ul class="role-list"><li>Accept Task</li><li>Download Attachments</li><li>Add Comments</li><li>Submit Task</li><li>Request Extension</li><li>Flag Task (Blocker)</li><li>Rate Task Clarity</li></ul></div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <span class="tg">&lt;header&gt;</span>
+    <span class="tg">&lt;h1&gt;</span>Welcome to My Website<span class="tg">&lt;/h1&gt;</span>
+    <span class="tg">&lt;nav&gt;</span>
+      <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="str">"#home"</span><span class="tg">&gt;</span>Home<span class="tg">&lt;/a&gt;</span>
+      <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="str">"#about"</span><span class="tg">&gt;</span>About<span class="tg">&lt;/a&gt;</span>
+    <span class="tg">&lt;/nav&gt;</span>
+  <span class="tg">&lt;/header&gt;</span>
 
-      <div class="subpage" id="design-seq">
-        <div class="diagram-wrap reveal">
-          <div class="diagram-head">🔄 Sequence Diagram — User & Workforce Management</div>
-          <div class="diagram-img"><img src="images/sequence_diagram1.jpg" alt="Sequence Diagram 1" loading="lazy"/></div>
-        </div>
-        <div class="diagram-wrap reveal">
-          <div class="diagram-head">🔄 Sequence Diagram — Task Monitoring & Collaboration</div>
-          <div class="diagram-img"><img src="images/sequence_diagram2.jpg" alt="Sequence Diagram 2" loading="lazy"/></div>
-        </div>
-      </div>
-    </section>
+  <span class="tg">&lt;main&gt;</span>
+    <span class="tg">&lt;section</span> <span class="at">id</span>=<span class="str">"home"</span><span class="tg">&gt;</span>
+      <span class="tg">&lt;h2&gt;</span>About Me<span class="tg">&lt;/h2&gt;</span>
+      <span class="tg">&lt;p&gt;</span>I am learning web development at KLE Tech.<span class="tg">&lt;/p&gt;</span>
+      <span class="tg">&lt;img</span> <span class="at">src</span>=<span class="str">"profile.jpg"</span> <span class="at">alt</span>=<span class="str">"Profile Photo"</span> <span class="at">width</span>=<span class="str">"200"</span><span class="tg">/&gt;</span>
+    <span class="tg">&lt;/section&gt;</span>
+  <span class="tg">&lt;/main&gt;</span>
 
-    <!-- ── REQUIREMENTS ── -->
-    <section class="page" id="pg-requirements">
-      <div class="page-header">
-        <div class="page-tag">📋 Requirements</div>
-        <h1 class="page-title">System Requirements</h1>
-        <p class="page-subtitle">Functional and non-functional requirements defined for the WorkDist / TaskBridge system.</p>
-      </div>
-      <div class="section-nav">
-        <button class="snav-btn on" onclick="showSub('requirements','fr')">✅ Functional Requirements</button>
-        <button class="snav-btn" onclick="showSub('requirements','nfr')">🛡 Non-Functional Requirements</button>
-      </div>
+  <span class="tg">&lt;footer&gt;</span>
+    <span class="tg">&lt;p&gt;</span>&amp;copy; 2025 KLE Technological University<span class="tg">&lt;/p&gt;</span>
+  <span class="tg">&lt;/footer&gt;</span>
 
-      <div class="subpage on" id="requirements-fr">
-        <div class="diagram-wrap reveal">
-          <div class="diagram-head">✅ Functional Requirements — FR-01 to FR-20</div>
-          <div class="diagram-img"><img src="images/functional_req.jpg" alt="Functional Requirements" loading="lazy"/></div>
-        </div>
-        <div class="grid-2 reveal">
-          <div class="card"><div class="card-title">🔐 Authentication & Access (FR-01–04)</div><div class="card-body"><ul class="role-list"><li>FR-01: Login with email & password</li><li>FR-02: Google OAuth 2.0 login</li><li>FR-03: Force password change on first login</li><li>FR-04: Secure logout</li></ul></div></div>
-          <div class="card"><div class="card-title">📋 Task Management (FR-05–11)</div><div class="card-body"><ul class="role-list"><li>FR-05: Create, edit, delete tasks</li><li>FR-06: Assign with deadline & priority</li><li>FR-07: Attach files to tasks</li><li>FR-08: View & accept assigned tasks</li><li>FR-09: Submit deliverables</li><li>FR-10: Request deadline extensions</li><li>FR-11: Review, approve or request revision</li></ul></div></div>
-          <div class="card"><div class="card-title">👥 User & Role Management (FR-12–15)</div><div class="card-body"><ul class="role-list"><li>FR-12: Super Admin creates & manages companies</li><li>FR-13: Super Admin manages manager accounts</li><li>FR-14: Managers manage employee accounts</li><li>FR-15: Role-based access control</li></ul></div></div>
-          <div class="card"><div class="card-title">🔔 Notifications, Audit & Reporting (FR-16–20)</div><div class="card-body"><ul class="role-list"><li>FR-16: Notifications for tasks, comments, submissions</li><li>FR-17: View unread notifications</li><li>FR-18: Maintain audit logs for all activities</li><li>FR-19: Dashboards for task status & team workload</li><li>FR-20: Generate performance reports</li></ul></div></div>
+<span class="tg">&lt;/body&gt;</span>
+<span class="tg">&lt;/html&gt;</span></pre>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">HTML — Forms & Tables</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">&lt;!-- Form with input validation --&gt;</span>
+<span class="tg">&lt;form</span> <span class="at">action</span>=<span class="str">"/submit"</span> <span class="at">method</span>=<span class="str">"POST"</span><span class="tg">&gt;</span>
+  <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="str">"name"</span><span class="tg">&gt;</span>Full Name:<span class="tg">&lt;/label&gt;</span>
+  <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="str">"text"</span> <span class="at">id</span>=<span class="str">"name"</span> <span class="at">name</span>=<span class="str">"name"</span> <span class="at">required</span><span class="tg">/&gt;</span>
+
+  <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="str">"email"</span><span class="tg">&gt;</span>Email:<span class="tg">&lt;/label&gt;</span>
+  <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="str">"email"</span> <span class="at">id</span>=<span class="str">"email"</span> <span class="at">name</span>=<span class="str">"email"</span> <span class="at">required</span><span class="tg">/&gt;</span>
+
+  <span class="tg">&lt;select</span> <span class="at">name</span>=<span class="str">"role"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;option</span> <span class="at">value</span>=<span class="str">"student"</span><span class="tg">&gt;</span>Student<span class="tg">&lt;/option&gt;</span>
+    <span class="tg">&lt;option</span> <span class="at">value</span>=<span class="str">"faculty"</span><span class="tg">&gt;</span>Faculty<span class="tg">&lt;/option&gt;</span>
+  <span class="tg">&lt;/select&gt;</span>
+
+  <span class="tg">&lt;button</span> <span class="at">type</span>=<span class="str">"submit"</span><span class="tg">&gt;</span>Submit<span class="tg">&lt;/button&gt;</span>
+<span class="tg">&lt;/form&gt;</span>
+
+<span class="cm">&lt;!-- Semantic table --&gt;</span>
+<span class="tg">&lt;table&gt;</span>
+  <span class="tg">&lt;thead&gt;&lt;tr&gt;&lt;th&gt;</span>Name<span class="tg">&lt;/th&gt;&lt;th&gt;</span>SRN<span class="tg">&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</span>
+  <span class="tg">&lt;tbody&gt;</span>
+    <span class="tg">&lt;tr&gt;&lt;td&gt;</span>Manish Singri<span class="tg">&lt;/td&gt;&lt;td&gt;</span>01FE24BCS107<span class="tg">&lt;/td&gt;&lt;/tr&gt;</span>
+  <span class="tg">&lt;/tbody&gt;</span>
+<span class="tg">&lt;/table&gt;</span></pre>
+      </div>
+    </div>
+
+    <!-- CSS -->
+    <div class="subpg" id="learn-css">
+      <div class="card rv in">
+        <div class="card-title">🎨 CSS — Cascading Style Sheets</div>
+        <div class="card-body">CSS is used to style and lay out web pages — for example, to alter the font, color, size, and spacing of content, split it into multiple columns, or add animations and other decorative features. CSS works by selecting HTML elements and applying styles to them.</div>
+      </div>
+      <div class="quote-box rv in">"CSS is what makes a website beautiful. Without it, every website would look like a Word document from 1995."</div>
+      <div class="card rv in">
+        <div class="card-title">📌 Key Concepts Learned</div>
+        <div class="pill-wrap">
+          <span class="pill">Selectors & Specificity</span><span class="pill">Box Model</span><span class="pill">Flexbox</span>
+          <span class="pill">CSS Grid</span><span class="pill">Responsive Design</span><span class="pill">Media Queries</span>
+          <span class="pill">Animations & Transitions</span><span class="pill">CSS Variables</span><span class="pill">Pseudo-classes</span>
         </div>
       </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">CSS — Selectors, Box Model & Variables</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">/* CSS Custom Properties (Variables) */</span>
+<span class="tg">:root</span> {
+  <span class="at">--primary</span>: <span class="vl">#3b82f6</span>;
+  <span class="at">--bg</span>: <span class="vl">#0a0d14</span>;
+  <span class="at">--text</span>: <span class="vl">#e2e8f0</span>;
+  <span class="at">--radius</span>: <span class="vl">12px</span>;
+}
 
-      <div class="subpage" id="requirements-nfr">
-        <div class="diagram-wrap reveal">
-          <div class="diagram-head">🛡 Non-Functional Requirements — NFR-01 to NFR-12</div>
-          <div class="diagram-img"><img src="images/nonfunctional_req.jpg" alt="Non-Functional Requirements" loading="lazy"/></div>
-        </div>
-        <div class="grid-3 reveal" style="gap:1rem">
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">⚡ NFR-01 Performance</div><div style="font-size:0.78rem;color:var(--muted)">Pages load & actions process within 2 seconds under normal network conditions.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">🔐 NFR-02 Security</div><div style="font-size:0.78rem;color:var(--muted)">Passwords stored as salted hashes; all data transmitted over HTTPS only.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">🤝 NFR-03 User Friendly</div><div style="font-size:0.78rem;color:var(--muted)">Interface operable by managers and employees without special training.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">✅ NFR-04 Reliability</div><div style="font-size:0.78rem;color:var(--muted)">Functions correctly without unexpected failures during normal operations.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">🌐 NFR-05 Availability</div><div style="font-size:0.78rem;color:var(--muted)">Available whenever managers and employees need to access tasks and data.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">🔒 NFR-06 Privacy</div><div style="font-size:0.78rem;color:var(--muted)">No personal information disclosed to unauthorized parties.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">🔧 NFR-07 Maintainability</div><div style="font-size:0.78rem;color:var(--muted)">Designed to be easily updated, tested, and corrected with minimal effort.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">📈 NFR-08 Scalability</div><div style="font-size:0.78rem;color:var(--muted)">Supports growth in users, tasks, and data without major system changes.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">📱 NFR-09 Portability</div><div style="font-size:0.78rem;color:var(--muted)">Accessible through modern web browsers on different devices without compatibility issues.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">🗄 NFR-10 Data Integrity</div><div style="font-size:0.78rem;color:var(--muted)">Ensures data accuracy during creation, updates, and status changes.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">📜 NFR-11 Auditability</div><div style="font-size:0.78rem;color:var(--muted)">Maintains logs of all important activities for monitoring and audit purposes.</div></div>
-          <div class="card" style="padding:1rem"><div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">♻ NFR-12 Recoverability</div><div style="font-size:0.78rem;color:var(--muted)">Allows data recovery in case of unexpected errors or failures without data loss.</div></div>
+<span class="cm">/* Box Model */</span>
+<span class="tg">.card</span> {
+  <span class="at">margin</span>: <span class="vl">1rem</span>;        <span class="cm">/* outside space */</span>
+  <span class="at">padding</span>: <span class="vl">1.5rem</span>;     <span class="cm">/* inside space */</span>
+  <span class="at">border</span>: <span class="vl">1px</span> solid <span class="vl">#252d42</span>;
+  <span class="at">border-radius</span>: var(<span class="at">--radius</span>);
+  <span class="at">background</span>: var(<span class="at">--bg</span>);
+}
+
+<span class="cm">/* Flexbox Layout */</span>
+<span class="tg">.navbar</span> {
+  <span class="at">display</span>: <span class="vl">flex</span>;
+  <span class="at">align-items</span>: <span class="vl">center</span>;
+  <span class="at">justify-content</span>: <span class="vl">space-between</span>;
+  <span class="at">gap</span>: <span class="vl">1rem</span>;
+}
+
+<span class="cm">/* CSS Grid */</span>
+<span class="tg">.grid-3</span> {
+  <span class="at">display</span>: <span class="vl">grid</span>;
+  <span class="at">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="vl">3</span>, <span class="vl">1fr</span>);
+  <span class="at">gap</span>: <span class="vl">1.25rem</span>;
+}
+
+<span class="cm">/* Responsive Design */</span>
+<span class="tg">@media</span> (max-width: <span class="vl">768px</span>) {
+  <span class="tg">.grid-3</span> { <span class="at">grid-template-columns</span>: <span class="vl">1fr</span>; }
+  <span class="tg">.navbar</span> { <span class="at">flex-direction</span>: <span class="vl">column</span>; }
+}
+
+<span class="cm">/* Animations */</span>
+<span class="tg">.btn</span> {
+  <span class="at">transition</span>: transform <span class="vl">0.2s</span>, background <span class="vl">0.2s</span>;
+}
+<span class="tg">.btn:hover</span> { <span class="at">transform</span>: <span class="fn">translateY</span>(<span class="vl">-2px</span>); }
+
+<span class="tg">@keyframes</span> fadeIn {
+  <span class="kw">from</span> { <span class="at">opacity</span>: <span class="vl">0</span>; <span class="at">transform</span>: <span class="fn">translateY</span>(<span class="vl">20px</span>); }
+  <span class="kw">to</span>   { <span class="at">opacity</span>: <span class="vl">1</span>; <span class="at">transform</span>: <span class="fn">translateY</span>(<span class="vl">0</span>); }
+}</pre>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">CSS — Pseudo-classes & Pseudo-elements</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">/* Pseudo-classes */</span>
+<span class="tg">a:hover</span>       { <span class="at">color</span>: <span class="vl">#3b82f6</span>; }
+<span class="tg">li:first-child</span> { <span class="at">font-weight</span>: <span class="vl">bold</span>; }
+<span class="tg">input:focus</span>   { <span class="at">outline</span>: <span class="vl">2px</span> solid <span class="vl">#3b82f6</span>; }
+<span class="tg">tr:nth-child(even)</span> { <span class="at">background</span>: <span class="vl">#f9fafb</span>; }
+
+<span class="cm">/* Pseudo-elements */</span>
+<span class="tg">p::first-line</span>  { <span class="at">font-weight</span>: <span class="vl">bold</span>; }
+<span class="tg">.card::before</span> {
+  <span class="at">content</span>: <span class="str">''</span>;
+  <span class="at">position</span>: <span class="vl">absolute</span>;
+  <span class="at">top</span>: <span class="vl">0</span>; <span class="at">left</span>: <span class="vl">0</span>; <span class="at">right</span>: <span class="vl">0</span>;
+  <span class="at">height</span>: <span class="vl">3px</span>;
+  <span class="at">background</span>: <span class="fn">linear-gradient</span>(<span class="vl">90deg</span>, <span class="vl">#3b82f6</span>, <span class="vl">#a78bfa</span>);
+}</pre>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <div class="subpg" id="learn-js">
+      <div class="card rv in">
+        <div class="card-title">⚡ JavaScript — The Language of the Web</div>
+        <div class="card-body">JavaScript is a lightweight, interpreted programming language with first-class functions. It allows you to make web pages interactive — responding to user actions, updating content dynamically, communicating with servers, and much more. Every modern website uses JavaScript.</div>
+      </div>
+      <div class="quote-box rv in">"Any application that can be written in JavaScript, will eventually be written in JavaScript." <strong>— Jeff Atwood</strong></div>
+      <div class="card rv in">
+        <div class="card-title">📌 Key Concepts Learned</div>
+        <div class="pill-wrap">
+          <span class="pill">Variables (let/const/var)</span><span class="pill">Functions & Arrow Functions</span>
+          <span class="pill">DOM Manipulation</span><span class="pill">Events</span><span class="pill">Arrays & Objects</span>
+          <span class="pill">Promises & async/await</span><span class="pill">Fetch API</span><span class="pill">ES6+ Features</span>
+          <span class="pill">Closures</span><span class="pill">Local Storage</span>
         </div>
       </div>
-    </section>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">JavaScript — Variables, Functions & Arrays</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">// Variables</span>
+<span class="kw">const</span> <span class="nm">studentName</span> = <span class="str">"Manish Singri"</span>;
+<span class="kw">let</span> <span class="nm">score</span> = <span class="vl">95</span>;
 
-    <!-- ── IMPLEMENTATION ── -->
-    <section class="page" id="pg-implementation">
-      <div class="page-header">
-        <div class="page-tag">⚙ Implementation</div>
-        <h1 class="page-title">Implementation</h1>
-        <p class="page-subtitle">Technology stack, user roles & features, and role-specific dashboard previews.</p>
-      </div>
-      <div class="section-nav">
-        <button class="snav-btn on" onclick="showSub('impl','tech')">⚙ Tech Stack</button>
-        <button class="snav-btn" onclick="showSub('impl','roles')">👥 User Roles</button>
-        <button class="snav-btn" onclick="showSub('impl','dash')">🖥 Dashboards</button>
-      </div>
+<span class="cm">// Arrow Function</span>
+<span class="kw">const</span> <span class="fn">greet</span> = (<span class="nm">name</span>) => {
+  <span class="kw">return</span> <span class="str">`Hello, <span class="nm">${name}</span>! Welcome to KLE Tech.`</span>;
+};
+console.<span class="fn">log</span>(<span class="fn">greet</span>(studentName));
 
-      <div class="subpage on" id="impl-tech">
-        <div class="card reveal">
-          <div class="card-title">Technology Stack</div>
-          <div class="tech-wrap" style="margin-top:0.5rem">
-            <div class="tech-pill">⚛ React.js</div>
-            <div class="tech-pill">🎨 Tailwind CSS</div>
-            <div class="tech-pill">🟢 Node.js</div>
-            <div class="tech-pill">🚂 Express.js</div>
-            <div class="tech-pill">🍃 MongoDB Atlas</div>
-            <div class="tech-pill">🔐 JWT Auth</div>
-            <div class="tech-pill">🔑 Google OAuth 2.0</div>
-            <div class="tech-pill">🛡 Role-Based Access</div>
-            <div class="tech-pill">🚀 Vercel</div>
-            <div class="tech-pill">📧 Email Notifications</div>
-            <div class="tech-pill">📁 File Storage</div>
-          </div>
-        </div>
-        <div class="grid-2 reveal">
-          <div class="card"><div class="card-title">🖥 Frontend</div><div class="card-body"><ul class="role-list"><li>React.js with Tailwind CSS</li><li>Role-based protected routes</li><li>Real-time dashboard updates</li><li>File upload with drag-and-drop</li><li>Responsive for all screen sizes</li></ul></div></div>
-          <div class="card"><div class="card-title">⚙ Backend</div><div class="card-body"><ul class="role-list"><li>Node.js + Express RESTful API</li><li>JWT token authentication</li><li>Google OAuth 2.0 integration</li><li>Automated email notifications</li><li>Audit log middleware on all actions</li></ul></div></div>
-          <div class="card"><div class="card-title">🗄 Database</div><div class="card-body"><ul class="role-list"><li>MongoDB Atlas cloud database</li><li>Collections: Users, Roles, Tasks, Submissions, Files, Logs</li><li>Indexed queries for performance</li><li>Automated backups</li></ul></div></div>
-          <div class="card"><div class="card-title">🌐 Deployment</div><div class="card-body"><ul class="role-list"><li>Frontend deployed on Vercel</li><li>Backend on cloud server</li><li>MongoDB Atlas for database hosting</li><li>Environment-based config management</li></ul></div></div>
-        </div>
-      </div>
+<span class="cm">// Array Methods</span>
+<span class="kw">const</span> <span class="nm">team</span> = [
+  { name: <span class="str">"Manish"</span>, srn: <span class="str">"01FE24BCS107"</span> },
+  { name: <span class="str">"Devansh"</span>, srn: <span class="str">"01FE24BCS046"</span> },
+  { name: <span class="str">"Omkar"</span>, srn: <span class="str">"01FE24BCS022"</span> }
+];
 
-      <div class="subpage" id="impl-roles">
-        <div class="grid-3 reveal" style="gap:1.25rem">
-          <div class="role-card role-admin">
-            <div class="role-avatar av-purple">SA</div>
-            <div class="role-name">Super Admin</div>
-            <div class="role-purpose">System-wide oversight & control</div>
-            <ul class="role-list">
-              <li>Create & manage Manager accounts</li>
-              <li>View full audit logs with filters</li>
-              <li>Monitor all tasks across org</li>
-              <li>Deactivate accounts</li>
-              <li>Manage subscriptions</li>
-              <li>Access analytics & reports</li>
-              <li>Create companies / organizations</li>
-            </ul>
-          </div>
-          <div class="role-card role-manager">
-            <div class="role-avatar av-blue">M</div>
-            <div class="role-name">Manager</div>
-            <div class="role-purpose">Team & Task Management</div>
-            <ul class="role-list">
-              <li>Create employee accounts</li>
-              <li>Assign tasks with priority & deadline</li>
-              <li>Attach reference files to tasks</li>
-              <li>Review & approve submitted work</li>
-              <li>Request revision with feedback</li>
-              <li>Monitor team workload in real time</li>
-              <li>Approve deadline extension requests</li>
-            </ul>
-          </div>
-          <div class="role-card role-employee">
-            <div class="role-avatar av-green">E</div>
-            <div class="role-name">Employee</div>
-            <div class="role-purpose">Task Execution & Submission</div>
-            <ul class="role-list">
-              <li>Receive & accept assigned tasks</li>
-              <li>Download reference attachments</li>
-              <li>Add comments & clarifications</li>
-              <li>Upload deliverable files</li>
-              <li>Submit task for review</li>
-              <li>Flag blockers or request extensions</li>
-              <li>Submit 5-star feedback after completion</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<span class="cm">// map, filter, find</span>
+<span class="kw">const</span> <span class="nm">names</span> = team.<span class="fn">map</span>(m => m.name);
+<span class="kw">const</span> <span class="nm">found</span> = team.<span class="fn">find</span>(m => m.srn === <span class="str">"01FE24BCS107"</span>);
 
-      <div class="subpage" id="impl-dash">
-        <div class="tab-bar">
-          <button class="tab-btn on" onclick="showTab('dash','emp')">Employee Dashboard</button>
-          <button class="tab-btn" onclick="showTab('dash','mgr')">Manager Dashboard</button>
-          <button class="tab-btn" onclick="showTab('dash','adm')">Super Admin Dashboard</button>
-        </div>
-        <div class="tab-pane on" id="dash-emp">
-          <div class="db-frame reveal">
-            <div class="db-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app/employee/dashboard</div></div>
-            <div class="db-body">
-              <div class="db-greeting">Good evening, Joe 👋</div>
-              <div class="db-sub">Here's your work summary for today</div>
-              <div class="db-stats">
-                <div class="db-stat"><div class="db-stat-label">Total Tasks</div><div class="db-stat-val" style="color:var(--blue)">2</div></div>
-                <div class="db-stat"><div class="db-stat-label">In Progress</div><div class="db-stat-val" style="color:var(--yellow)">0</div></div>
-                <div class="db-stat"><div class="db-stat-label">Completed</div><div class="db-stat-val" style="color:var(--green)">0</div></div>
-                <div class="db-stat"><div class="db-stat-label">Overdue</div><div class="db-stat-val" style="color:var(--red)">2</div></div>
-              </div>
-              <div class="db-row">
-                <div class="db-panel"><div class="db-panel-title">New Tasks <span class="badge badge-blue">0</span></div><div class="db-empty">🎉 No new tasks</div></div>
-                <div class="db-panel">
-                  <div class="db-panel-title">Under Review (2)</div>
-                  <div class="db-task"><span>qb</span><span class="badge badge-yellow">Submitted May 25</span></div>
-                  <div class="db-task"><span>a4</span><span class="badge badge-yellow">Submitted May 25</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane" id="dash-mgr">
-          <div class="db-frame reveal">
-            <div class="db-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app/manager/dashboard</div></div>
-            <div class="db-body">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
-                <div><div class="db-greeting">Good evening, Joe 👋</div><div class="db-sub">Here's what's happening with your team</div></div>
-                <span class="badge badge-blue" style="padding:7px 14px;font-size:0.8rem;cursor:pointer">+ Assign Task</span>
-              </div>
-              <div class="db-stats">
-                <div class="db-stat"><div class="db-stat-label">Total Tasks</div><div class="db-stat-val" style="color:var(--blue)">1</div></div>
-                <div class="db-stat"><div class="db-stat-label">Completed</div><div class="db-stat-val" style="color:var(--green)">0</div></div>
-                <div class="db-stat"><div class="db-stat-label">Team Members</div><div class="db-stat-val" style="color:var(--purple)">1</div></div>
-                <div class="db-stat"><div class="db-stat-label">Under Review</div><div class="db-stat-val" style="color:var(--yellow)">1</div></div>
-              </div>
-              <div class="db-panel">
-                <div class="db-panel-title">Recent Tasks</div>
-                <div class="db-task"><span>talk to joe emp <span style="color:var(--muted);font-size:0.7rem">· Due May 25</span></span><div style="display:flex;gap:5px"><span class="badge badge-blue">Medium</span><span class="badge badge-green">Completed</span></div></div>
-                <div class="db-task"><span>edd <span style="color:var(--muted);font-size:0.7rem">· Due May 26</span></span><div style="display:flex;gap:5px"><span class="badge badge-blue">Medium</span><span class="badge badge-red">Overdue</span></div></div>
-                <div class="db-task"><span>a4 <span style="color:var(--muted);font-size:0.7rem">· Due May 28</span></span><div style="display:flex;gap:5px"><span class="badge badge-blue">Medium</span><span class="badge badge-yellow">Under Review</span></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane" id="dash-adm">
-          <div class="db-frame reveal">
-            <div class="db-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app/admin/dashboard</div></div>
-            <div class="db-body">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
-                <div><div class="db-greeting">Good evening, Victory 👋</div><div class="db-sub">System-wide overview — you can see everything</div></div>
-                <div style="display:flex;gap:6px"><span class="badge badge-blue" style="padding:7px 12px;font-size:0.78rem">View Managers</span><span class="badge badge-purple" style="padding:7px 12px;font-size:0.78rem">View Employees</span></div>
-              </div>
-              <div class="db-stats">
-                <div class="db-stat"><div class="db-stat-label">Total Managers</div><div class="db-stat-val" style="color:var(--blue)">1</div></div>
-                <div class="db-stat"><div class="db-stat-label">Total Employees</div><div class="db-stat-val" style="color:var(--green)">1</div></div>
-                <div class="db-stat"><div class="db-stat-label">Total Tasks</div><div class="db-stat-val" style="color:var(--blue)">4</div></div>
-                <div class="db-stat"><div class="db-stat-label">Completion Rate</div><div class="db-stat-val" style="color:var(--green)">25%</div></div>
-              </div>
-              <div class="db-stats" style="margin-top:10px">
-                <div class="db-stat"><div class="db-stat-label">In Progress</div><div class="db-stat-val" style="color:var(--yellow)">0</div></div>
-                <div class="db-stat"><div class="db-stat-label">Completed</div><div class="db-stat-val" style="color:var(--green)">1</div></div>
-                <div class="db-stat"><div class="db-stat-label">Under Review</div><div class="db-stat-val" style="color:var(--yellow)">2</div></div>
-                <div class="db-stat"><div class="db-stat-label">Overdue</div><div class="db-stat-val" style="color:var(--red)">0</div></div>
-              </div>
-              <div class="db-panel" style="margin-top:10px">
-                <div class="db-panel-title">System Task Distribution</div>
-                <div class="db-dist"><div style="width:25%;background:var(--green)"></div><div style="width:50%;background:var(--yellow)"></div><div style="width:25%;background:var(--border)"></div></div>
-                <div class="db-dist-legend"><span>● Completed: 1</span><span>● Under Review: 2</span><span>● Not Started: 1</span></div>
-              </div>
-            </div>
-          </div>
+<span class="cm">// Destructuring</span>
+<span class="kw">const</span> { name, srn } = found;
+<span class="kw">const</span> [first, ...rest] = names;</pre>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">JavaScript — DOM Manipulation & Events</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">// DOM Selection</span>
+<span class="kw">const</span> <span class="nm">btn</span> = document.<span class="fn">getElementById</span>(<span class="str">"submit-btn"</span>);
+<span class="kw">const</span> <span class="nm">cards</span> = document.<span class="fn">querySelectorAll</span>(<span class="str">".card"</span>);
+
+<span class="cm">// Event Listener</span>
+btn.<span class="fn">addEventListener</span>(<span class="str">"click"</span>, (<span class="nm">e</span>) => {
+  e.<span class="fn">preventDefault</span>();
+  <span class="kw">const</span> <span class="nm">input</span> = document.<span class="fn">querySelector</span>(<span class="str">"#name"</span>).value;
+  <span class="kw">if</span> (!input) {
+    <span class="fn">alert</span>(<span class="str">"Please enter your name!"</span>);
+    <span class="kw">return</span>;
+  }
+  document.<span class="fn">querySelector</span>(<span class="str">"#output"</span>).textContent = <span class="str">`Hello, <span class="nm">${input}</span>!`</span>;
+});
+
+<span class="cm">// Create & Append Elements</span>
+<span class="kw">const</span> <span class="nm">li</span> = document.<span class="fn">createElement</span>(<span class="str">"li"</span>);
+li.textContent = <span class="str">"New task added"</span>;
+li.classList.<span class="fn">add</span>(<span class="str">"task-item"</span>);
+document.<span class="fn">querySelector</span>(<span class="str">"#task-list"</span>).<span class="fn">appendChild</span>(li);</pre>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">JavaScript — Async/Await & Fetch API</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">// Fetch API with async/await</span>
+<span class="kw">const</span> <span class="fn">fetchTasks</span> = <span class="kw">async</span> () => {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="nm">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">"/api/tasks"</span>, {
+      method: <span class="str">"GET"</span>,
+      headers: {
+        <span class="str">"Content-Type"</span>: <span class="str">"application/json"</span>,
+        <span class="str">"Authorization"</span>: <span class="str">`Bearer <span class="nm">${localStorage.<span class="fn">getItem</span>(<span class="str">'token'</span>)}</span>`</span>
+      }
+    });
+    <span class="kw">const</span> <span class="nm">data</span> = <span class="kw">await</span> response.<span class="fn">json</span>();
+    <span class="fn">renderTasks</span>(data.tasks);
+  } <span class="kw">catch</span> (<span class="nm">err</span>) {
+    console.<span class="fn">error</span>(<span class="str">"Error fetching tasks:"</span>, err);
+  }
+};
+
+<span class="cm">// Promise chaining (older style)</span>
+<span class="fn">fetch</span>(<span class="str">"/api/login"</span>, { method: <span class="str">"POST"</span>, body: formData })
+  .<span class="fn">then</span>(res => res.<span class="fn">json</span>())
+  .<span class="fn">then</span>(data => localStorage.<span class="fn">setItem</span>(<span class="str">"token"</span>, data.token))
+  .<span class="fn">catch</span>(err => console.<span class="fn">error</span>(err));</pre>
+      </div>
+    </div>
+
+    <!-- Node.js -->
+    <div class="subpg" id="learn-node">
+      <div class="card rv in">
+        <div class="card-title">🟢 Node.js — Server-Side JavaScript</div>
+        <div class="card-body">Node.js is a JavaScript runtime built on Chrome's V8 engine that allows you to run JavaScript on the server. With Node.js and Express.js, we built RESTful APIs that handle HTTP requests, authenticate users with JWT, interact with MongoDB, and send email notifications — the entire backend of TaskBridge.</div>
+      </div>
+      <div class="quote-box rv in">"Node.js lets you use JavaScript everywhere — both the browser and the server — making full-stack development with a single language possible."</div>
+      <div class="card rv in">
+        <div class="card-title">📌 Key Concepts Learned</div>
+        <div class="pill-wrap">
+          <span class="pill">npm & package.json</span><span class="pill">Express.js Framework</span><span class="pill">REST APIs</span>
+          <span class="pill">Middleware</span><span class="pill">JWT Authentication</span><span class="pill">Route Handling</span>
+          <span class="pill">File System (fs)</span><span class="pill">Environment Variables</span><span class="pill">Error Handling</span>
         </div>
       </div>
-    </section>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">Node.js + Express — Server Setup & Routing</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="kw">const</span> <span class="nm">express</span> = <span class="fn">require</span>(<span class="str">"express"</span>);
+<span class="kw">const</span> <span class="nm">cors</span> = <span class="fn">require</span>(<span class="str">"cors"</span>);
+<span class="kw">const</span> <span class="nm">mongoose</span> = <span class="fn">require</span>(<span class="str">"mongoose"</span>);
+<span class="kw">require</span>(<span class="str">"dotenv"</span>).<span class="fn">config</span>();
 
-    <!-- ── TESTING ── -->
-    <section class="page" id="pg-testing">
-      <div class="page-header">
-        <div class="page-tag">🧪 Testing</div>
-        <h1 class="page-title">Test Plan & Test Cases</h1>
-        <p class="page-subtitle">Project: TaskBridge — Web-based Task & Workforce Management System · Academic Year 2025–2026</p>
+<span class="kw">const</span> <span class="nm">app</span> = <span class="fn">express</span>();
+
+<span class="cm">// Middleware</span>
+app.<span class="fn">use</span>(<span class="fn">cors</span>());
+app.<span class="fn">use</span>(express.<span class="fn">json</span>());
+
+<span class="cm">// Routes</span>
+app.<span class="fn">use</span>(<span class="str">"/api/auth"</span>, <span class="fn">require</span>(<span class="str">"./routes/auth"</span>));
+app.<span class="fn">use</span>(<span class="str">"/api/tasks"</span>, <span class="fn">require</span>(<span class="str">"./routes/tasks"</span>));
+app.<span class="fn">use</span>(<span class="str">"/api/users"</span>, <span class="fn">require</span>(<span class="str">"./routes/users"</span>));
+
+<span class="cm">// Connect to MongoDB</span>
+mongoose.<span class="fn">connect</span>(process.env.<span class="nm">MONGO_URI</span>)
+  .<span class="fn">then</span>(() => {
+    app.<span class="fn">listen</span>(process.env.<span class="nm">PORT</span> || <span class="vl">5000</span>, () =>
+      console.<span class="fn">log</span>(<span class="str">"Server running on port 5000"</span>)
+    );
+  })
+  .<span class="fn">catch</span>(err => console.<span class="fn">error</span>(err));</pre>
       </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">Node.js — JWT Auth Middleware & Protected Routes</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="kw">const</span> <span class="nm">jwt</span> = <span class="fn">require</span>(<span class="str">"jsonwebtoken"</span>);
 
-      <div class="success-box reveal">✓ All test cases passed — 100% pass rate across Authentication, Role Management, Task Management, and System Monitoring scenarios.</div>
+<span class="cm">// JWT Middleware</span>
+<span class="kw">const</span> <span class="fn">protect</span> = (<span class="nm">req</span>, <span class="nm">res</span>, <span class="nm">next</span>) => {
+  <span class="kw">const</span> <span class="nm">token</span> = req.headers.authorization?.split(<span class="str">" "</span>)[<span class="vl">1</span>];
+  <span class="kw">if</span> (!token) <span class="kw">return</span> res.<span class="fn">status</span>(<span class="vl">401</span>).<span class="fn">json</span>({ msg: <span class="str">"Not authorized"</span> });
+  <span class="kw">try</span> {
+    <span class="nm">req</span>.user = jwt.<span class="fn">verify</span>(token, process.env.<span class="nm">JWT_SECRET</span>);
+    <span class="fn">next</span>();
+  } <span class="kw">catch</span> { res.<span class="fn">status</span>(<span class="vl">401</span>).<span class="fn">json</span>({ msg: <span class="str">"Token expired"</span> }); }
+};
 
-      <div class="test-table-wrap reveal">
+<span class="cm">// Role-based middleware</span>
+<span class="kw">const</span> <span class="fn">requireRole</span> = (...<span class="nm">roles</span>) => (<span class="nm">req</span>, <span class="nm">res</span>, <span class="nm">next</span>) => {
+  <span class="kw">if</span> (!roles.<span class="fn">includes</span>(req.user.role))
+    <span class="kw">return</span> res.<span class="fn">status</span>(<span class="vl">403</span>).<span class="fn">json</span>({ msg: <span class="str">"Access denied"</span> });
+  <span class="fn">next</span>();
+};
+
+<span class="cm">// Protected route — only managers</span>
+router.<span class="fn">post</span>(<span class="str">"/tasks"</span>, protect, <span class="fn">requireRole</span>(<span class="str">"manager"</span>), <span class="kw">async</span> (<span class="nm">req</span>, <span class="nm">res</span>) => {
+  <span class="kw">const</span> <span class="nm">task</span> = <span class="kw">await</span> Task.<span class="fn">create</span>({ ...req.body, createdBy: req.user._id });
+  res.<span class="fn">status</span>(<span class="vl">201</span>).<span class="fn">json</span>(task);
+});</pre>
+      </div>
+    </div>
+
+    <!-- MongoDB -->
+    <div class="subpg" id="learn-mongo">
+      <div class="card rv in">
+        <div class="card-title">🍃 MongoDB — NoSQL Database</div>
+        <div class="card-body">MongoDB is a NoSQL document database that stores data in flexible, JSON-like documents. Unlike relational databases, it doesn't require a fixed schema, making it perfect for agile development. In TaskBridge, we use MongoDB Atlas (cloud-hosted) with Mongoose ODM to model and query our data.</div>
+      </div>
+      <div class="quote-box rv in">"MongoDB stores data as documents — it's like storing JSON objects in a database, which is natural for JavaScript developers."</div>
+      <div class="card rv in">
+        <div class="card-title">📌 Key Concepts Learned</div>
+        <div class="pill-wrap">
+          <span class="pill">Documents & Collections</span><span class="pill">CRUD Operations</span><span class="pill">Mongoose Schemas</span>
+          <span class="pill">Mongoose Models</span><span class="pill">Aggregation Pipeline</span><span class="pill">Indexes</span>
+          <span class="pill">Population (Joins)</span><span class="pill">MongoDB Atlas</span><span class="pill">Validation</span>
+        </div>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">MongoDB — Mongoose Schema & Model</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="str">"mongoose"</span>);
+
+<span class="cm">// Task Schema</span>
+<span class="kw">const</span> taskSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
+  title:    { type: <span class="nm">String</span>, required: <span class="kw">true</span>, trim: <span class="kw">true</span> },
+  description: { type: <span class="nm">String</span> },
+  priority: { type: <span class="nm">String</span>, enum: [<span class="str">"Low"</span>,<span class="str">"Medium"</span>,<span class="str">"High"</span>], default: <span class="str">"Medium"</span> },
+  status:   { type: <span class="nm">String</span>, enum: [<span class="str">"Not Started"</span>,<span class="str">"In Progress"</span>,<span class="str">"Under Review"</span>,<span class="str">"Completed"</span>,<span class="str">"Overdue"</span>], default: <span class="str">"Not Started"</span> },
+  deadline: { type: <span class="nm">Date</span>, required: <span class="kw">true</span> },
+  assignedTo: { type: mongoose.Schema.Types.<span class="nm">ObjectId</span>, ref: <span class="str">"User"</span> },
+  createdBy:  { type: mongoose.Schema.Types.<span class="nm">ObjectId</span>, ref: <span class="str">"User"</span> },
+  attachments: [{ filename: <span class="nm">String</span>, url: <span class="nm">String</span> }],
+}, { timestamps: <span class="kw">true</span> });
+
+<span class="kw">module</span>.exports = mongoose.<span class="fn">model</span>(<span class="str">"Task"</span>, taskSchema);</pre>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">MongoDB — CRUD Operations with Mongoose</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">// CREATE</span>
+<span class="kw">const</span> task = <span class="kw">await</span> Task.<span class="fn">create</span>({
+  title: <span class="str">"Design Login Page"</span>,
+  priority: <span class="str">"High"</span>,
+  deadline: <span class="kw">new</span> <span class="fn">Date</span>(<span class="str">"2026-06-30"</span>),
+  assignedTo: employeeId
+});
+
+<span class="cm">// READ (with population)</span>
+<span class="kw">const</span> tasks = <span class="kw">await</span> Task
+  .<span class="fn">find</span>({ assignedTo: userId, status: <span class="str">"In Progress"</span> })
+  .<span class="fn">populate</span>(<span class="str">"assignedTo"</span>, <span class="str">"name email"</span>)
+  .<span class="fn">sort</span>({ deadline: <span class="vl">1</span> });
+
+<span class="cm">// UPDATE</span>
+<span class="kw">await</span> Task.<span class="fn">findByIdAndUpdate</span>(taskId,
+  { status: <span class="str">"Completed"</span>, completedAt: <span class="kw">new</span> <span class="fn">Date</span>() },
+  { <span class="kw">new</span>: <span class="kw">true</span> }
+);
+
+<span class="cm">// DELETE</span>
+<span class="kw">await</span> Task.<span class="fn">findByIdAndDelete</span>(taskId);
+
+<span class="cm">// Aggregation — count tasks by status</span>
+<span class="kw">const</span> stats = <span class="kw">await</span> Task.<span class="fn">aggregate</span>([
+  { <span class="nm">$match</span>: { createdBy: managerId } },
+  { <span class="nm">$group</span>: { _id: <span class="str">"$status"</span>, count: { <span class="nm">$sum</span>: <span class="vl">1</span> } } }
+]);</pre>
+      </div>
+    </div>
+
+    <!-- React -->
+    <div class="subpg" id="learn-react">
+      <div class="card rv in">
+        <div class="card-title">⚛ React — UI Component Library</div>
+        <div class="card-body">React is a JavaScript library for building user interfaces using reusable components. It uses a virtual DOM to efficiently update only what changes on screen. In TaskBridge, the entire frontend is built in React — role-based dashboards, task lists, forms, notifications, and more — all organized into components.</div>
+      </div>
+      <div class="quote-box rv in">"React's component model changes how you think about building UIs — instead of pages, you think in reusable, self-contained pieces."</div>
+      <div class="card rv in">
+        <div class="card-title">📌 Key Concepts Learned</div>
+        <div class="pill-wrap">
+          <span class="pill">JSX Syntax</span><span class="pill">Components (Function)</span><span class="pill">Props</span>
+          <span class="pill">State (useState)</span><span class="pill">useEffect</span><span class="pill">useContext</span>
+          <span class="pill">React Router</span><span class="pill">Protected Routes</span><span class="pill">Conditional Rendering</span>
+          <span class="pill">List Rendering</span><span class="pill">Event Handling</span><span class="pill">API Calls</span>
+        </div>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">React — Components, Props & useState</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="kw">import</span> { useState } <span class="kw">from</span> <span class="str">"react"</span>;
+
+<span class="cm">// Reusable TaskCard Component</span>
+<span class="kw">function</span> <span class="fn">TaskCard</span>({ task, onComplete }) {
+  <span class="kw">const</span> statusColors = {
+    <span class="str">"In Progress"</span>: <span class="str">"#f59e0b"</span>,
+    <span class="str">"Completed"</span>: <span class="str">"#22c55e"</span>,
+    <span class="str">"Overdue"</span>: <span class="str">"#ef4444"</span>,
+  };
+
+  <span class="kw">return</span> (
+    &lt;<span class="tg">div</span> className=<span class="str">"task-card"</span>&gt;
+      &lt;<span class="tg">h3</span>&gt;{task.title}&lt;/<span class="tg">h3</span>&gt;
+      &lt;<span class="tg">span</span> style={{ color: statusColors[task.status] }}&gt;
+        {task.status}
+      &lt;/<span class="tg">span</span>&gt;
+      &lt;<span class="tg">p</span>&gt;Due: {<span class="kw">new</span> <span class="fn">Date</span>(task.deadline).<span class="fn">toLocaleDateString</span>()}&lt;/<span class="tg">p</span>&gt;
+      &lt;<span class="tg">button</span> onClick={() => <span class="fn">onComplete</span>(task._id)}&gt;
+        Mark Complete
+      &lt;/<span class="tg">button</span>&gt;
+    &lt;/<span class="tg">div</span>&gt;
+  );
+}
+
+<span class="cm">// Parent component with state</span>
+<span class="kw">function</span> <span class="fn">TaskList</span>() {
+  <span class="kw">const</span> [tasks, setTasks] = <span class="fn">useState</span>([]);
+
+  <span class="kw">const</span> <span class="fn">handleComplete</span> = (id) => {
+    <span class="fn">setTasks</span>(prev => prev.<span class="fn">map</span>(t =>
+      t._id === id ? { ...t, status: <span class="str">"Completed"</span> } : t
+    ));
+  };
+
+  <span class="kw">return</span> (
+    &lt;<span class="tg">div</span>&gt;
+      {tasks.<span class="fn">map</span>(task => (
+        &lt;<span class="fn">TaskCard</span> key={task._id} task={task} onComplete={handleComplete} /&gt;
+      ))}
+    &lt;/<span class="tg">div</span>&gt;
+  );
+}</pre>
+      </div>
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">React — useEffect, API Calls & Protected Routes</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="kw">import</span> { useState, useEffect } <span class="kw">from</span> <span class="str">"react"</span>;
+<span class="kw">import</span> { Navigate } <span class="kw">from</span> <span class="str">"react-router-dom"</span>;
+
+<span class="cm">// useEffect for data fetching</span>
+<span class="kw">function</span> <span class="fn">Dashboard</span>() {
+  <span class="kw">const</span> [tasks, setTasks] = <span class="fn">useState</span>([]);
+  <span class="kw">const</span> [loading, setLoading] = <span class="fn">useState</span>(<span class="kw">true</span>);
+
+  <span class="fn">useEffect</span>(() => {
+    <span class="kw">const</span> <span class="fn">load</span> = <span class="kw">async</span> () => {
+      <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">"/api/tasks"</span>, {
+        headers: { Authorization: <span class="str">`Bearer <span class="nm">${localStorage.<span class="fn">getItem</span>(<span class="str">"token"</span>)}</span>`</span> }
+      });
+      <span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>();
+      <span class="fn">setTasks</span>(data);
+      <span class="fn">setLoading</span>(<span class="kw">false</span>);
+    };
+    <span class="fn">load</span>();
+  }, []); <span class="cm">// runs once on mount</span>
+
+  <span class="kw">if</span> (loading) <span class="kw">return</span> &lt;<span class="tg">p</span>&gt;Loading...&lt;/<span class="tg">p</span>&gt;;
+  <span class="kw">return</span> &lt;<span class="fn">TaskList</span> tasks={tasks} /&gt;;
+}
+
+<span class="cm">// Protected Route — only allow certain roles</span>
+<span class="kw">function</span> <span class="fn">ProtectedRoute</span>({ role, children }) {
+  <span class="kw">const</span> user = <span class="fn">JSON</span>.<span class="fn">parse</span>(localStorage.<span class="fn">getItem</span>(<span class="str">"user"</span>));
+  <span class="kw">if</span> (!user) <span class="kw">return</span> &lt;<span class="fn">Navigate</span> to=<span class="str">"/login"</span> /&gt;;
+  <span class="kw">if</span> (user.role !== role) <span class="kw">return</span> &lt;<span class="fn">Navigate</span> to=<span class="str">"/unauthorized"</span> /&gt;;
+  <span class="kw">return</span> children;
+}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PROJECT PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="pg-project">
+  <div class="section-banner">
+    <div class="section-banner-content">
+      <h1>Project — TaskBridge</h1>
+      <p>Software Engineering lifecycle for WorkDist / TaskBridge — KLE Tech, 2025–26</p>
+      <div class="line"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="subnav">
+      <button class="snb on" onclick="showProj('problem')">⚠ Problem Analysis</button>
+      <button class="snb" onclick="showProj('design')">📐 System Design</button>
+      <button class="snb" onclick="showProj('impl')">⚙ Implementation</button>
+      <button class="snb" onclick="showProj('testing')">🧪 Software Testing</button>
+    </div>
+
+    <!-- Problem Analysis -->
+    <div class="subpg on" id="proj-problem">
+      <div class="card rv in"><div class="card-title">📖 Problem Statement</div><div class="card-body"><p>Organizations often face difficulties managing tasks, tracking employee progress, and maintaining communication between managers and employees. Manual methods lead to delayed work, poor coordination, lack of transparency, and inefficient workload management.</p><p style="margin-top:0.75rem"><strong style="color:var(--text)">Objective:</strong> Build a role-based web application (Super Admin → Manager → Employee) automating task distribution, tracking, review, and feedback with full audit logging.</p></div></div>
+      <div class="g2 rv">
+        <div class="card" style="border-color:rgba(239,68,68,0.3)"><div class="card-title">⏰ Missed Deadlines</div><div class="card-body">No automated deadline tracking or overdue alerts for managers and employees.</div></div>
+        <div class="card" style="border-color:rgba(239,68,68,0.3)"><div class="card-title">🕵️ Zero Visibility</div><div class="card-body">Managers cannot see real-time task status or employee workload distribution.</div></div>
+        <div class="card" style="border-color:rgba(239,68,68,0.3)"><div class="card-title">📋 No Accountability</div><div class="card-body">No audit trail — task changes, submissions and flags go unrecorded.</div></div>
+        <div class="card" style="border-color:rgba(239,68,68,0.3)"><div class="card-title">💬 Communication Gaps</div><div class="card-body">Feedback and revision cycles lost across fragmented email threads.</div></div>
+      </div>
+    </div>
+
+    <!-- System Design -->
+    <div class="subpg" id="proj-design">
+      <div class="tab-bar">
+        <button class="tbtn on" onclick="showDesign('arch')">🏗 Architecture</button>
+        <button class="tbtn" onclick="showDesign('context')">🗺 Context</button>
+        <button class="tbtn" onclick="showDesign('usecase')">📊 Use Case</button>
+        <button class="tbtn" onclick="showDesign('seq')">🔄 Sequence</button>
+        <button class="tbtn" onclick="showDesign('req')">📋 Requirements</button>
+      </div>
+      <div class="tpane on" id="des-arch"><div class="diag-wrap rv in"><div class="diag-head">🏗 System Architectural Diagram</div><div class="diag-body"><img src="images/architecture_diagram.jpg" alt="Architecture" loading="lazy"/></div></div></div>
+      <div class="tpane" id="des-context"><div class="diag-wrap rv in"><div class="diag-head">🗺 Context Diagram — The TaskBridge System</div><div class="diag-body"><img src="images/context_diagram.jpg" alt="Context Diagram" loading="lazy"/></div></div></div>
+      <div class="tpane" id="des-usecase"><div class="diag-wrap rv in"><div class="diag-head">📊 Use Case Diagram — WorkDist</div><div class="diag-body"><img src="images/usecase_diagram.jpg" alt="Use Case" loading="lazy"/></div></div></div>
+      <div class="tpane" id="des-seq">
+        <div class="diag-wrap rv in"><div class="diag-head">🔄 Sequence — User & Workforce Management</div><div class="diag-body"><img src="images/sequence_diagram1.jpg" alt="Seq 1" loading="lazy"/></div></div>
+        <div class="diag-wrap rv in"><div class="diag-head">🔄 Sequence — Task Monitoring & Collaboration</div><div class="diag-body"><img src="images/sequence_diagram2.jpg" alt="Seq 2" loading="lazy"/></div></div>
+      </div>
+      <div class="tpane" id="des-req">
+        <div class="diag-wrap rv in"><div class="diag-head">✅ Functional Requirements</div><div class="diag-body"><img src="images/functional_req.jpg" alt="FR" loading="lazy"/></div></div>
+        <div class="diag-wrap rv in"><div class="diag-head">🛡 Non-Functional Requirements</div><div class="diag-body"><img src="images/nonfunctional_req.jpg" alt="NFR" loading="lazy"/></div></div>
+      </div>
+    </div>
+
+    <!-- Implementation -->
+    <div class="subpg" id="proj-impl">
+      <div class="card rv in"><div class="card-title">⚙ Tech Stack</div><div class="tech-wrap">
+        <div class="tp">⚛ React.js</div><div class="tp">🎨 Tailwind CSS</div><div class="tp">🟢 Node.js</div>
+        <div class="tp">🚂 Express.js</div><div class="tp">🍃 MongoDB Atlas</div><div class="tp">🔐 JWT Auth</div>
+        <div class="tp">🔑 Google OAuth 2.0</div><div class="tp">🚀 Vercel</div><div class="tp">📧 Email Notifications</div>
+      </div></div>
+      <div class="g3 rv">
+        <div class="role-card rc-admin"><div class="rav" style="background:rgba(167,139,250,0.15);color:var(--purple)">SA</div><div style="font-weight:700;margin-bottom:3px">Super Admin</div><div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">System oversight</div><ul class="rlist"><li>Create Manager accounts</li><li>View audit logs</li><li>Monitor all tasks</li><li>Manage subscriptions</li></ul></div>
+        <div class="role-card rc-mgr"><div class="rav" style="background:rgba(59,130,246,0.12);color:var(--blue)">M</div><div style="font-weight:700;margin-bottom:3px">Manager</div><div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">Team & task management</div><ul class="rlist"><li>Assign tasks with priority</li><li>Review & approve work</li><li>Monitor team workload</li><li>Manage extensions</li></ul></div>
+        <div class="role-card rc-emp"><div class="rav" style="background:rgba(34,197,94,0.1);color:var(--green)">E</div><div style="font-weight:700;margin-bottom:3px">Employee</div><div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.85rem">Task execution</div><ul class="rlist"><li>Accept & complete tasks</li><li>Upload deliverables</li><li>Request extensions</li><li>Submit feedback</li></ul></div>
+      </div>
+      <div class="db-frame rv" style="margin-top:1rem">
+        <div class="db-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app</div><a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" style="font-size:0.72rem;color:var(--blue);flex-shrink:0">Open ↗</a></div>
+        <div class="db-body">
+          <div style="font-size:1.1rem;font-weight:700;margin-bottom:3px">Super Admin Dashboard</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:1rem">System-wide overview — you can see everything</div>
+          <div class="db-stats"><div class="db-stat"><div class="db-slabel">Total Managers</div><div class="db-sval" style="color:var(--blue)">1</div></div><div class="db-stat"><div class="db-slabel">Total Employees</div><div class="db-sval" style="color:var(--green)">1</div></div><div class="db-stat"><div class="db-slabel">Total Tasks</div><div class="db-sval" style="color:var(--blue)">4</div></div><div class="db-stat"><div class="db-slabel">Completion</div><div class="db-sval" style="color:var(--green)">25%</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testing -->
+    <div class="subpg" id="proj-testing">
+      <div style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.25);border-radius:11px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:0.875rem;color:var(--green)" class="rv in">✓ All test cases passed — 100% pass rate</div>
+      <div class="tbl-wrap rv in">
         <table>
-          <thead><tr><th>Req ID</th><th>TC ID</th><th>Description</th><th>Test Input</th><th>Expected Result</th><th>Actual Result</th><th>Status</th></tr></thead>
+          <thead><tr><th>Req ID</th><th>TC ID</th><th>Description</th><th>Input</th><th>Expected Result</th><th>Status</th></tr></thead>
           <tbody>
-            <tr class="tc-group"><td colspan="7">RE01 — Authentication & Security</td></tr>
-            <tr><td class="tc-id">RE01</td><td class="tc-id">TC01</td><td>Login with valid Super Admin credentials</td><td>Email: admin@taskbridge.com · Pass: Admin@1234</td><td>Super Admin logged in, redirected to dashboard</td><td>Login successful</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE01</td><td class="tc-id">TC02</td><td>Login with valid Manager credentials</td><td>Email: manager@taskbridge.com · Pass: Mgr@1234</td><td>Manager logged in, redirected to Manager Dashboard</td><td>Login successful</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE01</td><td class="tc-id">TC03</td><td>Login with valid Employee credentials</td><td>Email: emp@taskbridge.com · Pass: Emp@1234</td><td>Employee logged in, redirected to Employee Dashboard</td><td>Login successful</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE01</td><td class="tc-id">TC06</td><td>Login with empty email and password fields</td><td>Email: (blank) · Password: (blank)</td><td>Validation error: 'Email and Password are required'</td><td>Validation error shown</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE01</td><td class="tc-id">TC07</td><td>Login with invalid email format</td><td>Email: admin@@test · Pass: Admin@1234</td><td>Validation error: 'Enter a valid email address'</td><td>Validation error shown</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE01</td><td class="tc-id">TC09</td><td>Logout functionality</td><td>Valid login session</td><td>Session terminated; user redirected to login; protected pages inaccessible</td><td>Logout successful</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE01</td><td class="tc-id">TC10</td><td>Access protected page without login</td><td>URL: /dashboard or /admin</td><td>User redirected to login page with appropriate message</td><td>Redirected to login</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE01</td><td class="tc-id">TC11</td><td>Employee cannot access Manager or Admin pages</td><td>Employee credentials + direct URL navigation</td><td>Access denied; system shows 403 or redirects to employee dashboard</td><td>Access denied</td><td class="tc-pass">Pass</td></tr>
-
-            <tr class="tc-group"><td colspan="7">RE02 — Super Admin Management</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC13</td><td>Super Admin creates a new Manager account</td><td>Name: John Doe · Email: john@company.com · Pass: Mgr@1234 · Dept: IT</td><td>New manager account created; appears in manager list; confirmation shown</td><td>Manager created</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC14</td><td>Create manager with duplicate email</td><td>Email: existingmanager@company.com</td><td>Error: 'Email already registered'</td><td>Error shown</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC15</td><td>Create manager with missing mandatory fields</td><td>Name: (blank) · Email: newmgr@company.com</td><td>Validation error for required fields</td><td>Validation error shown</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC16</td><td>Super Admin searches for an existing manager</td><td>Search: 'John Doe'</td><td>Matching manager record displayed in results</td><td>Result found</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC18</td><td>Super Admin edits manager account details</td><td>Department changed from IT to HR</td><td>Manager profile updated; changes reflected in list</td><td>Update successful</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC19</td><td>Super Admin deactivates a manager account</td><td>Manager: John Doe</td><td>Manager account marked inactive; manager cannot log in</td><td>Account deactivated</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC20</td><td>Super Admin views audit logs</td><td>Any recent activity in the system</td><td>Audit log shows timestamped records of recent user actions</td><td>Logs displayed</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC21</td><td>Super Admin views overall organization dashboard metrics</td><td>Live data in the system</td><td>Dashboard displays total managers, employees, tasks, completion rates, overdue & in-progress</td><td>Metrics displayed</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE02</td><td class="tc-id">TC22</td><td>Super Admin monitors all employee accounts</td><td>Existing employee records</td><td>Complete list of all employees across all managers/teams is shown</td><td>List shown</td><td class="tc-pass">Pass</td></tr>
-
-            <tr class="tc-group"><td colspan="7">RE03 — Manager & Team Management</td></tr>
-            <tr><td class="tc-id">RE03</td><td class="tc-id">TC23</td><td>Manager views team employee list</td><td>Manager with assigned employees</td><td>List of all employees under manager displayed</td><td>List displayed</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE03</td><td class="tc-id">TC24</td><td>Manager creates a new employee account</td><td>Name, email, department filled</td><td>Employee account created with temporary password; employee notified via email</td><td>Employee created</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE03</td><td class="tc-id">TC25</td><td>Manager assigns task to employee with deadline & priority</td><td>Task: "Prepare Report" · Deadline: next week · Priority: High</td><td>Task created and assigned; employee receives notification</td><td>Task assigned</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE03</td><td class="tc-id">TC26</td><td>Manager attaches reference file to task</td><td>PDF file under 10MB</td><td>File uploaded and linked to task; employee can download</td><td>File uploaded</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE03</td><td class="tc-id">TC27</td><td>Manager reviews and approves submitted task</td><td>Employee-submitted deliverable</td><td>Task marked Completed; employee notified</td><td>Task approved</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE03</td><td class="tc-id">TC28</td><td>Manager requests revision on submitted task</td><td>Employee-submitted deliverable (incomplete)</td><td>Task status set to Revision Required; feedback sent to employee</td><td>Revision requested</td><td class="tc-pass">Pass</td></tr>
-
-            <tr class="tc-group"><td colspan="7">RE04 — Employee Task Execution</td></tr>
-            <tr><td class="tc-id">RE04</td><td class="tc-id">TC29</td><td>Employee accepts assigned task</td><td>New task notification received</td><td>Task status updated to In Progress; manager notified</td><td>Task accepted</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE04</td><td class="tc-id">TC30</td><td>Employee submits task with deliverable file</td><td>Completed work + deliverable file</td><td>Task status set to Under Review; manager notified</td><td>Submission successful</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE04</td><td class="tc-id">TC31</td><td>Employee requests deadline extension</td><td>Extension request with justification</td><td>Extension request sent to manager for approval/rejection</td><td>Request submitted</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE04</td><td class="tc-id">TC32</td><td>Employee flags task as blocker</td><td>Blocker reason provided</td><td>Manager receives blocker alert; task flagged in dashboard</td><td>Flag set</td><td class="tc-pass">Pass</td></tr>
-            <tr><td class="tc-id">RE04</td><td class="tc-id">TC33</td><td>Employee submits 5-star feedback after task completion</td><td>5-star rating + comment</td><td>Feedback recorded; visible in analytics</td><td>Feedback submitted</td><td class="tc-pass">Pass</td></tr>
+            <tr class="tcg"><td colspan="6">RE01 — Authentication & Security</td></tr>
+            <tr><td class="tcid">RE01</td><td class="tcid">TC01</td><td>Login — valid Super Admin</td><td>admin@taskbridge.com / Admin@1234</td><td>Redirected to Super Admin Dashboard</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE01</td><td class="tcid">TC02</td><td>Login — valid Manager</td><td>manager@taskbridge.com / Mgr@1234</td><td>Redirected to Manager Dashboard</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE01</td><td class="tcid">TC03</td><td>Login — valid Employee</td><td>emp@taskbridge.com / Emp@1234</td><td>Redirected to Employee Dashboard</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE01</td><td class="tcid">TC06</td><td>Login — empty fields</td><td>(blank) / (blank)</td><td>Validation error: fields required</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE01</td><td class="tcid">TC07</td><td>Login — invalid email format</td><td>admin@@test / Admin@1234</td><td>Validation error: valid email required</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE01</td><td class="tcid">TC09</td><td>Logout</td><td>Valid session</td><td>Session terminated, redirected to login</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE01</td><td class="tcid">TC10</td><td>Access protected page without login</td><td>URL: /dashboard</td><td>Redirected to login page</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE01</td><td class="tcid">TC11</td><td>Employee accesses Manager page</td><td>Employee credentials + /manager URL</td><td>Access denied (403)</td><td class="pass">Pass</td></tr>
+            <tr class="tcg"><td colspan="6">RE02 — Super Admin Management</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC13</td><td>Create new Manager account</td><td>Name: John Doe, Email: john@co.com, Dept: IT</td><td>Manager created, appears in list</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC14</td><td>Create manager with duplicate email</td><td>Existing email</td><td>Error: Email already registered</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC15</td><td>Create manager — missing fields</td><td>Name: (blank)</td><td>Validation error for required fields</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC16</td><td>Search for existing manager</td><td>Search: 'John Doe'</td><td>Matching manager displayed</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC18</td><td>Edit manager account details</td><td>Dept: IT → HR</td><td>Profile updated, changes reflected</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC19</td><td>Deactivate manager account</td><td>Manager: John Doe</td><td>Account marked inactive, cannot login</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC20</td><td>View audit logs</td><td>Any recent activity</td><td>Timestamped logs displayed</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC21</td><td>Dashboard metrics</td><td>Live system data</td><td>Total managers, tasks, completion rate shown</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE02</td><td class="tcid">TC22</td><td>Monitor all employee accounts</td><td>Existing employee records</td><td>Complete employee list shown</td><td class="pass">Pass</td></tr>
+            <tr class="tcg"><td colspan="6">RE03 — Manager & Task Management</td></tr>
+            <tr><td class="tcid">RE03</td><td class="tcid">TC23</td><td>View team employee list</td><td>Manager with assigned employees</td><td>All employees listed</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE03</td><td class="tcid">TC24</td><td>Create employee account</td><td>Name, email, department</td><td>Account created with temp password, email sent</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE03</td><td class="tcid">TC25</td><td>Assign task with deadline & priority</td><td>Task: "Prepare Report", High priority</td><td>Task created, employee notified</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE03</td><td class="tcid">TC26</td><td>Attach file to task</td><td>PDF under 10MB</td><td>File uploaded and linked to task</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE03</td><td class="tcid">TC27</td><td>Approve submitted task</td><td>Employee-submitted deliverable</td><td>Task marked Completed, employee notified</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE03</td><td class="tcid">TC28</td><td>Request revision on task</td><td>Incomplete submission</td><td>Revision Required status, feedback sent</td><td class="pass">Pass</td></tr>
+            <tr class="tcg"><td colspan="6">RE04 — Employee Task Execution</td></tr>
+            <tr><td class="tcid">RE04</td><td class="tcid">TC29</td><td>Accept assigned task</td><td>New task notification</td><td>Status → In Progress, manager notified</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE04</td><td class="tcid">TC30</td><td>Submit task with deliverable</td><td>Completed work + file</td><td>Status → Under Review, manager notified</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE04</td><td class="tcid">TC31</td><td>Request deadline extension</td><td>Extension with justification</td><td>Extension request sent to manager</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE04</td><td class="tcid">TC32</td><td>Flag task as blocker</td><td>Blocker reason provided</td><td>Manager alerted, task flagged</td><td class="pass">Pass</td></tr>
+            <tr><td class="tcid">RE04</td><td class="tcid">TC33</td><td>Submit 5-star feedback</td><td>Rating + comment</td><td>Feedback recorded in analytics</td><td class="pass">Pass</td></tr>
           </tbody>
         </table>
       </div>
+      <div class="diag-wrap rv"><div class="diag-head">📷 Test Plan Document (from SE Report)</div><div class="diag-body"><img src="images/test_cases_p1.jpg" loading="lazy"/></div></div>
+      <div class="diag-wrap rv"><div class="diag-head">📷 Test Cases — Auth (continued)</div><div class="diag-body"><img src="images/test_cases_p2.jpg" loading="lazy"/></div></div>
+      <div class="diag-wrap rv"><div class="diag-head">📷 Test Cases — Manager Management</div><div class="diag-body"><img src="images/test_cases_p3.jpg" loading="lazy"/></div></div>
+      <div class="diag-wrap rv"><div class="diag-head">📷 Test Cases — Super Admin Functions</div><div class="diag-body"><img src="images/test_cases_p4.jpg" loading="lazy"/></div></div>
+      <!-- Performance -->
+      <h2 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem">⚡ Performance — GTMetrix Results</h2>
+      <div class="perf-grid rv">
+        <div class="perf-card"><div style="font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">A</div><div class="plabel">GTMetrix Grade</div></div>
+        <div class="perf-card"><div class="pval">99%</div><div class="plabel">Performance</div></div>
+        <div class="perf-card"><div class="pval">96%</div><div class="plabel">Structure</div></div>
+        <div class="perf-card"><div class="pval">828ms</div><div class="plabel">LCP</div></div>
+        <div class="perf-card"><div class="pval">0ms</div><div class="plabel">TBT</div></div>
+        <div class="perf-card"><div class="pval">0</div><div class="plabel">CLS</div></div>
+      </div>
+      <div class="diag-wrap rv" style="margin-top:1.25rem"><div class="diag-head">📈 GTMetrix Performance Report</div><div class="diag-body"><img src="images/performance.jpg" loading="lazy"/></div></div>
+    </div>
+  </div>
+</div>
 
-      <div class="diagram-wrap reveal" style="margin-top:1.5rem">
-        <div class="diagram-head">📷 Test Plan Document (from SE Report)</div>
-        <div class="diagram-img"><img src="images/test_cases_p1.jpg" alt="Test Cases Part 1" loading="lazy"/></div>
-      </div>
-      <div class="diagram-wrap reveal">
-        <div class="diagram-head">📷 Test Cases — Authentication (continued)</div>
-        <div class="diagram-img"><img src="images/test_cases_p2.jpg" alt="Test Cases Part 2" loading="lazy"/></div>
-      </div>
-      <div class="diagram-wrap reveal">
-        <div class="diagram-head">📷 Test Cases — Manager Management</div>
-        <div class="diagram-img"><img src="images/test_cases_p3.jpg" alt="Test Cases Part 3" loading="lazy"/></div>
-      </div>
-      <div class="diagram-wrap reveal">
-        <div class="diagram-head">📷 Test Cases — Super Admin Functions</div>
-        <div class="diagram-img"><img src="images/test_cases_p4.jpg" alt="Test Cases Part 4" loading="lazy"/></div>
-      </div>
-    </section>
+<!-- ═══════════════════════════════════════
+     DEVOPS PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="pg-devops">
+  <div class="section-banner"><div class="section-banner-content"><h1>DevOps</h1><p>Version control, CI/CD, and cloud deployment practices used in TaskBridge</p><div class="line"></div></div></div>
+  <div class="content">
+    <div class="card rv in"><div class="card-title">🔧 What is DevOps?</div><div class="card-body">DevOps is a set of practices that combines software development (Dev) and IT operations (Ops). It aims to shorten the development lifecycle, improve collaboration, and enable continuous delivery. For TaskBridge, we used Git for version control, GitHub for collaboration, and Vercel for deployment.</div></div>
+    <div class="devops-card rv in"><div class="devops-icon">🐙</div><div><h3 style="font-size:1rem;font-weight:700;margin-bottom:4px">Git & GitHub — Version Control</h3><p style="font-size:0.875rem;color:var(--muted)">We used Git for tracking every change in our code. The entire project is hosted on GitHub with separate repositories for frontend and backend. Branching strategies helped us work in parallel without conflicts.</p></div></div>
+    <div class="code-block rv in">
+      <div class="code-header"><span class="code-lang">Git — Common Commands Used</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+      <pre><span class="cm"># Initialize & connect to GitHub</span>
+git init
+git remote add origin https://github.com/victorykings2828-bot/WT-PORTFOLIO.git
 
-    <!-- ── PERFORMANCE ── -->
-    <section class="page" id="pg-performance">
-      <div class="page-header">
-        <div class="page-tag">⚡ Performance</div>
-        <h1 class="page-title">Performance Testing</h1>
-        <p class="page-subtitle">TaskBridge was tested using GTMetrix. All Core Web Vitals scored in the "Good" range.</p>
-      </div>
-      <div class="card reveal" style="text-align:center;padding:2rem;margin-bottom:1.5rem">
-        <div class="grade-big">A</div>
-        <div style="font-size:1rem;color:var(--muted);margin-top:0.25rem">GTMetrix Grade</div>
-      </div>
-      <div class="perf-grid reveal">
-        <div class="perf-card"><div class="perf-val">99%</div><div class="perf-label">Performance Score</div></div>
-        <div class="perf-card"><div class="perf-val">96%</div><div class="perf-label">Structure Score</div></div>
-        <div class="perf-card"><div class="perf-val">828ms</div><div class="perf-label">First Contentful Paint</div></div>
-        <div class="perf-card"><div class="perf-val">829ms</div><div class="perf-label">Speed Index</div></div>
-        <div class="perf-card"><div class="perf-val">828ms</div><div class="perf-label">Largest Contentful Paint</div></div>
-        <div class="perf-card"><div class="perf-val">0ms</div><div class="perf-label">Total Blocking Time</div></div>
-        <div class="perf-card"><div class="perf-val">828ms</div><div class="perf-label">Time to Interactive</div></div>
-        <div class="perf-card"><div class="perf-val">0</div><div class="perf-label">Cumulative Layout Shift</div></div>
-        <div class="perf-card"><div class="perf-val" style="color:var(--green);font-size:1.4rem">All Good</div><div class="perf-label">Core Web Vitals</div></div>
-      </div>
-      <div class="diagram-wrap reveal" style="margin-top:1.5rem">
-        <div class="diagram-head">📈 GTMetrix Performance Report</div>
-        <div class="diagram-img"><img src="images/performance.jpg" alt="GTMetrix Performance" loading="lazy"/></div>
-      </div>
-    </section>
+<span class="cm"># Daily workflow</span>
+git status                     <span class="cm"># check what changed</span>
+git add .                      <span class="cm"># stage all changes</span>
+git commit -m <span class="str">"feat: add dashboard"</span>
+git push origin main
 
-    <!-- ── TEAM ── -->
-    <section class="page" id="pg-team">
-      <div class="page-header">
-        <div class="page-tag">👨‍💻 Team</div>
-        <h1 class="page-title">Team Members</h1>
-        <p class="page-subtitle">Built by 6 students of KLE Technological University as part of the Software Engineering course, 2025–26.</p>
-      </div>
-      <div class="grid-3 reveal" style="gap:1.25rem;margin-bottom:2rem">
-        <div class="team-card me-highlight">
-          <div class="team-av" style="background:linear-gradient(135deg,#3b6ff5,#a78bfa)">MS</div>
-          <div class="team-name">Manish Singri</div>
-          <div class="team-id">01FE24BCS107</div>
-          <div class="team-role">Full Stack Developer</div>
-          <div style="margin-top:8px"><span class="badge badge-blue" style="font-size:0.65rem">⭐ You</span></div>
-        </div>
-        <div class="team-card">
-          <div class="team-av" style="background:linear-gradient(135deg,#22c55e,#3b6ff5)">DP</div>
-          <div class="team-name">Devansh Pandey</div>
-          <div class="team-id">01FE24BCS046</div>
-          <div class="team-role">Backend Developer</div>
-        </div>
-        <div class="team-card">
-          <div class="team-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">OA</div>
-          <div class="team-name">Omkar Ananthapur</div>
-          <div class="team-id">01FE24BCS022</div>
-          <div class="team-role">Frontend Developer</div>
-        </div>
-        <div class="team-card">
-          <div class="team-av" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">SR</div>
-          <div class="team-name">Subhash Reddy</div>
-          <div class="team-id">01FE24BCS094</div>
-          <div class="team-role">Database & API</div>
-        </div>
-        <div class="team-card">
-          <div class="team-av" style="background:linear-gradient(135deg,#0ea5e9,#22c55e)">AS</div>
-          <div class="team-name">Atharva Shetty</div>
-          <div class="team-id">01FE23BCS039</div>
-          <div class="team-role">UI/UX & Testing</div>
-        </div>
-        <div class="team-card">
-          <div class="team-av" style="background:linear-gradient(135deg,#f97316,#eab308)">SP</div>
-          <div class="team-name">Samarth Patil</div>
-          <div class="team-id">01FE23BCS012</div>
-          <div class="team-role">System Design & Docs</div>
-        </div>
-      </div>
-      <div class="card reveal">
-        <div class="card-title">🎓 Institution</div>
-        <div class="grid-2" style="gap:1rem;margin-top:0.5rem">
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">University</div><div style="font-weight:600">KLE Technological University, Hubli</div></div>
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Course</div><div style="font-weight:600">Software Engineering</div></div>
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Academic Year</div><div style="font-weight:600">2025 – 2026</div></div>
-          <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Department</div><div style="font-weight:600">Computer Science & Engineering</div></div>
-        </div>
-      </div>
-    </section>
+<span class="cm"># Branching</span>
+git checkout -b feature/login  <span class="cm"># create new branch</span>
+git merge feature/login        <span class="cm"># merge when done</span>
+git pull origin main           <span class="cm"># get latest changes</span>
 
-  </main>
+<span class="cm"># Useful commands</span>
+git log --oneline              <span class="cm"># see commit history</span>
+git diff                       <span class="cm"># see uncommitted changes</span>
+git stash                      <span class="cm"># save work temporarily</span></pre>
+    </div>
+    <div class="devops-card rv"><div class="devops-icon">🚀</div><div><h3 style="font-size:1rem;font-weight:700;margin-bottom:4px">Vercel — Deployment Platform</h3><p style="font-size:0.875rem;color:var(--muted)">The TaskBridge frontend is deployed on Vercel. Every push to the main branch automatically triggers a new deployment — this is Continuous Deployment (CD). The live app is available at <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank">taskbridge-frontend-sandy.vercel.app</a>.</p></div></div>
+    <div class="devops-card rv"><div class="devops-icon">🍃</div><div><h3 style="font-size:1rem;font-weight:700;margin-bottom:4px">MongoDB Atlas — Cloud Database</h3><p style="font-size:0.875rem;color:var(--muted)">MongoDB Atlas provides a fully managed cloud database. We configured connection strings, IP whitelists, and database users — all DevOps tasks ensuring the database is secure, backed up, and always available.</p></div></div>
+    <div class="devops-card rv"><div class="devops-icon">🔐</div><div><h3 style="font-size:1rem;font-weight:700;margin-bottom:4px">Environment Variables & Security</h3><p style="font-size:0.875rem;color:var(--muted)">Sensitive information (MongoDB URI, JWT secret, OAuth keys) is stored in <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:0.8rem">.env</code> files, never committed to GitHub. Vercel's environment variables panel stores production secrets securely.</p></div></div>
+    <div class="code-block rv">
+      <div class="code-header"><span class="code-lang">.env — Environment Variables</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+      <pre><span class="cm"># Backend .env</span>
+<span class="at">MONGO_URI</span>=<span class="str">mongodb+srv://user:pass@cluster.mongodb.net/taskbridge</span>
+<span class="at">JWT_SECRET</span>=<span class="str">your_super_secret_key_here</span>
+<span class="at">PORT</span>=<span class="vl">5000</span>
+<span class="at">GOOGLE_CLIENT_ID</span>=<span class="str">xxx.apps.googleusercontent.com</span>
+<span class="at">EMAIL_USER</span>=<span class="str">noreply@taskbridge.com</span>
+
+<span class="cm"># Frontend .env</span>
+<span class="at">VITE_API_URL</span>=<span class="str">https://api.taskbridge.com</span>
+<span class="at">VITE_GOOGLE_CLIENT_ID</span>=<span class="str">xxx.apps.googleusercontent.com</span></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CONTACT PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="pg-contact">
+  <div class="section-banner"><div class="section-banner-content"><h1>Contact</h1><p>Reach out to our team or explore the project</p><div class="line"></div></div></div>
+  <div class="content">
+    <div class="g3 rv in" style="gap:1.25rem;margin-bottom:2rem">
+      <div class="team-card me-card"><div class="tav" style="background:linear-gradient(135deg,#3b82f6,#a78bfa)">MS</div><div class="team-name">Manish Singri</div><div class="team-id">01FE24BCS107</div><div class="team-role">Full Stack Developer</div><div style="margin-top:6px"><span class="badge bb" style="font-size:0.65rem">⭐ You</span></div></div>
+      <div class="team-card"><div class="tav" style="background:linear-gradient(135deg,#22c55e,#3b82f6)">DP</div><div class="team-name">Devansh Pandey</div><div class="team-id">01FE24BCS046</div><div class="team-role">Backend Developer</div></div>
+      <div class="team-card"><div class="tav" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">OA</div><div class="team-name">Omkar Ananthapur</div><div class="team-id">01FE24BCS022</div><div class="team-role">Frontend Developer</div></div>
+      <div class="team-card"><div class="tav" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">SR</div><div class="team-name">Subhash Reddy</div><div class="team-id">01FE24BCS094</div><div class="team-role">Database & API</div></div>
+      <div class="team-card"><div class="tav" style="background:linear-gradient(135deg,#0ea5e9,#22c55e)">AS</div><div class="team-name">Atharva Shetty</div><div class="team-id">01FE23BCS039</div><div class="team-role">UI/UX & Testing</div></div>
+      <div class="team-card"><div class="tav" style="background:linear-gradient(135deg,#f97316,#eab308)">SP</div><div class="team-name">Samarth Patil</div><div class="team-id">01FE23BCS012</div><div class="team-role">System Design & Docs</div></div>
+    </div>
+    <div class="card rv"><div class="card-title">🔗 Project Links</div>
+      <div class="contact-row"><div class="contact-icon">⚡</div><div><div style="font-weight:600;font-size:0.9rem">Live Application</div><a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" style="font-size:0.82rem">taskbridge-frontend-sandy.vercel.app</a></div></div>
+      <div class="contact-row"><div class="contact-icon">◆</div><div><div style="font-weight:600;font-size:0.9rem">GitHub Repository</div><a href="https://github.com/victorykings2828-bot" target="_blank" style="font-size:0.82rem">github.com/victorykings2828-bot</a></div></div>
+      <div class="contact-row"><div class="contact-icon">🎓</div><div><div style="font-weight:600;font-size:0.9rem">Institution</div><div style="font-size:0.82rem;color:var(--muted)">KLE Technological University, Hubli — CSE 2025–26</div></div></div>
+    </div>
+  </div>
 </div>
 
 <!-- ═══ FOOTER ═══ -->
-<footer id="footer">
-  <strong>⚡ TaskBridge</strong> — Employee Work Distribution System (WorkDist)<br/>
-  KLE Technological University · Software Engineering 2025–26 ·
-  <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank">Live Demo ↗</a>
+<footer style="border-top:1px solid var(--border);padding:1.75rem 2rem;text-align:center;color:var(--muted);font-size:0.8rem">
+  <strong style="color:var(--text)">⚡ TaskBridge — Web Technology & Software Engineering Portfolio</strong><br/>
+  KLE Technological University · CSE · Academic Year 2025–26
 </footer>
 
 <script>
-  const pages = ['home','problem','design','requirements','implementation','testing','performance','team'];
-  const pageMap = {home:'pg-home',problem:'pg-problem',design:'pg-design',requirements:'pg-requirements',implementation:'pg-implementation',testing:'pg-testing',performance:'pg-performance',team:'pg-team'};
-  const sideLinks = document.querySelectorAll('.side-link');
-  const navTabs = document.querySelectorAll('.nav-tab');
+  const pages = ['home','learnings','project','devops','contact'];
 
-  function goto(id) {
+  function showPage(id) {
     pages.forEach(p => {
       const el = document.getElementById('pg-' + p);
       if(el) el.classList.remove('active');
     });
-    const pg = document.getElementById('pg-' + id) || document.getElementById(pageMap[id]);
+    const pg = document.getElementById('pg-' + id);
     if(pg) pg.classList.add('active');
-    navTabs.forEach((t,i) => t.classList.toggle('active', pages[i] === id));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    const activeTab = [...document.querySelectorAll('.nav-link')].find(l => l.textContent.toLowerCase().includes(id) || (id==='home' && l.textContent.trim()==='Home'));
+    if(activeTab) activeTab.classList.add('active');
     window.scrollTo(0,0);
-    document.querySelectorAll('.reveal').forEach(el => {
-      setTimeout(() => el.classList.add('in'), 50);
-    });
+    triggerReveal();
   }
 
-  function showSub(group, sub) {
-    const btn = document.getElementById(group + '-snav');
-    if(btn) btn.querySelectorAll('.snav-btn').forEach((b,i) => {
-      const subs = {design:['arch','context','usecase','seq'], requirements:['fr','nfr'], impl:['tech','roles','dash']};
-      if(subs[group]) b.classList.toggle('on', subs[group][i] === sub);
+  function showLearn(id) {
+    document.querySelectorAll('#pg-learnings .subpg').forEach(s => s.classList.remove('on'));
+    const el = document.getElementById('learn-' + id);
+    if(el) el.classList.add('on');
+    document.querySelectorAll('#pg-learnings .snb').forEach((b,i) => {
+      b.classList.toggle('on', ['html','css','js','node','mongo','react'][i] === id);
     });
-    const parent = document.getElementById('pg-' + (group==='impl'?'implementation':group));
-    if(parent) parent.querySelectorAll('.subpage').forEach(sp => sp.classList.toggle('on', sp.id === group+'-'+sub));
+    triggerReveal();
   }
 
-  function showTab(group, sub) {
-    const btnGroup = {dash:['emp','mgr','adm']};
-    document.querySelectorAll(`[onclick*="showTab('${group}'"]`).forEach((b,i) => b.classList.toggle('on', (btnGroup[group]||[])[i] === sub));
-    (btnGroup[group]||[]).forEach(s => {
-      const el = document.getElementById(group+'-'+s);
-      if(el) el.classList.toggle('on', s === sub);
+  function showProj(id) {
+    document.querySelectorAll('#pg-project .subpg').forEach(s => s.classList.remove('on'));
+    const el = document.getElementById('proj-' + id);
+    if(el) el.classList.add('on');
+    document.querySelectorAll('#pg-project .snb').forEach((b,i) => {
+      b.classList.toggle('on', ['problem','design','impl','testing'][i] === id);
     });
+    triggerReveal();
   }
 
-  // Fix section sub-nav buttons
-  document.querySelectorAll('.section-nav .snav-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      this.closest('.section-nav').querySelectorAll('.snav-btn').forEach(b => b.classList.remove('on'));
-      this.classList.add('on');
+  function showDesign(id) {
+    document.querySelectorAll('#proj-design .tpane').forEach(p => p.classList.remove('on'));
+    const el = document.getElementById('des-' + id);
+    if(el) el.classList.add('on');
+    document.querySelectorAll('#proj-design .tbtn').forEach((b,i) => {
+      b.classList.toggle('on', ['arch','context','usecase','seq','req'][i] === id);
     });
-  });
+    triggerReveal();
+  }
 
-  // Reveal on load
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  function triggerReveal() {
+    setTimeout(() => {
+      document.querySelectorAll('.active .rv, .on .rv').forEach(el => el.classList.add('in'));
+    }, 60);
+  }
 
-  // Intersection observer for lazy reveals
+  // Initial reveal
+  triggerReveal();
+
+  // Intersection observer
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
-  },{threshold:0.08});
-  document.querySelectorAll('.reveal').forEach(el => { el.classList.remove('in'); obs.observe(el); });
+  }, {threshold:0.08});
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
