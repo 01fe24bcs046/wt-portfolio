@@ -965,312 +965,803 @@ router.<span class="fn">post</span>(<span class="str">"/tasks"</span>, protect, 
 
     <!-- Web Tech Project -->
     <div class="subpg on" id="proj-wt">
-      <div class="card rv in">
-        <div class="card-title">🌐 Web Technology Course Project</div>
-        <div class="card-body">
-          <p>As part of the Web Technology course at KLE Technological University, we built progressively complex web projects — starting from static HTML pages and advancing to a full-stack MERN application. Each assignment built on the skills from the previous one, culminating in the TaskBridge application.</p>
+
+      <!-- Overview banner -->
+      <div style="background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(167,139,250,0.08));border:1px solid rgba(59,130,246,0.2);border-radius:16px;padding:2rem;margin-bottom:1.75rem" class="rv in">
+        <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:0.6rem">🌐 Web Technology Course Project</div>
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:0.6rem">Progressive Web Development Journey</h2>
+        <p style="font-size:0.9rem;color:var(--muted);line-height:1.7">At KLE Technological University, we worked through four progressive milestones — from writing our first HTML tag to deploying a full-stack production application. Each stage compounded on the previous, building real-world skills used by professional developers.</p>
+        <div style="display:flex;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap">
+          <div style="text-align:center"><div style="font-size:1.4rem;font-weight:800;color:var(--blue)">4</div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase">Milestones</div></div>
+          <div style="text-align:center"><div style="font-size:1.4rem;font-weight:800;color:var(--green)">6</div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase">Technologies</div></div>
+          <div style="text-align:center"><div style="font-size:1.4rem;font-weight:800;color:var(--yellow)">20+</div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase">Code Files</div></div>
+          <div style="text-align:center"><div style="font-size:1.4rem;font-weight:800;color:var(--purple)">1</div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase">Live App</div></div>
         </div>
       </div>
 
-      <!-- Assignment 1 -->
-      <h2 style="font-size:1.1rem;font-weight:800;margin:1.75rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:8px"><span style="background:var(--blue-dim);border:1px solid rgba(59,130,246,0.3);color:var(--blue);padding:2px 10px;border-radius:100px;font-size:0.75rem">Assignment 1</span> Static Website with HTML & CSS</h2>
-      <div class="card rv in">
-        <div class="card-title">📋 Objective</div>
-        <div class="card-body">Build a multi-page static portfolio website using only HTML and CSS. The website includes a home page, an about page, a skills section, and a contact form — demonstrating mastery of semantic HTML, CSS layouts, and responsive design.</div>
+      <!-- Journey timeline -->
+      <div class="card rv in" style="margin-bottom:1.75rem">
+        <div class="card-title">🗺 Project Journey</div>
+        <div style="display:flex;align-items:center;gap:0;overflow-x:auto;padding:0.5rem 0">
+          <div style="text-align:center;flex:1;min-width:100px"><div style="width:36px;height:36px;border-radius:50%;background:var(--blue-dim);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:0.8rem;font-weight:800;color:var(--blue)">1</div><div style="font-size:0.75rem;font-weight:600">HTML & CSS</div><div style="font-size:0.68rem;color:var(--muted)">Static Site</div></div>
+          <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--blue),var(--green));min-width:30px"></div>
+          <div style="text-align:center;flex:1;min-width:100px"><div style="width:36px;height:36px;border-radius:50%;background:var(--green-dim);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:0.8rem;font-weight:800;color:var(--green)">2</div><div style="font-size:0.75rem;font-weight:600">JavaScript</div><div style="font-size:0.68rem;color:var(--muted)">Interactive App</div></div>
+          <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--green),var(--yellow));min-width:30px"></div>
+          <div style="text-align:center;flex:1;min-width:100px"><div style="width:36px;height:36px;border-radius:50%;background:var(--yellow-dim);border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:0.8rem;font-weight:800;color:var(--yellow)">3</div><div style="font-size:0.75rem;font-weight:600">Node + MongoDB</div><div style="font-size:0.68rem;color:var(--muted)">REST API</div></div>
+          <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--yellow),var(--purple));min-width:30px"></div>
+          <div style="text-align:center;flex:1;min-width:100px"><div style="width:36px;height:36px;border-radius:50%;background:var(--purple-dim);border:2px solid var(--purple);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:0.8rem;font-weight:800;color:var(--purple)">4</div><div style="font-size:0.75rem;font-weight:600">React MERN</div><div style="font-size:0.68rem;color:var(--muted)">Live App</div></div>
+        </div>
       </div>
+
+      <!-- ── ASSIGNMENT 1 ── -->
+      <div style="display:flex;align-items:center;gap:10px;margin:2rem 0 1rem">
+        <span style="background:var(--blue-dim);border:1px solid rgba(59,130,246,0.3);color:var(--blue);padding:3px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;white-space:nowrap">Assignment 1</span>
+        <h2 style="font-size:1.1rem;font-weight:800;color:var(--text);margin:0">Static Portfolio Website — HTML & CSS</h2>
+      </div>
+
       <div class="g2 rv in">
         <div class="card">
-          <div class="card-title">✅ What We Built</div>
-          <div class="card-body">
-            <ul class="rlist">
-              <li>Navigation bar with active states</li>
-              <li>Hero section with background image</li>
-              <li>About section with photo and bio</li>
-              <li>Skills grid with icons</li>
-              <li>Contact form with validation</li>
-              <li>Fully responsive (mobile-first)</li>
-            </ul>
-          </div>
+          <div class="card-title">📋 Objective</div>
+          <div class="card-body">Build a fully responsive multi-page personal portfolio website using only HTML5 and CSS3 — no JavaScript or frameworks. Demonstrate mastery of semantic markup, the box model, Flexbox, CSS Grid, animations, and media queries.</div>
         </div>
         <div class="card">
-          <div class="card-title">🛠 Technologies Used</div>
-          <div class="pill-wrap">
-            <span class="pill">HTML5</span><span class="pill">CSS3</span>
-            <span class="pill">Flexbox</span><span class="pill">CSS Grid</span>
-            <span class="pill">Media Queries</span><span class="pill">CSS Variables</span>
-          </div>
-          <div style="margin-top:0.75rem;font-size:0.82rem;color:var(--muted)">Focus on semantic structure, clean layout, and mobile responsiveness without any JavaScript or frameworks.</div>
+          <div class="card-title">🛠 Technologies</div>
+          <div class="pill-wrap"><span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">Flexbox</span><span class="pill">CSS Grid</span><span class="pill">Animations</span><span class="pill">Media Queries</span><span class="pill">CSS Variables</span></div>
         </div>
       </div>
-      <div class="code-block rv in">
-        <div class="code-header"><span class="code-lang">Assignment 1 — HTML Structure</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
-        <pre><span class="tg">&lt;!DOCTYPE html&gt;</span>
+
+      <div class="card rv in">
+        <div class="card-title">📁 Project File Structure</div>
+        <div class="code-block" style="margin:0.5rem 0 0">
+          <div class="code-header"><span class="code-lang">File Structure</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="nm">portfolio/</span>
+├── <span class="tg">index.html</span>          <span class="cm"># Home page</span>
+├── <span class="tg">about.html</span>          <span class="cm"># About me page</span>
+├── <span class="tg">contact.html</span>        <span class="cm"># Contact form page</span>
+├── <span class="nm">css/</span>
+│   ├── <span class="tg">style.css</span>       <span class="cm"># Main stylesheet</span>
+│   ├── <span class="tg">navbar.css</span>      <span class="cm"># Navigation styles</span>
+│   └── <span class="tg">responsive.css</span>  <span class="cm"># Media queries</span>
+└── <span class="nm">images/</span>
+    └── profile.jpg</pre>
+        </div>
+      </div>
+
+      <div class="g2 rv in">
+        <div class="code-block" style="margin:0">
+          <div class="code-header"><span class="code-lang">HTML — Semantic Structure</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="tg">&lt;!DOCTYPE html&gt;</span>
 <span class="tg">&lt;html</span> <span class="at">lang</span>=<span class="str">"en"</span><span class="tg">&gt;</span>
 <span class="tg">&lt;head&gt;</span>
   <span class="tg">&lt;meta</span> <span class="at">charset</span>=<span class="str">"UTF-8"</span><span class="tg">/&gt;</span>
-  <span class="tg">&lt;link</span> <span class="at">rel</span>=<span class="str">"stylesheet"</span> <span class="at">href</span>=<span class="str">"style.css"</span><span class="tg">/&gt;</span>
-  <span class="tg">&lt;title&gt;</span>Student Portfolio<span class="tg">&lt;/title&gt;</span>
+  <span class="tg">&lt;meta</span> <span class="at">name</span>=<span class="str">"viewport"</span>
+    <span class="at">content</span>=<span class="str">"width=device-width,
+    initial-scale=1.0"</span><span class="tg">/&gt;</span>
+  <span class="tg">&lt;link</span> <span class="at">rel</span>=<span class="str">"stylesheet"</span>
+    <span class="at">href</span>=<span class="str">"css/style.css"</span><span class="tg">/&gt;</span>
+  <span class="tg">&lt;title&gt;</span>Manish Singri<span class="tg">&lt;/title&gt;</span>
 <span class="tg">&lt;/head&gt;</span>
 <span class="tg">&lt;body&gt;</span>
-  <span class="tg">&lt;nav</span> <span class="at">class</span>=<span class="str">"navbar"</span><span class="tg">&gt;</span>
-    <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"logo"</span><span class="tg">&gt;</span>Manish Singri<span class="tg">&lt;/div&gt;</span>
-    <span class="tg">&lt;ul</span> <span class="at">class</span>=<span class="str">"nav-links"</span><span class="tg">&gt;</span>
-      <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"#home"</span><span class="tg">&gt;</span>Home<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"#about"</span><span class="tg">&gt;</span>About<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"#skills"</span><span class="tg">&gt;</span>Skills<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"#contact"</span><span class="tg">&gt;</span>Contact<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="tg">&lt;/ul&gt;</span>
-  <span class="tg">&lt;/nav&gt;</span>
+  <span class="tg">&lt;header&gt;</span>
+    <span class="tg">&lt;nav</span> <span class="at">class</span>=<span class="str">"navbar"</span><span class="tg">&gt;</span>
+      <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"logo"</span><span class="tg">&gt;</span>MS<span class="tg">&lt;/div&gt;</span>
+      <span class="tg">&lt;ul</span> <span class="at">class</span>=<span class="str">"nav-links"</span><span class="tg">&gt;</span>
+        <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"index.html"</span><span class="tg">&gt;</span>Home<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"about.html"</span><span class="tg">&gt;</span>About<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="str">"contact.html"</span><span class="tg">&gt;</span>Contact<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="tg">&lt;/ul&gt;</span>
+    <span class="tg">&lt;/nav&gt;</span>
+  <span class="tg">&lt;/header&gt;</span>
+  <span class="tg">&lt;main&gt;</span>
+    <span class="tg">&lt;section</span> <span class="at">class</span>=<span class="str">"hero"</span><span class="tg">&gt;</span>
+      <span class="tg">&lt;h1&gt;</span>Hi, I'm
+        <span class="tg">&lt;span</span> <span class="at">class</span>=<span class="str">"accent"</span><span class="tg">&gt;</span>Manish<span class="tg">&lt;/span&gt;</span>
+      <span class="tg">&lt;/h1&gt;</span>
+      <span class="tg">&lt;p&gt;</span>CSE Student @ KLE Tech<span class="tg">&lt;/p&gt;</span>
+      <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="str">"#skills"</span> <span class="at">class</span>=<span class="str">"btn"</span><span class="tg">&gt;</span>
+        See My Skills
+      <span class="tg">&lt;/a&gt;</span>
+    <span class="tg">&lt;/section&gt;</span>
+    <span class="tg">&lt;section</span> <span class="at">id</span>=<span class="str">"skills"</span><span class="tg">&gt;</span>
+      <span class="tg">&lt;h2&gt;</span>Skills<span class="tg">&lt;/h2&gt;</span>
+      <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skills-grid"</span><span class="tg">&gt;</span>
+        <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill"</span><span class="tg">&gt;</span>HTML5<span class="tg">&lt;/div&gt;</span>
+        <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill"</span><span class="tg">&gt;</span>CSS3<span class="tg">&lt;/div&gt;</span>
+        <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill"</span><span class="tg">&gt;</span>JavaScript<span class="tg">&lt;/div&gt;</span>
+      <span class="tg">&lt;/div&gt;</span>
+    <span class="tg">&lt;/section&gt;</span>
+  <span class="tg">&lt;/main&gt;</span>
+  <span class="tg">&lt;footer&gt;</span>
+    <span class="tg">&lt;p&gt;</span>&amp;copy; 2026 Manish Singri<span class="tg">&lt;/p&gt;</span>
+  <span class="tg">&lt;/footer&gt;</span>
+<span class="tg">&lt;/body&gt;&lt;/html&gt;</span></pre>
+        </div>
+        <div class="code-block" style="margin:0">
+          <div class="code-header"><span class="code-lang">CSS — Layout, Variables & Animations</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="cm">/* CSS Custom Properties */</span>
+<span class="tg">:root</span> {
+  <span class="at">--primary</span>: <span class="vl">#3b82f6</span>;
+  <span class="at">--dark</span>: <span class="vl">#0a0d14</span>;
+  <span class="at">--card</span>: <span class="vl">#181d2b</span>;
+  <span class="at">--text</span>: <span class="vl">#e2e8f0</span>;
+  <span class="at">--radius</span>: <span class="vl">12px</span>;
+}
 
-  <span class="tg">&lt;section</span> <span class="at">id</span>=<span class="str">"hero"</span><span class="tg">&gt;</span>
-    <span class="tg">&lt;h1&gt;</span>Hi, I'm <span class="tg">&lt;span</span> <span class="at">class</span>=<span class="str">"highlight"</span><span class="tg">&gt;</span>Manish<span class="tg">&lt;/span&gt;&lt;/h1&gt;</span>
-    <span class="tg">&lt;p&gt;</span>Computer Science Student @ KLE Tech<span class="tg">&lt;/p&gt;</span>
-    <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="str">"#about"</span> <span class="at">class</span>=<span class="str">"btn"</span><span class="tg">&gt;</span>Learn More<span class="tg">&lt;/a&gt;</span>
-  <span class="tg">&lt;/section&gt;</span>
-
-  <span class="tg">&lt;section</span> <span class="at">id</span>=<span class="str">"skills"</span><span class="tg">&gt;</span>
-    <span class="tg">&lt;h2&gt;</span>Skills<span class="tg">&lt;/h2&gt;</span>
-    <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skills-grid"</span><span class="tg">&gt;</span>
-      <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill-card"</span><span class="tg">&gt;</span>HTML<span class="tg">&lt;/div&gt;</span>
-      <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill-card"</span><span class="tg">&gt;</span>CSS<span class="tg">&lt;/div&gt;</span>
-      <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="str">"skill-card"</span><span class="tg">&gt;</span>JavaScript<span class="tg">&lt;/div&gt;</span>
-    <span class="tg">&lt;/div&gt;</span>
-  <span class="tg">&lt;/section&gt;</span>
-<span class="tg">&lt;/body&gt;</span>
-<span class="tg">&lt;/html&gt;</span></pre>
-      </div>
-      <div class="code-block rv in">
-        <div class="code-header"><span class="code-lang">Assignment 1 — CSS (Responsive Navbar + Grid)</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
-        <pre><span class="cm">/* Navbar */</span>
+<span class="cm">/* Sticky Navbar */</span>
 <span class="tg">.navbar</span> {
   <span class="at">display</span>: <span class="vl">flex</span>;
   <span class="at">justify-content</span>: <span class="vl">space-between</span>;
   <span class="at">align-items</span>: <span class="vl">center</span>;
   <span class="at">padding</span>: <span class="vl">1rem 2rem</span>;
-  <span class="at">background</span>: <span class="vl">#0a0d14</span>;
   <span class="at">position</span>: <span class="vl">sticky</span>; <span class="at">top</span>: <span class="vl">0</span>;
+  <span class="at">background</span>: var(<span class="at">--dark</span>);
+  <span class="at">backdrop-filter</span>: <span class="fn">blur</span>(<span class="vl">10px</span>);
 }
-<span class="tg">.nav-links</span> { <span class="at">display</span>: <span class="vl">flex</span>; <span class="at">gap</span>: <span class="vl">1.5rem</span>; <span class="at">list-style</span>: <span class="vl">none</span>; }
-<span class="tg">.nav-links a:hover</span> { <span class="at">color</span>: <span class="vl">#3b82f6</span>; }
+<span class="tg">.nav-links</span> {
+  <span class="at">display</span>: <span class="vl">flex</span>; <span class="at">gap</span>: <span class="vl">1.5rem</span>;
+  <span class="at">list-style</span>: <span class="vl">none</span>;
+}
+<span class="tg">.nav-links a</span> {
+  <span class="at">color</span>: var(<span class="at">--text</span>);
+  <span class="at">transition</span>: color <span class="vl">0.2s</span>;
+}
+<span class="tg">.nav-links a:hover</span> {
+  <span class="at">color</span>: var(<span class="at">--primary</span>);
+}
 
-<span class="cm">/* Hero */</span>
-<span class="tg">#hero</span> {
+<span class="cm">/* Hero section */</span>
+<span class="tg">.hero</span> {
   <span class="at">min-height</span>: <span class="vl">100vh</span>;
-  <span class="at">display</span>: <span class="vl">flex</span>; <span class="at">flex-direction</span>: <span class="vl">column</span>;
-  <span class="at">align-items</span>: <span class="vl">center</span>; <span class="at">justify-content</span>: <span class="vl">center</span>;
+  <span class="at">display</span>: <span class="vl">flex</span>;
+  <span class="at">flex-direction</span>: <span class="vl">column</span>;
+  <span class="at">align-items</span>: <span class="vl">center</span>;
+  <span class="at">justify-content</span>: <span class="vl">center</span>;
   <span class="at">text-align</span>: <span class="vl">center</span>;
+  <span class="at">animation</span>: <span class="fn">fadeIn</span> <span class="vl">0.8s</span> ease;
 }
-<span class="tg">.highlight</span> { <span class="at">color</span>: <span class="vl">#3b82f6</span>; }
+<span class="tg">.accent</span> { <span class="at">color</span>: var(<span class="at">--primary</span>); }
 
-<span class="cm">/* Skills Grid */</span>
+<span class="cm">/* CSS Grid for skills */</span>
 <span class="tg">.skills-grid</span> {
   <span class="at">display</span>: <span class="vl">grid</span>;
-  <span class="at">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="vl">auto-fit</span>, <span class="fn">minmax</span>(<span class="vl">150px</span>, <span class="vl">1fr</span>));
+  <span class="at">grid-template-columns</span>:
+    <span class="fn">repeat</span>(<span class="vl">auto-fit</span>, <span class="fn">minmax</span>(<span class="vl">140px</span>,<span class="vl">1fr</span>));
   <span class="at">gap</span>: <span class="vl">1rem</span>;
 }
-<span class="tg">.skill-card</span> {
-  <span class="at">background</span>: <span class="vl">#181d2b</span>; <span class="at">border-radius</span>: <span class="vl">10px</span>;
-  <span class="at">padding</span>: <span class="vl">1.5rem</span>; <span class="at">text-align</span>: <span class="vl">center</span>;
-  <span class="at">transition</span>: transform <span class="vl">0.2s</span>;
+<span class="tg">.skill</span> {
+  <span class="at">background</span>: var(<span class="at">--card</span>);
+  <span class="at">border-radius</span>: var(<span class="at">--radius</span>);
+  <span class="at">padding</span>: <span class="vl">1.5rem</span>;
+  <span class="at">text-align</span>: <span class="vl">center</span>;
+  <span class="at">transition</span>: transform <span class="vl">0.2s</span>,
+    box-shadow <span class="vl">0.2s</span>;
 }
-<span class="tg">.skill-card:hover</span> { <span class="at">transform</span>: <span class="fn">translateY</span>(<span class="vl">-4px</span>); }
+<span class="tg">.skill:hover</span> {
+  <span class="at">transform</span>: <span class="fn">translateY</span>(<span class="vl">-4px</span>);
+  <span class="at">box-shadow</span>: <span class="vl">0 8px 24px</span>
+    <span class="fn">rgba</span>(<span class="vl">59,130,246,0.2</span>);
+}
+
+<span class="cm">/* Fade-in animation */</span>
+<span class="tg">@keyframes</span> fadeIn {
+  <span class="kw">from</span> { <span class="at">opacity</span>:<span class="vl">0</span>;
+    <span class="at">transform</span>:<span class="fn">translateY</span>(<span class="vl">20px</span>) }
+  <span class="kw">to</span>   { <span class="at">opacity</span>:<span class="vl">1</span>;
+    <span class="at">transform</span>:<span class="fn">translateY</span>(<span class="vl">0</span>) }
+}
+
+<span class="cm">/* Contact Form */</span>
+<span class="tg">form</span> { <span class="at">display</span>: <span class="vl">flex</span>;
+  <span class="at">flex-direction</span>: <span class="vl">column</span>; <span class="at">gap</span>: <span class="vl">1rem</span> }
+<span class="tg">input, textarea</span> {
+  <span class="at">background</span>: var(<span class="at">--card</span>);
+  <span class="at">border</span>: <span class="vl">1px</span> solid <span class="vl">#252d42</span>;
+  <span class="at">border-radius</span>: var(<span class="at">--radius</span>);
+  <span class="at">padding</span>: <span class="vl">0.75rem 1rem</span>;
+  <span class="at">color</span>: var(<span class="at">--text</span>);
+  <span class="at">font-size</span>: <span class="vl">0.9rem</span>;
+}
+<span class="tg">input:focus, textarea:focus</span> {
+  <span class="at">outline</span>: <span class="vl">none</span>;
+  <span class="at">border-color</span>: var(<span class="at">--primary</span>);
+}
 
 <span class="cm">/* Responsive */</span>
 <span class="tg">@media</span> (max-width: <span class="vl">768px</span>) {
-  <span class="tg">.navbar</span> { <span class="at">flex-direction</span>: <span class="vl">column</span>; <span class="at">gap</span>: <span class="vl">1rem</span>; }
-  <span class="tg">.nav-links</span> { <span class="at">flex-wrap</span>: <span class="vl">wrap</span>; <span class="at">justify-content</span>: <span class="vl">center</span>; }
+  <span class="tg">.navbar</span> {
+    <span class="at">flex-direction</span>: <span class="vl">column</span>;
+    <span class="at">gap</span>: <span class="vl">1rem</span>;
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="card rv in">
+        <div class="card-title">💡 Key Learnings from Assignment 1</div>
+        <div class="g3" style="gap:0.75rem;margin-top:0.5rem">
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--blue);margin-bottom:4px">Semantic HTML</div><div style="font-size:0.78rem;color:var(--muted)">Using header, main, footer, section, nav — not just divs everywhere</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--green);margin-bottom:4px">Box Model</div><div style="font-size:0.78rem;color:var(--muted)">margin vs padding vs border — how browsers calculate element sizes</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--yellow);margin-bottom:4px">CSS Variables</div><div style="font-size:0.78rem;color:var(--muted)">:root variables for consistent theming across all pages</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--purple);margin-bottom:4px">Flexbox & Grid</div><div style="font-size:0.78rem;color:var(--muted)">flex for 1D (navbars), grid for 2D (cards, galleries)</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--cyan);margin-bottom:4px">Animations</div><div style="font-size:0.78rem;color:var(--muted)">@keyframes, transition, transform for smooth interactions</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--orange);margin-bottom:4px">Responsive Design</div><div style="font-size:0.78rem;color:var(--muted)">Media queries, mobile-first approach, fluid layouts</div></div>
+        </div>
+      </div>
+
+      <!-- ── ASSIGNMENT 2 ── -->
+      <div style="display:flex;align-items:center;gap:10px;margin:2.5rem 0 1rem">
+        <span style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.3);color:var(--green);padding:3px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;white-space:nowrap">Assignment 2</span>
+        <h2 style="font-size:1.1rem;font-weight:800;color:var(--text);margin:0">Interactive Task Manager — Vanilla JavaScript</h2>
+      </div>
+
+      <div class="g2 rv in">
+        <div class="card">
+          <div class="card-title">📋 Objective</div>
+          <div class="card-body">Build a fully interactive browser-based task manager without any framework or backend. Master DOM manipulation, event handling, browser storage APIs, and dynamic UI updates using pure JavaScript.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛠 Technologies</div>
+          <div class="pill-wrap"><span class="pill">JavaScript ES6+</span><span class="pill">DOM API</span><span class="pill">localStorage</span><span class="pill">Events</span><span class="pill">Array Methods</span><span class="pill">Template Literals</span></div>
+        </div>
+      </div>
+
+      <div class="card rv in">
+        <div class="card-title">📁 File Structure</div>
+        <div class="code-block" style="margin:0.5rem 0 0">
+          <div class="code-header"><span class="code-lang">File Structure</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="nm">task-manager/</span>
+├── <span class="tg">index.html</span>       <span class="cm"># Single page app</span>
+├── <span class="nm">css/</span>
+│   └── <span class="tg">style.css</span>    <span class="cm"># All styles</span>
+└── <span class="nm">js/</span>
+    ├── <span class="tg">app.js</span>       <span class="cm"># Main entry point</span>
+    ├── <span class="tg">tasks.js</span>     <span class="cm"># CRUD logic</span>
+    ├── <span class="tg">render.js</span>    <span class="cm"># DOM rendering</span>
+    └── <span class="tg">storage.js</span>   <span class="cm"># localStorage helpers</span></pre>
+        </div>
+      </div>
+
+      <div class="g2 rv in">
+        <div class="code-block" style="margin:0">
+          <div class="code-header"><span class="code-lang">tasks.js — CRUD & localStorage</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="cm">// storage.js</span>
+<span class="kw">const</span> <span class="nm">Storage</span> = {
+  <span class="fn">get</span>: () =>
+    <span class="nm">JSON</span>.<span class="fn">parse</span>(localStorage
+      .<span class="fn">getItem</span>(<span class="str">"tasks"</span>)) || [],
+  <span class="fn">set</span>: (<span class="nm">tasks</span>) =>
+    localStorage.<span class="fn">setItem</span>(
+      <span class="str">"tasks"</span>,
+      <span class="nm">JSON</span>.<span class="fn">stringify</span>(tasks)
+    )
+};
+
+<span class="cm">// tasks.js — Core logic</span>
+<span class="kw">let</span> <span class="nm">tasks</span> = Storage.<span class="fn">get</span>();
+
+<span class="kw">const</span> <span class="fn">addTask</span> = (<span class="nm">text</span>, <span class="nm">priority</span>) => {
+  <span class="kw">const</span> <span class="nm">task</span> = {
+    id: <span class="nm">Date</span>.<span class="fn">now</span>(),
+    text,
+    priority, <span class="cm">// low|medium|high</span>
+    done: <span class="kw">false</span>,
+    createdAt: <span class="kw">new</span> <span class="nm">Date</span>()
+      .<span class="fn">toISOString</span>()
+  };
+  tasks.<span class="fn">push</span>(task);
+  Storage.<span class="fn">set</span>(tasks);
+  <span class="fn">renderTasks</span>();
+};
+
+<span class="kw">const</span> <span class="fn">toggleTask</span> = (<span class="nm">id</span>) => {
+  tasks = tasks.<span class="fn">map</span>(t =>
+    t.id === id
+      ? { ...t, done: !t.done }
+      : t
+  );
+  Storage.<span class="fn">set</span>(tasks);
+  <span class="fn">renderTasks</span>();
+};
+
+<span class="kw">const</span> <span class="fn">deleteTask</span> = (<span class="nm">id</span>) => {
+  tasks = tasks.<span class="fn">filter</span>(t =>
+    t.id !== id
+  );
+  Storage.<span class="fn">set</span>(tasks);
+  <span class="fn">renderTasks</span>();
+};
+
+<span class="kw">const</span> <span class="fn">filterTasks</span> = (<span class="nm">type</span>) => {
+  <span class="kw">if</span> (type === <span class="str">"active"</span>)
+    <span class="kw">return</span> tasks.<span class="fn">filter</span>(t => !t.done);
+  <span class="kw">if</span> (type === <span class="str">"done"</span>)
+    <span class="kw">return</span> tasks.<span class="fn">filter</span>(t => t.done);
+  <span class="kw">return</span> tasks;
+};</pre>
+        </div>
+        <div class="code-block" style="margin:0">
+          <div class="code-header"><span class="code-lang">render.js — DOM & Events</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="cm">// render.js — Dynamic DOM updates</span>
+<span class="kw">const</span> <span class="nm">list</span> = document
+  .<span class="fn">getElementById</span>(<span class="str">"task-list"</span>);
+<span class="kw">const</span> <span class="nm">counter</span> = document
+  .<span class="fn">getElementById</span>(<span class="str">"task-count"</span>);
+
+<span class="kw">function</span> <span class="fn">renderTasks</span>(<span class="nm">filter</span>=<span class="str">"all"</span>) {
+  <span class="kw">const</span> <span class="nm">shown</span> = <span class="fn">filterTasks</span>(filter);
+  list.innerHTML = shown
+    .<span class="fn">map</span>(t => <span class="str">`
+    &lt;li class="task
+      <span class="nm">${t.done ? 'done' : ''}</span>
+      priority-<span class="nm">${t.priority}</span>"&gt;
+      &lt;input type="checkbox"
+        <span class="nm">${t.done ? 'checked' : ''}</span>
+        onchange="toggleTask(<span class="nm">${t.id}</span>)"&gt;
+      &lt;span&gt;<span class="nm">${t.text}</span>&lt;/span&gt;
+      &lt;span class="tag"&gt;
+        <span class="nm">${t.priority}</span>
+      &lt;/span&gt;
+      &lt;button onclick=
+        "deleteTask(<span class="nm">${t.id}</span>)"&gt;✕
+      &lt;/button&gt;
+    &lt;/li&gt;`</span>).<span class="fn">join</span>(<span class="str">""</span>);
+
+  counter.textContent =
+    <span class="str">`<span class="nm">${shown.<span class="fn">filter</span>(t=>!t.done).length}</span>
+    tasks remaining`</span>;
+}
+
+<span class="cm">// Form submission</span>
+document
+  .<span class="fn">getElementById</span>(<span class="str">"task-form"</span>)
+  .<span class="fn">addEventListener</span>(<span class="str">"submit"</span>, e => {
+    e.<span class="fn">preventDefault</span>();
+    <span class="kw">const</span> text = document
+      .<span class="fn">getElementById</span>(<span class="str">"text"</span>).value;
+    <span class="kw">const</span> priority = document
+      .<span class="fn">getElementById</span>(<span class="str">"priority"</span>).value;
+    <span class="kw">if</span> (text.<span class="fn">trim</span>())
+      <span class="fn">addTask</span>(text, priority);
+    e.target.<span class="fn">reset</span>();
+  });
+
+<span class="cm">// Filter buttons</span>
+document.<span class="fn">querySelectorAll</span>(
+  <span class="str">".filter-btn"</span>)
+  .<span class="fn">forEach</span>(btn =>
+    btn.<span class="fn">addEventListener</span>(
+      <span class="str">"click"</span>, () => {
+        document
+          .<span class="fn">querySelectorAll</span>(
+            <span class="str">".filter-btn"</span>)
+          .<span class="fn">forEach</span>(b =>
+            b.classList
+             .<span class="fn">remove</span>(<span class="str">"active"</span>));
+        btn.classList
+          .<span class="fn">add</span>(<span class="str">"active"</span>);
+        <span class="fn">renderTasks</span>(
+          btn.dataset.filter);
+      }));
+
+document.<span class="fn">addEventListener</span>(
+  <span class="str">"DOMContentLoaded"</span>,
+  () => <span class="fn">renderTasks</span>());</pre>
+        </div>
+      </div>
+
+      <!-- Live preview of task manager -->
+      <div class="card rv in" style="margin-top:0.5rem">
+        <div class="card-title">🖥 App Preview — Task Manager UI</div>
+        <div style="background:#0d1117;border-radius:10px;padding:1.25rem;margin-top:0.5rem;font-family:'JetBrains Mono',monospace">
+          <div style="display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap">
+            <div style="background:#181d2b;border:1px solid #252d42;border-radius:6px;padding:5px 12px;font-size:0.75rem;color:var(--blue)">All (3)</div>
+            <div style="background:#181d2b;border:1px solid #252d42;border-radius:6px;padding:5px 12px;font-size:0.75rem;color:var(--muted)">Active (2)</div>
+            <div style="background:#181d2b;border:1px solid #252d42;border-radius:6px;padding:5px 12px;font-size:0.75rem;color:var(--muted)">Done (1)</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:10px;background:#181d2b;border:1px solid #252d42;border-radius:8px;padding:10px 12px">
+              <input type="checkbox" disabled style="accent-color:#3b82f6"/>
+              <span style="font-size:0.82rem;color:var(--text);flex:1">Build the portfolio homepage</span>
+              <span style="background:rgba(239,68,68,0.1);color:#ef4444;font-size:0.68rem;padding:2px 8px;border-radius:100px">high</span>
+              <span style="color:var(--muted);font-size:0.78rem;cursor:pointer">✕</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#181d2b;border:1px solid #252d42;border-radius:8px;padding:10px 12px">
+              <input type="checkbox" disabled style="accent-color:#3b82f6"/>
+              <span style="font-size:0.82rem;color:var(--text);flex:1">Add JavaScript interactivity</span>
+              <span style="background:rgba(245,158,11,0.1);color:#f59e0b;font-size:0.68rem;padding:2px 8px;border-radius:100px">medium</span>
+              <span style="color:var(--muted);font-size:0.78rem;cursor:pointer">✕</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#181d2b;border:1px solid #252d42;border-radius:8px;padding:10px 12px;opacity:0.5">
+              <input type="checkbox" checked disabled style="accent-color:#22c55e"/>
+              <span style="font-size:0.82rem;color:var(--muted);flex:1;text-decoration:line-through">Style the navbar with CSS</span>
+              <span style="background:rgba(34,197,94,0.1);color:#22c55e;font-size:0.68rem;padding:2px 8px;border-radius:100px">low</span>
+              <span style="color:var(--muted);font-size:0.78rem;cursor:pointer">✕</span>
+            </div>
+          </div>
+          <div style="font-size:0.72rem;color:var(--muted);margin-top:0.75rem">2 tasks remaining · Data saved to localStorage</div>
+        </div>
+      </div>
+
+      <div class="card rv in">
+        <div class="card-title">💡 Key Learnings from Assignment 2</div>
+        <div class="g3" style="gap:0.75rem;margin-top:0.5rem">
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--green);margin-bottom:4px">DOM Manipulation</div><div style="font-size:0.78rem;color:var(--muted)">querySelector, createElement, innerHTML, appendChild</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--blue);margin-bottom:4px">Event Handling</div><div style="font-size:0.78rem;color:var(--muted)">addEventListener, event delegation, preventDefault</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--yellow);margin-bottom:4px">Array Methods</div><div style="font-size:0.78rem;color:var(--muted)">map, filter, find, reduce — functional programming style</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--purple);margin-bottom:4px">localStorage</div><div style="font-size:0.78rem;color:var(--muted)">JSON.stringify/parse, persistent state without a backend</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--red);margin-bottom:4px">Modular JS</div><div style="font-size:0.78rem;color:var(--muted)">Splitting code into files — tasks.js, render.js, storage.js</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--cyan);margin-bottom:4px">Template Literals</div><div style="font-size:0.78rem;color:var(--muted)">`${var}` for dynamic HTML generation inside JavaScript</div></div>
+        </div>
+      </div>
+
+      <!-- ── ASSIGNMENT 3 ── -->
+      <div style="display:flex;align-items:center;gap:10px;margin:2.5rem 0 1rem">
+        <span style="background:var(--yellow-dim);border:1px solid rgba(245,158,11,0.3);color:var(--yellow);padding:3px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;white-space:nowrap">Assignment 3</span>
+        <h2 style="font-size:1.1rem;font-weight:800;color:var(--text);margin:0">Backend REST API — Node.js, Express & MongoDB</h2>
+      </div>
+
+      <div class="g2 rv in">
+        <div class="card">
+          <div class="card-title">📋 Objective</div>
+          <div class="card-body">Build a secure, production-ready REST API with Node.js and Express, connected to MongoDB Atlas. Implement full CRUD operations, JWT authentication, input validation, and role-based middleware — all tested via Postman.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛠 Technologies</div>
+          <div class="pill-wrap"><span class="pill">Node.js</span><span class="pill">Express.js</span><span class="pill">MongoDB Atlas</span><span class="pill">Mongoose</span><span class="pill">JWT</span><span class="pill">bcryptjs</span><span class="pill">dotenv</span><span class="pill">Postman</span></div>
+        </div>
+      </div>
+
+      <div class="card rv in">
+        <div class="card-title">📁 Backend File Structure</div>
+        <div class="code-block" style="margin:0.5rem 0 0">
+          <div class="code-header"><span class="code-lang">File Structure</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="nm">backend/</span>
+├── <span class="tg">server.js</span>              <span class="cm"># Entry point</span>
+├── <span class="tg">.env</span>                   <span class="cm"># Secrets (gitignored)</span>
+├── <span class="nm">config/</span>
+│   └── <span class="tg">db.js</span>              <span class="cm"># MongoDB connection</span>
+├── <span class="nm">models/</span>
+│   ├── <span class="tg">User.js</span>            <span class="cm"># User schema</span>
+│   └── <span class="tg">Task.js</span>            <span class="cm"># Task schema</span>
+├── <span class="nm">routes/</span>
+│   ├── <span class="tg">auth.js</span>            <span class="cm"># /api/auth</span>
+│   └── <span class="tg">tasks.js</span>           <span class="cm"># /api/tasks</span>
+├── <span class="nm">middleware/</span>
+│   ├── <span class="tg">protect.js</span>         <span class="cm"># JWT verify</span>
+│   └── <span class="tg">requireRole.js</span>     <span class="cm"># Role check</span>
+└── <span class="nm">controllers/</span>
+    ├── <span class="tg">authController.js</span>
+    └── <span class="tg">taskController.js</span></pre>
+        </div>
+      </div>
+
+      <div class="g2 rv in">
+        <div class="code-block" style="margin:0">
+          <div class="code-header"><span class="code-lang">server.js + db.js</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="cm">// server.js</span>
+<span class="kw">const</span> express  = <span class="fn">require</span>(<span class="str">"express"</span>);
+<span class="kw">const</span> cors     = <span class="fn">require</span>(<span class="str">"cors"</span>);
+<span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="str">"mongoose"</span>);
+<span class="fn">require</span>(<span class="str">"dotenv"</span>).<span class="fn">config</span>();
+
+<span class="kw">const</span> app = <span class="fn">express</span>();
+app.<span class="fn">use</span>(<span class="fn">cors</span>());
+app.<span class="fn">use</span>(express.<span class="fn">json</span>());
+
+<span class="cm">// Mount routes</span>
+app.<span class="fn">use</span>(<span class="str">"/api/auth"</span>,
+  <span class="fn">require</span>(<span class="str">"./routes/auth"</span>));
+app.<span class="fn">use</span>(<span class="str">"/api/tasks"</span>,
+  <span class="fn">require</span>(<span class="str">"./routes/tasks"</span>));
+
+<span class="cm">// Global error handler</span>
+app.<span class="fn">use</span>((err, req, res, next) => {
+  res.<span class="fn">status</span>(err.status || <span class="vl">500</span>)
+     .<span class="fn">json</span>({ msg: err.message });
+});
+
+mongoose
+  .<span class="fn">connect</span>(process.env.<span class="nm">MONGO_URI</span>)
+  .<span class="fn">then</span>(() => {
+    app.<span class="fn">listen</span>(<span class="vl">5000</span>, () =>
+      console.<span class="fn">log</span>(
+        <span class="str">"✅ Server on port 5000"</span>));
+  });
+
+<span class="cm">// config/db.js — connection helper</span>
+<span class="kw">const</span> <span class="fn">connectDB</span> = <span class="kw">async</span> () => {
+  <span class="kw">const</span> conn = <span class="kw">await</span> mongoose
+    .<span class="fn">connect</span>(process.env.<span class="nm">MONGO_URI</span>);
+  console.<span class="fn">log</span>(
+    <span class="str">`MongoDB: <span class="nm">${conn.connection.host}</span>`</span>);
+};
+module.exports = connectDB;</pre>
+        </div>
+        <div class="code-block" style="margin:0">
+          <div class="code-header"><span class="code-lang">models/Task.js + taskController.js</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+          <pre><span class="cm">// models/Task.js</span>
+<span class="kw">const</span> { Schema, model }
+  = <span class="fn">require</span>(<span class="str">"mongoose"</span>);
+
+<span class="kw">const</span> taskSchema = <span class="kw">new</span> <span class="fn">Schema</span>({
+  title: {
+    type: <span class="nm">String</span>,
+    required: [<span class="kw">true</span>,
+      <span class="str">"Title is required"</span>],
+    trim: <span class="kw">true</span>
+  },
+  description: <span class="nm">String</span>,
+  status: {
+    type: <span class="nm">String</span>,
+    enum: [<span class="str">"todo"</span>,<span class="str">"progress"</span>,
+           <span class="str">"done"</span>],
+    default: <span class="str">"todo"</span>
+  },
+  priority: {
+    type: <span class="nm">String</span>,
+    enum: [<span class="str">"low"</span>,<span class="str">"medium"</span>,<span class="str">"high"</span>],
+    default: <span class="str">"medium"</span>
+  },
+  deadline: <span class="nm">Date</span>,
+  owner: {
+    type: Schema.Types.<span class="nm">ObjectId</span>,
+    ref: <span class="str">"User"</span>,
+    required: <span class="kw">true</span>
+  }
+}, { timestamps: <span class="kw">true</span> });
+
+module.exports = <span class="fn">model</span>(
+  <span class="str">"Task"</span>, taskSchema);
+
+<span class="cm">// controllers/taskController.js</span>
+<span class="kw">const</span> Task = <span class="fn">require</span>(
+  <span class="str">"../models/Task"</span>);
+
+<span class="cm">// GET /api/tasks</span>
+<span class="kw">exports</span>.getTasks =
+  <span class="kw">async</span> (req, res) => {
+    <span class="kw">const</span> tasks = <span class="kw">await</span> Task
+      .<span class="fn">find</span>({ owner: req.user.id })
+      .<span class="fn">sort</span>({ deadline: <span class="vl">1</span> });
+    res.<span class="fn">json</span>(tasks);
+  };
+
+<span class="cm">// POST /api/tasks</span>
+<span class="kw">exports</span>.createTask =
+  <span class="kw">async</span> (req, res) => {
+    <span class="kw">const</span> task = <span class="kw">await</span> Task
+      .<span class="fn">create</span>({
+        ...req.body,
+        owner: req.user.id
+      });
+    res.<span class="fn">status</span>(<span class="vl">201</span>).<span class="fn">json</span>(task);
+  };
+
+<span class="cm">// PUT /api/tasks/:id</span>
+<span class="kw">exports</span>.updateTask =
+  <span class="kw">async</span> (req, res) => {
+    <span class="kw">const</span> task = <span class="kw">await</span> Task
+      .<span class="fn">findByIdAndUpdate</span>(
+        req.params.id,
+        req.body,
+        { <span class="kw">new</span>: <span class="kw">true</span> });
+    res.<span class="fn">json</span>(task);
+  };
+
+<span class="cm">// DELETE /api/tasks/:id</span>
+<span class="kw">exports</span>.deleteTask =
+  <span class="kw">async</span> (req, res) => {
+    <span class="kw">await</span> Task
+      .<span class="fn">findByIdAndDelete</span>(
+        req.params.id);
+    res.<span class="fn">json</span>({
+      msg: <span class="str">"Task deleted"</span> });
+  };</pre>
+        </div>
+      </div>
+
+      <!-- Postman API table -->
+      <div class="card rv in">
+        <div class="card-title">🔬 API Endpoints Tested in Postman</div>
+        <div class="tbl-wrap" style="margin:0.75rem 0 0">
+          <table>
+            <thead><tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr class="tcg"><td colspan="4">Authentication</td></tr>
+              <tr><td><span class="badge bg">POST</span></td><td><code style="font-family:monospace;font-size:0.78rem">/api/auth/register</code></td><td>None</td><td>Register new user</td></tr>
+              <tr><td><span class="badge bb">POST</span></td><td><code style="font-family:monospace;font-size:0.78rem">/api/auth/login</code></td><td>None</td><td>Login → returns JWT</td></tr>
+              <tr class="tcg"><td colspan="4">Tasks (Protected)</td></tr>
+              <tr><td><span class="badge bb">GET</span></td><td><code style="font-family:monospace;font-size:0.78rem">/api/tasks</code></td><td>Bearer JWT</td><td>Get all user's tasks</td></tr>
+              <tr><td><span class="badge bg">POST</span></td><td><code style="font-family:monospace;font-size:0.78rem">/api/tasks</code></td><td>Bearer JWT</td><td>Create new task</td></tr>
+              <tr><td><span class="badge by">PUT</span></td><td><code style="font-family:monospace;font-size:0.78rem">/api/tasks/:id</code></td><td>Bearer JWT</td><td>Update task status/details</td></tr>
+              <tr><td><span class="badge br">DELETE</span></td><td><code style="font-family:monospace;font-size:0.78rem">/api/tasks/:id</code></td><td>Bearer JWT</td><td>Delete task</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card rv in">
+        <div class="card-title">💡 Key Learnings from Assignment 3</div>
+        <div class="g3" style="gap:0.75rem;margin-top:0.5rem">
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--green);margin-bottom:4px">REST Architecture</div><div style="font-size:0.78rem;color:var(--muted)">GET/POST/PUT/DELETE, status codes (200, 201, 400, 401, 404, 500)</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--blue);margin-bottom:4px">JWT Auth</div><div style="font-size:0.78rem;color:var(--muted)">Token generation, verification middleware, expiry handling</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--yellow);margin-bottom:4px">Mongoose ODM</div><div style="font-size:0.78rem;color:var(--muted)">Schema definition, validation, virtuals, population (joins)</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--purple);margin-bottom:4px">Middleware</div><div style="font-size:0.78rem;color:var(--muted)">Express middleware pipeline — auth, logging, error handling</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--red);margin-bottom:4px">Security</div><div style="font-size:0.78rem;color:var(--muted)">bcrypt password hashing, .env secrets, CORS configuration</div></div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.9rem"><div style="font-size:0.82rem;font-weight:700;color:var(--cyan);margin-bottom:4px">MVC Pattern</div><div style="font-size:0.78rem;color:var(--muted)">Separating routes, controllers, models — clean code architecture</div></div>
+        </div>
+      </div>
+
+      <!-- ── FINAL PROJECT ── -->
+      <div style="display:flex;align-items:center;gap:10px;margin:2.5rem 0 1rem">
+        <span style="background:var(--purple-dim);border:1px solid rgba(167,139,250,0.3);color:var(--purple);padding:3px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;white-space:nowrap">Final Project</span>
+        <h2 style="font-size:1.1rem;font-weight:800;color:var(--text);margin:0">TaskBridge — Full Stack MERN Application</h2>
+      </div>
+
+      <div class="card rv in" style="border-color:rgba(167,139,250,0.3)">
+        <div class="card-title">📋 Objective</div>
+        <div class="card-body">Apply all Web Technology skills into one production-grade, deployed application. TaskBridge combines everything learned — semantic HTML, responsive CSS, JavaScript interactivity, Node.js/Express API, MongoDB database, and React frontend — into a complete role-based workforce management platform.</div>
+      </div>
+
+      <div class="g2 rv in">
+        <div class="card">
+          <div class="card-title">📁 Frontend Structure (React)</div>
+          <div class="code-block" style="margin:0.5rem 0 0">
+            <div class="code-header"><span class="code-lang">src/ folder</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+            <pre><span class="nm">src/</span>
+├── <span class="nm">components/</span>
+│   ├── <span class="tg">Navbar.jsx</span>
+│   ├── <span class="tg">TaskCard.jsx</span>
+│   ├── <span class="tg">DashboardStats.jsx</span>
+│   └── <span class="tg">Notification.jsx</span>
+├── <span class="nm">pages/</span>
+│   ├── <span class="tg">Login.jsx</span>
+│   ├── <span class="tg">EmployeeDashboard.jsx</span>
+│   ├── <span class="tg">ManagerDashboard.jsx</span>
+│   └── <span class="tg">AdminDashboard.jsx</span>
+├── <span class="nm">context/</span>
+│   └── <span class="tg">AuthContext.jsx</span>
+├── <span class="nm">hooks/</span>
+│   └── <span class="tg">useTasks.js</span>
+└── <span class="tg">App.jsx</span></pre>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">📁 Backend Structure (Node)</div>
+          <div class="code-block" style="margin:0.5rem 0 0">
+            <div class="code-header"><span class="code-lang">backend/ folder</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+            <pre><span class="nm">backend/</span>
+├── <span class="nm">models/</span>
+│   ├── <span class="tg">User.js</span>
+│   ├── <span class="tg">Task.js</span>
+│   ├── <span class="tg">AuditLog.js</span>
+│   └── <span class="tg">Notification.js</span>
+├── <span class="nm">routes/</span>
+│   ├── <span class="tg">auth.js</span>
+│   ├── <span class="tg">tasks.js</span>
+│   ├── <span class="tg">users.js</span>
+│   └── <span class="tg">audit.js</span>
+├── <span class="nm">middleware/</span>
+│   ├── <span class="tg">protect.js</span>
+│   └── <span class="tg">auditLog.js</span>
+└── <span class="tg">server.js</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block rv in">
+        <div class="code-header"><span class="code-lang">React — AuthContext + ProtectedRoute + App.jsx routing</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
+        <pre><span class="cm">// context/AuthContext.jsx</span>
+<span class="kw">import</span> { createContext, useContext,
+  useState, useEffect } <span class="kw">from</span> <span class="str">"react"</span>;
+
+<span class="kw">const</span> AuthCtx = <span class="fn">createContext</span>();
+
+<span class="kw">export function</span> <span class="fn">AuthProvider</span>({ children }) {
+  <span class="kw">const</span> [user, setUser] = <span class="fn">useState</span>(
+    () => <span class="nm">JSON</span>.<span class="fn">parse</span>(
+      localStorage.<span class="fn">getItem</span>(<span class="str">"user"</span>))
+  );
+
+  <span class="kw">const</span> <span class="fn">login</span> = (<span class="nm">userData</span>, <span class="nm">token</span>) => {
+    localStorage.<span class="fn">setItem</span>(<span class="str">"user"</span>,
+      <span class="nm">JSON</span>.<span class="fn">stringify</span>(userData));
+    localStorage.<span class="fn">setItem</span>(<span class="str">"token"</span>, token);
+    <span class="fn">setUser</span>(userData);
+  };
+
+  <span class="kw">const</span> <span class="fn">logout</span> = () => {
+    localStorage.<span class="fn">clear</span>();
+    <span class="fn">setUser</span>(<span class="kw">null</span>);
+  };
+
+  <span class="kw">return</span> (
+    &lt;<span class="fn">AuthCtx</span>.Provider
+      value={{ user, login, logout }}&gt;
+      {children}
+    &lt;/<span class="fn">AuthCtx</span>.Provider&gt;
+  );
+}
+<span class="kw">export const</span> <span class="fn">useAuth</span> = () =>
+  <span class="fn">useContext</span>(AuthCtx);
+
+<span class="cm">// App.jsx — Role-based routing</span>
+<span class="kw">import</span> { Routes, Route, Navigate }
+  <span class="kw">from</span> <span class="str">"react-router-dom"</span>;
+<span class="kw">import</span> { useAuth } <span class="kw">from</span>
+  <span class="str">"./context/AuthContext"</span>;
+
+<span class="kw">function</span> <span class="fn">ProtectedRoute</span>({ role, el }) {
+  <span class="kw">const</span> { user } = <span class="fn">useAuth</span>();
+  <span class="kw">if</span> (!user)
+    <span class="kw">return</span> &lt;<span class="fn">Navigate</span> to=<span class="str">"/login"</span>/&gt;;
+  <span class="kw">if</span> (role && user.role !== role)
+    <span class="kw">return</span> &lt;<span class="fn">Navigate</span> to=<span class="str">"/403"</span>/&gt;;
+  <span class="kw">return</span> el;
+}
+
+<span class="kw">export default function</span> <span class="fn">App</span>() {
+  <span class="kw">return</span> (
+    &lt;<span class="fn">Routes</span>&gt;
+      &lt;<span class="fn">Route</span> path=<span class="str">"/login"</span>
+        element=&lt;<span class="fn">Login</span>/&gt;/&gt;
+      &lt;<span class="fn">Route</span> path=<span class="str">"/employee/*"</span>
+        element=&lt;<span class="fn">ProtectedRoute</span>
+          role=<span class="str">"employee"</span>
+          el=&lt;<span class="fn">EmployeeDashboard</span>/&gt;/&gt;/&gt;
+      &lt;<span class="fn">Route</span> path=<span class="str">"/manager/*"</span>
+        element=&lt;<span class="fn">ProtectedRoute</span>
+          role=<span class="str">"manager"</span>
+          el=&lt;<span class="fn">ManagerDashboard</span>/&gt;/&gt;/&gt;
+      &lt;<span class="fn">Route</span> path=<span class="str">"/admin/*"</span>
+        element=&lt;<span class="fn">ProtectedRoute</span>
+          role=<span class="str">"superadmin"</span>
+          el=&lt;<span class="fn">AdminDashboard</span>/&gt;/&gt;/&gt;
+      &lt;<span class="fn">Route</span> path=<span class="str">"*"</span>
+        element=&lt;<span class="fn">Navigate</span>
+          to=<span class="str">"/login"</span>/&gt;/&gt;
+    &lt;/<span class="fn">Routes</span>&gt;
+  );
 }</pre>
       </div>
 
-      <!-- Assignment 2 -->
-      <h2 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:8px"><span style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.3);color:var(--green);padding:2px 10px;border-radius:100px;font-size:0.75rem">Assignment 2</span> Interactive Web App with JavaScript</h2>
-      <div class="card rv in">
-        <div class="card-title">📋 Objective</div>
-        <div class="card-body">Build a dynamic, interactive web application using HTML, CSS, and JavaScript. Features include DOM manipulation, form validation, local storage, and event-driven interactions — without any backend or framework.</div>
-      </div>
       <div class="g2 rv in">
         <div class="card">
-          <div class="card-title">✅ What We Built</div>
-          <div class="card-body">
-            <ul class="rlist">
-              <li>Task manager / To-Do app</li>
-              <li>Add, complete, and delete tasks</li>
-              <li>Filter by status (All / Active / Done)</li>
-              <li>Data persisted in localStorage</li>
-              <li>Search functionality</li>
-              <li>Drag-and-drop reorder</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">🛠 Technologies Used</div>
-          <div class="pill-wrap">
-            <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript ES6+</span>
-            <span class="pill">DOM API</span><span class="pill">localStorage</span><span class="pill">Events</span>
-          </div>
-          <div style="margin-top:0.75rem;font-size:0.82rem;color:var(--muted)">Pure vanilla JavaScript — no libraries. Focus on understanding the browser APIs and event loop.</div>
-        </div>
-      </div>
-      <div class="code-block rv in">
-        <div class="code-header"><span class="code-lang">Assignment 2 — JavaScript Task Manager</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
-        <pre><span class="cm">// Load tasks from localStorage on page load</span>
-<span class="kw">let</span> <span class="nm">tasks</span> = <span class="nm">JSON</span>.<span class="fn">parse</span>(localStorage.<span class="fn">getItem</span>(<span class="str">"tasks"</span>)) || [];
-
-<span class="kw">function</span> <span class="fn">saveTasks</span>() {
-  localStorage.<span class="fn">setItem</span>(<span class="str">"tasks"</span>, <span class="nm">JSON</span>.<span class="fn">stringify</span>(tasks));
-}
-
-<span class="kw">function</span> <span class="fn">renderTasks</span>(filter = <span class="str">"all"</span>) {
-  <span class="kw">const</span> <span class="nm">list</span> = document.<span class="fn">getElementById</span>(<span class="str">"task-list"</span>);
-  list.innerHTML = <span class="str">""</span>;
-
-  <span class="kw">const</span> <span class="nm">filtered</span> = tasks.<span class="fn">filter</span>(t => {
-    <span class="kw">if</span> (filter === <span class="str">"active"</span>) <span class="kw">return</span> !t.done;
-    <span class="kw">if</span> (filter === <span class="str">"done"</span>)   <span class="kw">return</span> t.done;
-    <span class="kw">return</span> <span class="kw">true</span>;
-  });
-
-  filtered.<span class="fn">forEach</span>(task => {
-    <span class="kw">const</span> <span class="nm">li</span> = document.<span class="fn">createElement</span>(<span class="str">"li"</span>);
-    li.className = task.done ? <span class="str">"done"</span> : <span class="str">""</span>;
-    li.innerHTML = <span class="str">`
-      &lt;span onclick="toggleTask(<span class="nm">${task.id}</span>)"&gt;<span class="nm">${task.text}</span>&lt;/span&gt;
-      &lt;button onclick="deleteTask(<span class="nm">${task.id}</span>)"&gt;✕&lt;/button&gt;
-    `</span>;
-    list.<span class="fn">appendChild</span>(li);
-  });
-}
-
-<span class="kw">function</span> <span class="fn">addTask</span>() {
-  <span class="kw">const</span> <span class="nm">input</span> = document.<span class="fn">getElementById</span>(<span class="str">"task-input"</span>);
-  <span class="kw">if</span> (!input.value.<span class="fn">trim</span>()) <span class="kw">return</span>;
-  tasks.<span class="fn">push</span>({ id: <span class="nm">Date</span>.<span class="fn">now</span>(), text: input.value.<span class="fn">trim</span>(), done: <span class="kw">false</span> });
-  input.value = <span class="str">""</span>;
-  <span class="fn">saveTasks</span>();
-  <span class="fn">renderTasks</span>();
-}
-
-<span class="kw">function</span> <span class="fn">toggleTask</span>(id) {
-  tasks = tasks.<span class="fn">map</span>(t => t.id === id ? { ...t, done: !t.done } : t);
-  <span class="fn">saveTasks</span>(); <span class="fn">renderTasks</span>();
-}
-
-document.<span class="fn">addEventListener</span>(<span class="str">"DOMContentLoaded"</span>, () => <span class="fn">renderTasks</span>());</pre>
-      </div>
-
-      <!-- Assignment 3 -->
-      <h2 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:8px"><span style="background:var(--yellow-dim);border:1px solid rgba(245,158,11,0.3);color:var(--yellow);padding:2px 10px;border-radius:100px;font-size:0.75rem">Assignment 3</span> REST API with Node.js, Express & MongoDB</h2>
-      <div class="card rv in">
-        <div class="card-title">📋 Objective</div>
-        <div class="card-body">Build a complete backend REST API using Node.js and Express, connected to MongoDB Atlas. The API supports full CRUD operations, user authentication with JWT, and serves JSON data to any frontend client.</div>
-      </div>
-      <div class="g2 rv in">
-        <div class="card">
-          <div class="card-title">✅ What We Built</div>
-          <div class="card-body">
-            <ul class="rlist">
-              <li>User registration & login (JWT)</li>
-              <li>CRUD endpoints for tasks/resources</li>
-              <li>Input validation & error handling</li>
-              <li>Protected routes (middleware)</li>
-              <li>MongoDB Atlas integration</li>
-              <li>Tested with Postman</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">🛠 Technologies Used</div>
-          <div class="pill-wrap">
-            <span class="pill">Node.js</span><span class="pill">Express.js</span><span class="pill">MongoDB Atlas</span>
-            <span class="pill">Mongoose</span><span class="pill">JWT</span><span class="pill">bcrypt</span><span class="pill">Postman</span>
-          </div>
-          <div style="margin-top:0.75rem;font-size:0.82rem;color:var(--muted)">Focus on RESTful design, secure authentication, and clean API structure.</div>
-        </div>
-      </div>
-      <div class="code-block rv in">
-        <div class="code-header"><span class="code-lang">Assignment 3 — Express REST API with Auth</span><div class="code-dots"><div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div></div></div>
-        <pre><span class="kw">const</span> router = <span class="fn">require</span>(<span class="str">"express"</span>).<span class="fn">Router</span>();
-<span class="kw">const</span> bcrypt = <span class="fn">require</span>(<span class="str">"bcryptjs"</span>);
-<span class="kw">const</span> jwt    = <span class="fn">require</span>(<span class="str">"jsonwebtoken"</span>);
-<span class="kw">const</span> User   = <span class="fn">require</span>(<span class="str">"../models/User"</span>);
-
-<span class="cm">// POST /api/auth/register</span>
-router.<span class="fn">post</span>(<span class="str">"/register"</span>, <span class="kw">async</span> (req, res) => {
-  <span class="kw">try</span> {
-    <span class="kw">const</span> { name, email, password } = req.body;
-    <span class="kw">const</span> exists = <span class="kw">await</span> User.<span class="fn">findOne</span>({ email });
-    <span class="kw">if</span> (exists) <span class="kw">return</span> res.<span class="fn">status</span>(<span class="vl">400</span>).<span class="fn">json</span>({ msg: <span class="str">"Email already registered"</span> });
-
-    <span class="kw">const</span> hash = <span class="kw">await</span> bcrypt.<span class="fn">hash</span>(password, <span class="vl">10</span>);
-    <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">create</span>({ name, email, password: hash });
-    res.<span class="fn">status</span>(<span class="vl">201</span>).<span class="fn">json</span>({ msg: <span class="str">"User registered"</span>, id: user._id });
-  } <span class="kw">catch</span> (err) {
-    res.<span class="fn">status</span>(<span class="vl">500</span>).<span class="fn">json</span>({ msg: err.message });
-  }
-});
-
-<span class="cm">// POST /api/auth/login</span>
-router.<span class="fn">post</span>(<span class="str">"/login"</span>, <span class="kw">async</span> (req, res) => {
-  <span class="kw">const</span> { email, password } = req.body;
-  <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">findOne</span>({ email });
-  <span class="kw">if</span> (!user || !(<span class="kw">await</span> bcrypt.<span class="fn">compare</span>(password, user.password)))
-    <span class="kw">return</span> res.<span class="fn">status</span>(<span class="vl">401</span>).<span class="fn">json</span>({ msg: <span class="str">"Invalid credentials"</span> });
-
-  <span class="kw">const</span> token = jwt.<span class="fn">sign</span>({ id: user._id }, process.env.<span class="nm">JWT_SECRET</span>, { expiresIn: <span class="str">"7d"</span> });
-  res.<span class="fn">json</span>({ token, user: { id: user._id, name: user.name } });
-});
-
-module.exports = router;</pre>
-      </div>
-
-      <!-- Final Project -->
-      <h2 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--text);display:flex;align-items:center;gap:8px"><span style="background:var(--purple-dim);border:1px solid rgba(167,139,250,0.3);color:var(--purple);padding:2px 10px;border-radius:100px;font-size:0.75rem">Final Project</span> TaskBridge — Full Stack MERN App</h2>
-      <div class="card rv in" style="border-color:rgba(167,139,250,0.3)">
-        <div class="card-title">📋 Objective</div>
-        <div class="card-body">Combine everything learned across all assignments into one production-grade full-stack application. TaskBridge is the capstone Web Technology project — a role-based workforce management platform built with the complete MERN stack, deployed on Vercel, with JWT auth, Google OAuth, file uploads, email notifications, and real-time dashboards.</div>
-      </div>
-      <div class="g2 rv in">
-        <div class="card">
-          <div class="card-title">✅ What We Built</div>
+          <div class="card-title">✅ Features Built</div>
           <div class="card-body">
             <ul class="rlist">
               <li>Role-based auth (Super Admin / Manager / Employee)</li>
               <li>Real-time dashboards per role</li>
-              <li>Task assignment with file uploads</li>
-              <li>Review & feedback system (5-star)</li>
-              <li>Full audit logs & notifications</li>
-              <li>Deployed live on Vercel</li>
+              <li>Task assignment with file uploads (PDF/ZIP)</li>
+              <li>Review & approve / request revision flow</li>
+              <li>5-star feedback system post-completion</li>
+              <li>Deadline extension request & approval</li>
+              <li>Task blocker flagging with reason</li>
+              <li>In-app comment threads per task</li>
+              <li>Email notifications for all key events</li>
+              <li>Full audit logs (Super Admin only)</li>
+              <li>Google OAuth 2.0 login</li>
               <li>GTMetrix Grade A · 99% Performance</li>
             </ul>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">🛠 Full Tech Stack</div>
+          <div class="card-title">🛠 Full Stack Used</div>
           <div class="tech-wrap">
-            <div class="tp" style="font-size:0.8rem;padding:6px 12px">⚛ React</div>
-            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🎨 Tailwind</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">⚛ React.js</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🎨 Tailwind CSS</div>
             <div class="tp" style="font-size:0.8rem;padding:6px 12px">🟢 Node.js</div>
-            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🚂 Express</div>
-            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🍃 MongoDB</div>
-            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🔐 JWT</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🚂 Express.js</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🍃 MongoDB Atlas</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🔐 JWT + bcrypt</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">🔑 Google OAuth 2.0</div>
+            <div class="tp" style="font-size:0.8rem;padding:6px 12px">📧 Nodemailer</div>
             <div class="tp" style="font-size:0.8rem;padding:6px 12px">🚀 Vercel</div>
           </div>
-          <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" class="btn-live" style="display:inline-flex;margin-top:1rem;font-size:0.8rem;padding:8px 16px;border-radius:8px">⚡ View Live App</a>
+          <a href="https://taskbridge-frontend-sandy.vercel.app/" target="_blank" class="btn-live" style="display:inline-flex;margin-top:1rem;font-size:0.8rem;padding:8px 16px;border-radius:8px;text-decoration:none">⚡ View Live App ↗</a>
         </div>
       </div>
-      <div class="db-frame rv in">
-        <div class="db-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="db-url">taskbridge-frontend-sandy.vercel.app/admin/dashboard</div></div>
-        <div class="db-body">
-          <div style="font-size:1.1rem;font-weight:700;margin-bottom:3px">Live Application Dashboard</div>
-          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:1rem">Super Admin — system-wide overview</div>
-          <div class="db-stats">
-            <div class="db-stat"><div class="db-slabel">Total Managers</div><div class="db-sval" style="color:var(--blue)">1</div></div>
-            <div class="db-stat"><div class="db-slabel">Total Employees</div><div class="db-sval" style="color:var(--green)">1</div></div>
-            <div class="db-stat"><div class="db-slabel">Total Tasks</div><div class="db-sval" style="color:var(--blue)">4</div></div>
-            <div class="db-stat"><div class="db-slabel">Completion</div><div class="db-sval" style="color:var(--green)">25%</div></div>
-          </div>
-        </div>
-      </div>
+
     </div>
 
     <!-- Problem Analysis -->
